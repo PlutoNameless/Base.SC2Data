@@ -115,7 +115,7 @@
     <CWeaponLegacy id="FlamingBetty_Weapon">
         <EditorCategories value="Race:Terran"/>
         <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel0.dds"/>
-        <DisplayEffect value="DutchTurretFlameThrowerDamage"/>
+        <DisplayEffect value="FlamingBetty_Weapon@Damage"/>
         <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <Range value="6"/>
         <Marker>
