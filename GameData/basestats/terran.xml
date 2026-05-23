@@ -18,6 +18,14 @@
         <Fields Reference="Mover,^ParamId^@Jump,MotionPhases[0].AdaptableParabolaAccels[Land]" NameOverride="DataCollectionPattern/NameOverride/ReaperPattern/JumpAccelsLand"/>
     </CDataCollectionPattern>
 
+    <!-- Units -->
+    <CUnit default="1" id="Generic_Structure_Terran" parent="Generic_Structure">
+        <BehaviorArray Link="TerranBuildingBurnDown"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="SelectBuilder" Type="SelectBuilder" Row="1" Column="3"/>
+        </CardLayouts>
+    </CUnit>
+
     <!-- Upgrades -->
 
     <CButton id="TerranInfantryArmor@1">
