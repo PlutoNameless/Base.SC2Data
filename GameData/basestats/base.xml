@@ -397,6 +397,7 @@
         <AttackTargetPriority value="11"/>
         <SubgroupPriority value="3"/>
         <DeathRevealRadius value="3"/>
+        <WeaponArray Link="##id##_Weapon"/>
 
         <FlagArray index="Turnable" value="0"/>
         <FlagArray index="PreventDefeat" value="1"/>
