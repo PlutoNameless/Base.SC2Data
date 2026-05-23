@@ -1,38 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Catalog>
 
-    <CButton id="FlamingBetty"></CButton>
+    <CButton id="FlamingBetty" parent="UnitButton_OnlyGround">
+        <Icon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
+    </CButton>
     
-    <CUnit id="FlamingBetty">
+    <CUnit id="FlamingBetty" parent="Generic_Structure_Terran" race="Terr">
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
-        <DeathRevealRadius value="3"/>
-        <Race value="Terr"/>
-        <FlagArray index="Turnable" value="0"/>
-        <FlagArray index="UseLineOfSight" value="1"/>
-        <FlagArray index="TownAlert" value="1"/>
-        <FlagArray index="NoPortraitTalk" value="1"/>
-        <FlagArray index="AIDefense" value="1"/>
-        <FlagArray index="ArmorDisabledWhileConstructing" value="1"/>
-        <FogVisibility value="Snapshot"/>
-        <PlaneArray index="Ground" value="1"/>
-        <Collide index="Burrow" value="1"/>
-        <Collide index="Structure" value="1"/>
-        <Attributes index="Armored" value="1"/>
+        <FlagArray index="PreventDefeat" value="0"/>
+        <FlagArray index="PreventDestroy" value="0"/>
         <Attributes index="Mechanical" value="1"/>
         <LifeStart value="750"/>
         <LifeMax value="750"/>
         <LifeArmor value="1"/>
-        <LifeArmorName value="Unit/LifeArmorName/TerranBuildingPlating"/>
         <Sight value="10"/>
         <CostResource index="Minerals" value="100"/>
         <RepairTime value="33.3332"/>
         <AttackTargetPriority value="20"/>
         <AbilArray Link="stop"/>
         <AbilArray Link="attack"/>
-        <CardLayouts>
+        <WeaponArray index="0" Turret="AutoTurret"/>
+        <CardLayouts index="0">
             <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
             <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
-            <LayoutButtons Face="Dismantle" Type="AbilCmd" AbilCmd="DismantleTurret,0" Row="2" Column="0"/>
         </CardLayouts>
         <Radius value="0.75"/>
         <SeparationRadius value="0.75"/>
@@ -43,7 +33,6 @@
         <SubgroupPriority value="12"/>
         <MinimapRadius value="0.75"/>
         <GlossaryPriority value="360"/>
-        <WeaponArray index="0" Turret="AutoTurret"/>
     </CUnit>
     <CActorUnit id="FlamingBetty" parent="AdvancedUnitStandard" unitName="FlamingBetty">
         <Aliases value="_UnitMedium"/>
@@ -119,4 +108,80 @@
         <DataRecord Entry="Sound,FlamingBetty@Death"/>
         <DataRecord Entry="Footprint,FlamingBetty"/>
     </CDataCollectionUnit>
+
+    <!-- ========= Weapons ========== -->
+    
+    <!-- Flamethrower -->
+    <CWeaponLegacy id="FlamingBetty_Weapon">
+        <EditorCategories value="Race:Terran"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel0.dds"/>
+        <DisplayEffect value="DutchTurretFlameThrowerDamage"/>
+        <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="6"/>
+        <Marker>
+            <MatchFlags index="Id" value="1"/>
+        </Marker>
+        <Period value="2"/>
+        <Backswing value="1"/>
+        <Effect value="FlamingBetty_Weapon@Set"/>
+    </CWeaponLegacy>
+
+    <CEffectDamage id="FlamingBetty_Weapon@Damage" parent="DU_WEAP_SPLASH">
+        <ValidatorArray value="noMarkers"/>
+        <EditorCategories value="Race:Terran"/>
+        <Amount value="14"/>
+        <Death value="Fire"/>
+    </CEffectDamage>
+    <CEffectEnumArea id="FlamingBetty_Weapon@Search" parent="EA_WEAP">
+        <EditorCategories value="Race:Terran"/>
+        <SearchFilters value="Ground;Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="0.6" Effect="FlamingBetty_Weapon@Damage"/>
+    </CEffectEnumArea>
+    <CEffectCreatePersistent id="FlamingBetty_Weapon@CP">
+        <EditorCategories value="Race:Terran"/>
+        <WhichLocation Value="SourcePoint"/>
+        <OffsetVectorStartLocation Value="SourcePoint"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodCount value="12"/>
+        <PeriodicEffectArray value="FlamingBetty_Weapon@Search"/>
+        <PeriodicOffsetArray value="0,-0.5,0"/>
+        <PeriodicOffsetArray value="0,-1,0"/>
+        <PeriodicOffsetArray value="0,-1.5,0"/>
+        <PeriodicOffsetArray value="0,-2,0"/>
+        <PeriodicOffsetArray value="0,-2.5,0"/>
+        <PeriodicOffsetArray value="0,-3,0"/>
+        <PeriodicOffsetArray value="0,-3.5,0"/>
+        <PeriodicOffsetArray value="0,-4,0"/>
+        <PeriodicOffsetArray value="0,-4.5,0"/>
+        <PeriodicOffsetArray value="0,-5,0"/>
+        <PeriodicOffsetArray value="0,-5.5,0"/>
+        <PeriodicOffsetArray value="0,-6,0"/>
+        <PeriodicPeriodArray value="0.022"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="FlamingBetty_Weapon@Set">
+        <EditorCategories value="Race:Terran"/>
+        <EffectArray value="FlamingBetty_Weapon@CP"/>
+        <EffectArray value="FlamingBetty_Weapon@Damage"/>
+    </CEffectSet>
+
+    <CActorAction id="FlamingBetty_Weapon@Attack" parent="GenericAttack" effectLaunch="FlamingBetty_Weapon@Set" effectImpact="FlamingBetty_Weapon@Damage"/>
+    <CActorModel id="DutchTurretImpactModelFlames" parent="ModelAnimationStyleOneShot">
+        <Terms value="Cap 1"/>
+        <Model value="ImpactModelFlames"/>
+        <On Terms="Effect.FlamingBetty_Weapon@Damage.Start; At Target" Send="Create"/>
+        <On Terms="ActorOrphan" Send="Destroy"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachRandomDamage"/>
+    </CActorModel>
+    
+    <CModel id="FlamingBetty_Weapon@AttackLaunch" parent="LaunchFX">
+        <Model value="Assets\Effects\Terran\FlameTurretLaunch\FlameTurretLaunch.m3"/>
+        <EditorCategories value="Race:Terran"/>
+        <ScaleMax value="1.000000,1.500000,1.000000"/>
+        <ScaleMin value="1.000000,1.500000,1.000000"/>
+    </CModel>
+
+    <CSound id="FlamingBetty_Weapon@AttackLaunch" parent="Hellion_AttackLaunch"/>
+    <CSound id="FlamingBetty_Weapon@AttackImpact" parent="Hellion_AttackImpact"/>
+    
 </Catalog>
