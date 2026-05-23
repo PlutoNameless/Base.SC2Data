@@ -4,6 +4,7 @@
     <!-- Requires: Actor:AdvancedStandard_Ground[base.xml] -->
     <!-- Requires: Unit:Generic_Unit_Ground[base.xml] -->
     <!-- Requires: DataCollection:UnitGround[base.xml] -->
+    <!-- Requires: Unit:FlamingBetty[Flaming Betty.xml] -->
     
     
     <CButton id="RorySwann" parent="UnitButton_OnlyGround">
@@ -42,14 +43,14 @@
     <CActorUnit id="RorySwann" parent="AdvancedStandard_Ground" unitName="RorySwann">
         <Aliases value="_UnitSmall"/>
         <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
-        <On Terms="Effect.DutchConcussiveGrenadeLaunchMissile.Start; At Caster" Send="AnimPlay AttackRight Attack,Right"/>
+        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
+        <On Terms="Abil.DutchPlaceTurret.SourceCastStart" Send="$Spell 0 -1.000000 -1.000000 1.000000 AsDuration"/>
         <On Terms="WeaponStart.SwannMelee.AttackStart" Send="AnimBracketStart AttackCover Attack,Cover"/>
         <On Terms="WeaponStart.SwannMelee.AttackStart; AnimPlaying AttackCover Cover,00" Send="TimerSet 0.400000 MeleeAttackLaunch"/>
         <On Terms="WeaponStart.SwannMelee.AttackStart; AnimPlaying AttackCover Cover,01" Send="TimerSet 0.100000 MeleeAttackLaunch"/>
         <On Terms="WeaponStop.SwannMelee.AttackStop" Send="AnimBracketStop AttackCover"/>
         <On Terms="TimerExpired; TimerName MeleeAttackLaunch" Send="Create Swann_MeleeAttackLaunch"/>
-        <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
-        <On Terms="Abil.DutchPlaceTurret.SourceCastStart" Send="$Spell 0 -1.000000 -1.000000 1.000000 AsDuration"/>
+        <On Terms="Effect.RorySwann_Weapon@LM.Start; At Caster" Send="AnimPlay AttackRight Attack,Right"/>
         <DeathArray index="Fire" SoundLink="Uni_DeathFXFire"/>
         <AbilSoundArray AbilCmd="DutchPlaceTurret,Execute" Sound="Swann_PlaceTurretVO"/>
         <ErrorArray Error="CantSeeBuildLocation" Sound="e_cmdBuildTechRequirementsNotMet_Terr"/>
@@ -156,15 +157,100 @@
     
     <!-- ========== Weapons ========== -->
 
-    <CActorAction id="RorySwann_Weapon@Attack" parent="GenericAttack" effectAttack="RorySwann_Weapon@Damage"/>
+    <CActorAction id="RorySwann_Weapon@Attack" parent="GenericAttack" effectLaunch="RorySwann_Weapon@LM" effectImpact="RorySwann_Weapon@Damage">
+        <LaunchAttachQuery Methods="AMFilterWeaponRight"/>
+        <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
+    </CActorAction>
     
     <CWeaponLegacy id="RorySwann_Weapon">
-        <Range value="7"/>
-        <Effect value="RorySwann_Weapon@Damage"/>
+        <EditorCategories value="Race:Terran"/>
+        <Effect value="RorySwann_Weapon@LM"/>
+        <DisplayEffect value="RorySwann_Weapon@Damage"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel0.dds"/>
+        <DisplayAttackCount value="1"/>
+        <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Period value="1.2"/>
+        <MinimumRange value="0.6"/>
+        <DamagePoint value="0"/>
+        <Backswing value="0"/>
     </CWeaponLegacy>
+    
     <CEffectDamage id="RorySwann_Weapon@Damage">
+        <EditorCategories value="Race:Terran"/>
+        <ArmorReduction value="1"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <Flags index="Notification" value="1"/>
+        <Kind value="Ranged"/>
         <Amount value="25"/>
+        <Death value="Blast"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
     </CEffectDamage>
+    <CEffectLaunchMissile id="RorySwann_Weapon@LM">
+        <EditorCategories value="Race:Terran"/>
+        <ImpactEffect value="RorySwann_Weapon@Damage"/>
+        <AmmoUnit value="RorySwann_Weapon@AttackMissile"/>
+    </CEffectLaunchMissile>
+
+    <CModel id="RorySwann_Weapon@AttackImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Terran\MarauderMissileImpact\MarauderMissileImpact.m3"/>
+        <EditorCategories value="Race:Terran"/>
+    </CModel>
+
+    <CSound id="RorySwann_Weapon@AttackImpact" parent="Terran_ExplosionSmall">
+        <Volume value="-10.000000,-10.000000"/>
+        <DupeMuteCount value="3"/>
+        <DupeThresholdPoints/>
+        <DupeThresholdPoints Count="2" Volume="-3.000000"/>
+        <DupePrioritization value="Oldest"/>
+        <Pitch value="1.000000,2.000000"/>
+    </CSound>
+    <CSound id="RorySwann_Weapon@AttackLaunch" parent="Combat">
+        <DupeDestroyCount value="5"/>
+        <OverlapTimeDelta value="100"/>
+        <Pitch value="3.160000,7.010000"/>
+        <Volume value="-10.480000,-7.960000"/>
+        <AssetArray File="Assets\Sounds\Terran\Marauder\Marauder_AttackLaunch0.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Marauder\Marauder_AttackLaunch1.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Marauder\Marauder_AttackLaunch2.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Marauder\Marauder_AttackLaunch3.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Marauder\Marauder_AttackLaunch4.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Marauder\Marauder_AttackLaunch5.wav"/>
+        <EditorCategories value="Race:Terran"/>
+        <DupeMaximumMethod value="Replace"/>
+        <DupeThresholdPoints/>
+        <DupeThresholdPoints Count="2" Volume="-4.500000"/>
+        <DupeMuteCount value="3"/>
+        <DupePrioritization value="Oldest"/>
+    </CSound>
+
+    <CActorMissile id="RorySwann_Weapon@AttackMissile" parent="GenericAttackMissile" unitName="RorySwann_Weapon@AttackMissile"/>
+
+    <CUnit id="RorySwann_Weapon@AttackMissile" parent="MISSILE">
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Campaign"/>
+    </CUnit>
+
+    <CModel id="RorySwann_Weapon@AttackMissile" parent="MissileFX">
+        <Model value="Assets\Effects\Terran\MarauderMissile\MarauderMissile.m3"/>
+        <EditorCategories value="Race:Terran"/>
+    </CModel>
+
+    <CMoverMissile id="RorySwann_Weapon@AttackMissile">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <MaxSpeed value="20"/>
+            <YawPitchRoll value="MAX"/>
+        </MotionPhases>
+    </CMoverMissile>
+
+    <CDataCollectionUnit id="RorySwann_Weapon" parent="Weapon_Missile">
+        <DataRecord Entry="Weapon,RorySwann_Weapon"/>
+        <DataRecord Entry="Actor,RorySwann_Weapon@Attack"/>
+        <DataRecord Entry="Effect,RorySwann_Weapon"/>
+        <DataRecord Entry="Effect,RorySwann_Weapon@Damage"/>
+    </CDataCollectionUnit>
     
     <!-- ========= Abilities ========== -->
     
@@ -173,7 +259,22 @@
     <CAbilEffectTarget id="RorySwann_PlaceTurret">
 
     </CAbilEffectTarget>
+
+    <CBehaviorBuff id="RorySwann_PlaceTurret@TimedLife" parent="PrivateTimedLife">
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Duration value="45"/>
+    </CBehaviorBuff>
     
+    <CEffectCreateUnit id="DutchPlaceTurretCreateUnit">
+        <EditorCategories value="Race:Terran"/>
+        <WhichLocation Value="TargetPoint"/>
+        <SpawnUnit value="FlamingBetty"/>
+        <SpawnEffect value="RorySwann_PlaceTurret@AB"/>
+    </CEffectCreateUnit>
+    <CEffectApplyBehavior id="RorySwann_PlaceTurret@AB">
+        <EditorCategories value=""/>
+        <Behavior value="RorySwann_PlaceTurret@TimedLife"/>
+    </CEffectApplyBehavior>
     
     
 </Catalog>

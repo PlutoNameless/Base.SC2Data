@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog>
+
+    <CButton id="FlamingBetty"></CButton>
+    
+    <CUnit id="FlamingBetty">
+        <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
+        <DeathRevealRadius value="3"/>
+        <Race value="Terr"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="TownAlert" value="1"/>
+        <FlagArray index="NoPortraitTalk" value="1"/>
+        <FlagArray index="AIDefense" value="1"/>
+        <FlagArray index="ArmorDisabledWhileConstructing" value="1"/>
+        <FogVisibility value="Snapshot"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Burrow" value="1"/>
+        <Collide index="Structure" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="750"/>
+        <LifeMax value="750"/>
+        <LifeArmor value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/TerranBuildingPlating"/>
+        <Sight value="10"/>
+        <CostResource index="Minerals" value="100"/>
+        <RepairTime value="33.3332"/>
+        <AttackTargetPriority value="20"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <CardLayouts>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="Dismantle" Type="AbilCmd" AbilCmd="DismantleTurret,0" Row="2" Column="0"/>
+        </CardLayouts>
+        <Radius value="0.75"/>
+        <SeparationRadius value="0.75"/>
+        <Footprint value="FootprintAutoTurret"/>
+        <PlacementFootprint value="FootprintAutoTurret"/>
+        <ScoreMake value="50"/>
+        <ScoreKill value="150"/>
+        <SubgroupPriority value="12"/>
+        <MinimapRadius value="0.75"/>
+        <GlossaryPriority value="360"/>
+        <WeaponArray index="0" Turret="AutoTurret"/>
+    </CUnit>
+    <CActorUnit id="FlamingBetty" parent="AdvancedUnitStandard" unitName="FlamingBetty">
+        <Aliases value="_UnitMedium"/>
+        <CreepHeightClass value="Tiny"/>
+        <DeathArray index="Normal" ModelLink="TerranBuildingDeath"/>
+        <PortraitModel value="AdjutantPortrait"/>
+        <BarOffset value="75"/>
+        <On Terms="ActorCreation" Send="Create Swann_FlamingBettyReleaseImpact"/>
+        <BarWidth value="85"/>
+        <HeroIcon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-buildingarmor.dds"/>
+        <UnitIcon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
+        <UnitKillRank Text="UnitKillRank/FlamingBetty"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Terran-flameturret.dds"/>
+        </GroupIcon>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Terran-flameturret.dds"/>
+        </Wireframe>
+    </CActorUnit>
+    <CModel id="FlamingBetty" parent="Building">
+        <Model value="Assets\Buildings\Terran\FlameTurret\FlameTurret.m3"/>
+        <AttachProps Id="Ref_Hardpoint">
+            <Keys index="Turret" value="0"/>
+        </AttachProps>
+        <EditorCategories value="Race:Terran"/>
+        <Occlusion value="Show"/>
+        <Radius value="0.750000"/>
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
+        <SelectionLayer value="2"/>
+        <SelectionRadius value="0.937500"/>
+        <Flags index="AutoUnload" value="1"/>
+        <ShadowRadius value="0.937500"/>
+    </CModel>
+    <CModel id="FlamingBetty@Placement" parent="Placement">
+        <Model value="Assets\Buildings\Terran\FlameTurretPlacement\FlameTurretPlacement.m3"/>
+        <LowQualityModel value="FlamingBetty"/>
+        <EditorCategories value="Race:Terran"/>
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
+        <SelectionRadius value="0.625000"/>
+        <ShadowRadius value="0.625000"/>
+    </CModel>
+
+    <CSound id="FlamingBetty@Death" parent="Terran_ExplosionMedium"/>
+
+    <CFootprint id="FlamingBetty">
+        <Layers index="Check">
+            <Sets index="0">
+                <Negative index="Creep" value="0"/>
+            </Sets>
+            <Rows value="xx"/>
+            <Rows value="xx"/>
+        </Layers>
+        <Layers index="Place">
+            <Rows value="xx"/>
+            <Rows value="xx"/>
+        </Layers>
+        <Shape>
+            <Radius value="0.8386"/>
+            <Offsets value="-0.375,-0.75;0.375,-0.75;-0.375,0.75;0.375,0.75;-0.75,-0.375;-0.75,0.375;0.75,-0.375;0.75,0.375"/>
+            <Borders value="0,4,2;1,0,2;2,3,2;3,7,2;4,5,2;5,2,2;6,1,2;7,6,2"/>
+        </Shape>
+    </CFootprint>
+
+    <CDataCollectionUnit id="FlamingBetty" parent="UnitGround">
+        <DataRecord Entry="Button,FlamingBetty"/>
+        <DataRecord Entry="Unit,FlamingBetty"/>
+        <DataRecord Entry="Actor,FlamingBetty"/>
+        <DataRecord Entry="Model,FlamingBetty"/>
+        <DataRecord Entry="Model,FlamingBetty@Placement"/>
+        <DataRecord Entry="Sound,FlamingBetty@Death"/>
+        <DataRecord Entry="Footprint,FlamingBetty"/>
+    </CDataCollectionUnit>
+</Catalog>
