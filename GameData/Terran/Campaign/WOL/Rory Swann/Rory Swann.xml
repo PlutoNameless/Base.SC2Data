@@ -3,12 +3,12 @@
     <!-- Requires: Button:UnitButton_OnlyGround[base.xml] -->
     <!-- Requires: Actor:AdvancedStandard_Ground[base.xml] -->
     <!-- Requires: Unit:Generic_Unit_Ground[base.xml] -->
-    <!-- Requires: Unit:Generic_Unit_Ground[base.xml] -->
-    <!-- Requires: Actor:AdvancedStandard_Ground[base.xml] -->
+    <!-- Requires: DataCollection:UnitGround[base.xml] -->
     
     
-
-    <CButton id="RorySwann" parent="UnitButton_OnlyGround"></CButton>
+    <CButton id="RorySwann" parent="UnitButton_OnlyGround">
+        <Icon value="Assets\Textures\BTN-Unit-Terran-MarauderSwann.dds"/>
+    </CButton>
     
     <CUnit id="RorySwann" parent="Generic_Unit_Ground" race="Terr">
         <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
@@ -50,9 +50,7 @@
         <On Terms="TimerExpired; TimerName MeleeAttackLaunch" Send="Create Swann_MeleeAttackLaunch"/>
         <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
         <On Terms="Abil.DutchPlaceTurret.SourceCastStart" Send="$Spell 0 -1.000000 -1.000000 1.000000 AsDuration"/>
-        <DeathArray index="Normal" ModelLink="MarauderDeath" SoundLink="Swann_Explode"/>
-        <DeathArray index="Eviscerate" ModelLink="MarauderDeathEviscerate"/>
-        <DeathArray index="Fire" ModelLink="DutchDeathFire" SoundLink="Uni_DeathFXFire"/>
+        <DeathArray index="Fire" SoundLink="Uni_DeathFXFire"/>
         <AbilSoundArray AbilCmd="DutchPlaceTurret,Execute" Sound="Swann_PlaceTurretVO"/>
         <ErrorArray Error="CantSeeBuildLocation" Sound="e_cmdBuildTechRequirementsNotMet_Terr"/>
         <ErrorArray Error="CantBuildLocationInvalid" Sound="e_cmdBuildTechRequirementsNotMet_Terr"/>
@@ -75,16 +73,86 @@
     </CActorUnit>
     
     <CModel id="RorySwann" parent="Unit">
-        <Model value=""/>
+        <Model value="Assets\Units\Terran\MarauderSwann\MarauderSwann.m3"/>
+        <SquibTypeDefault value="Flesh"/>
+        <EditorCategories value="Race:Terran"/>
+        <Lighting value="Marauder"/>
+        <Occlusion value="Show"/>
+        <Flags index="AutoUnload" value="1"/>
+        <SelectionRadius value="0.454300"/>
+        <ShadowRadius value="0.454300"/>
+        <TechPurchaseCamera value="Star2CameraMid05"/>
+        <UnitGlossaryCamera value="Star2CameraMid05"/>
+        <PlanetPanelCamera value="Star2CameraMid05"/>
     </CModel>
     <CModel id="RorySwann@Death" parent="UnitDeath">
-        <Model value=""/>
+        <Model value="Assets\Units\Terran\MarauderDeathEx1\MarauderDeathEx1.m3"/>
     </CModel>
-    <CModel id="RorySwann@Portrait" parent="Portrait">
-        <Model value=""/>
+    <CModel id="RorySwann@DeathFire" parent="UnitDeath">
+        <Model value="Assets\Units\Terran\MarauderSwannDeathFire\MarauderSwannDeathFire.m3"/>
+    </CModel>
+    <CModel id="RorySwann@Portrait" parent="FXAPortrait">
+        <Model value="Assets\Portraits\Terran\SwannMarauderPortrait\SwannMarauderPortrait.m3"/>
+        <RequiredAnims value="Assets\StoryModeCharacters\Terran\SM_HyperionArmorer_FacialAnims\SM_HyperionArmorer_FacialAnims.m3a"/>
     </CModel>
     
-    
+    <CSound id="RorySwann@Death" parent="Terran_ExplosionSmall"/>
+    <CSound id="RorySwann@Attack" parent="Voice">
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Attack00.ogg" FacialAnim="Swann_Attack00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Attack01.ogg" FacialAnim="Swann_Attack01"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Attack02.ogg" FacialAnim="Swann_Attack02"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Attack03.ogg" FacialAnim="Swann_Attack03"/>
+    </CSound>
+    <CSound id="RorySwann@Help" parent="Alert">
+        <AssetArray>
+            <File value="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Help00.ogg"/>
+            <FacialAnim value="Swann_Help00"/>
+            <PortraitModel value="StetmannMedicPortrait"/>
+            <Speaker value="ConversationState/Characters/CharStetmann"/>
+        </AssetArray>
+        <Category value="Alert"/>
+    </CSound>
+    <CSound id="RorySwann@Pissed" parent="Pissed">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Pissed00.ogg" FacialAnim="Swann_Pissed00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Pissed01.ogg" FacialAnim="Swann_Pissed01"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Pissed02.ogg" FacialAnim="Swann_Pissed02"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Pissed03.ogg" FacialAnim="Swann_Pissed03"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Pissed04.ogg" FacialAnim="Swann_Pissed04"/>
+    </CSound>
+    <CSound id="RorySwann@Yes" parent="Voice">
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Yes00.ogg" FacialAnim="Swann_Yes00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Yes01.ogg" FacialAnim="Swann_Yes01"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Yes02.ogg" FacialAnim="Swann_Yes02"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Yes03.ogg" FacialAnim="Swann_Yes03"/>
+    </CSound>
+    <CSound id="RorySwann@What" parent="Voice">
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_What00.ogg" FacialAnim="Swann_What00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_What01.ogg" FacialAnim="Swann_What01"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_What02.ogg" FacialAnim="Swann_What02"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_What03.ogg" FacialAnim="Swann_What03"/>
+    </CSound>
+    <CSound id="RorySwann@Ready" parent="Ready">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Ready01.ogg" FacialAnim="Swann_Ready00"/>
+    </CSound>
+
+    <CDataCollectionUnit id="RorySwann" parent="UnitGround">
+        <DataRecord Entry="Button,RorySwann"/>
+        <DataRecord Entry="Unit,RorySwann"/>
+        <DataRecord Entry="Actor,RorySwann"/>
+        <DataRecord Entry="Model,RorySwann"/>
+        <DataRecord Entry="Model,RorySwann@Death"/>
+        <DataRecord Entry="Model,RorySwann@DeathFire"/>
+        <DataRecord Entry="Model,RorySwann@Portrait"/>
+        <DataRecord Entry="Sound,RorySwann@Death"/>
+        <DataRecord Entry="Sound,RorySwann@Attack"/>
+        <DataRecord Entry="Sound,RorySwann@Help"/>
+        <DataRecord Entry="Sound,RorySwann@Pissed"/>
+        <DataRecord Entry="Sound,RorySwann@Yes"/>
+        <DataRecord Entry="Sound,RorySwann@What"/>
+        <DataRecord Entry="Sound,RorySwann@Ready"/>
+    </CDataCollectionUnit>
     
     <!-- ========== Weapons ========== -->
 
