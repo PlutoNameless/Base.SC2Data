@@ -26,8 +26,8 @@
         </CardLayouts>
         <Radius value="0.75"/>
         <SeparationRadius value="0.75"/>
-        <Footprint value="FootprintAutoTurret"/>
-        <PlacementFootprint value="FootprintAutoTurret"/>
+        <Footprint value="FlamingBetty"/>
+        <PlacementFootprint value="FlamingBetty"/>
         <ScoreMake value="50"/>
         <ScoreKill value="150"/>
         <SubgroupPriority value="12"/>
@@ -42,6 +42,7 @@
         <BarOffset value="75"/>
         <On Terms="ActorCreation" Send="Create Swann_FlamingBettyReleaseImpact"/>
         <BarWidth value="85"/>
+        <EventDataSound Name="Place" Sound="FlamingBetty@Release"/>
         <HeroIcon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
         <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-buildingarmor.dds"/>
         <UnitIcon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
@@ -67,6 +68,7 @@
         <SelectionRadius value="0.937500"/>
         <Flags index="AutoUnload" value="1"/>
         <ShadowRadius value="0.937500"/>
+        <Events Type="Sound" Name="Place" Anim="Birth"/>
     </CModel>
     <CModel id="FlamingBetty@Placement" parent="Placement">
         <Model value="Assets\Buildings\Terran\FlameTurretPlacement\FlameTurretPlacement.m3"/>
@@ -79,6 +81,13 @@
     </CModel>
 
     <CSound id="FlamingBetty@Death" parent="Terran_ExplosionMedium"/>
+    <CSound id="FlamingBetty@Release" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Terran\Raven\Raven_AutoTurret_ReleaseImpact0.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Raven\Raven_AutoTurret_ReleaseImpact1.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Raven\Raven_AutoTurret_ReleaseImpact2.wav"/>
+        <Volume value="-6.000000,-6.000000"/>
+    </CSound>
 
     <CFootprint id="FlamingBetty">
         <Layers index="Check">
@@ -165,15 +174,13 @@
     </CEffectSet>
 
     <CActorAction id="FlamingBetty_Weapon@Attack" parent="GenericAttack" effectLaunch="FlamingBetty_Weapon@Set" effectImpact="FlamingBetty_Weapon@Damage"/>
-    <CActorModel id="DutchTurretImpactModelFlames" parent="ModelAnimationStyleOneShot">
+    <CActorModel id="FlamingBetty_Weapon@ImpactModel" parent="ModelAnimationStyleOneShot">
         <Terms value="Cap 1"/>
         <Model value="ImpactModelFlames"/>
         <On Terms="Effect.FlamingBetty_Weapon@Damage.Start; At Target" Send="Create"/>
-        <On Terms="ActorOrphan" Send="Destroy"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachRandomDamage"/>
     </CActorModel>
-    
     <CModel id="FlamingBetty_Weapon@AttackLaunch" parent="LaunchFX">
         <Model value="Assets\Effects\Terran\FlameTurretLaunch\FlameTurretLaunch.m3"/>
         <EditorCategories value="Race:Terran"/>
@@ -181,7 +188,44 @@
         <ScaleMin value="1.000000,1.500000,1.000000"/>
     </CModel>
 
-    <CSound id="FlamingBetty_Weapon@AttackLaunch" parent="Hellion_AttackLaunch"/>
-    <CSound id="FlamingBetty_Weapon@AttackImpact" parent="Hellion_AttackImpact"/>
+    <CSound id="FlamingBetty_Weapon@AttackLaunch" parent="Combat">
+        <DupeDestroyCount value="8"/>
+        <Pitch value="1.640000,3.160000"/>
+        <Volume value="-6.000000,-5.000000"/>
+        <AssetArray File="Assets\Sounds\Terran\Hellion\Hellion_AttackLaunch0.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Hellion\Hellion_AttackLaunch1.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Hellion\Hellion_AttackLaunch2.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Hellion\Hellion_AttackLaunch3.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Hellion\Hellion_AttackLaunch4.wav"/>
+        <EditorCategories value="Race:Terran"/>
+        <DupeMaximumMethod value="Replace"/>
+        <DupeMuteCount value="7"/>
+        <DupeThresholdFadeTime value="50"/>
+    </CSound>
+    <CSound id="FlamingBetty_Weapon@AttackImpact" parent="Combat">
+        <AssetArray File="Assets\Sounds\Terran\Hellion\Hellion_AttackImpact0.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Hellion\Hellion_AttackImpact1.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Hellion\Hellion_AttackImpact2.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Hellion\Hellion_AttackImpact3.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Hellion\Hellion_AttackImpact4.wav"/>
+        <DupeDestroyCount value="8"/>
+        <Pitch value="1.640000,3.160000"/>
+        <Volume value="-3.100000,-1.940000"/>
+        <EditorCategories value="Race:Terran"/>
+        <DupeMaximumMethod value="Replace"/>
+    </CSound>
+
+    <CDataCollectionUnit id="FlamingBetty_Weapon" parent="Weapon_Instant">
+        <DataRecord Entry="Weapon,FlamingBetty_Weapon"/>
+        <DataRecord Entry="Effect,FlamingBetty_Weapon@Damage"/>
+        <DataRecord Entry="Effect,FlamingBetty_Weapon@Search"/>
+        <DataRecord Entry="Effect,FlamingBetty_Weapon@CP"/>
+        <DataRecord Entry="Effect,FlamingBetty_Weapon@Set"/>
+        <DataRecord Entry="Actor,FlamingBetty_Weapon@Attack"/>
+        <DataRecord Entry="Actor,FlamingBetty_Weapon@ImpactModel"/>
+        <DataRecord Entry="Model,FlamingBetty_Weapon@AttackLaunch"/>
+        <DataRecord Entry="Sound,FlamingBetty_Weapon@AttackLaunch"/>
+        <DataRecord Entry="Sound,FlamingBetty_Weapon@AttackImpact"/>
+    </CDataCollectionUnit>
     
 </Catalog>
