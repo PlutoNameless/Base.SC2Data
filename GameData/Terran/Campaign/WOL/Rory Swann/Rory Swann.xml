@@ -26,9 +26,9 @@
         <CostResource index="Vespene" value="25"/>
         <RepairTime value="25"/>
         <KillXP value="15"/>
-        <AbilArray Link="DutchPlaceTurret"/>
+        <AbilArray Link="RorySwann_PlaceTurret"/>
         <CardLayouts index="0">
-            <LayoutButtons Face="DutchPlaceTurret" Type="AbilCmd" AbilCmd="DutchPlaceTurret,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="RorySwann_PlaceTurret" Type="AbilCmd" AbilCmd="RorySwann_PlaceTurret,Execute" Row="2" Column="0"/>
         </CardLayouts>
         <InnerRadius value="0.5"/>
         <CargoSize value="2"/>
@@ -44,7 +44,6 @@
         <Aliases value="_UnitSmall"/>
         <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
         <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
-        <On Terms="Abil.DutchPlaceTurret.SourceCastStart" Send="$Spell 0 -1.000000 -1.000000 1.000000 AsDuration"/>
         <On Terms="WeaponStart.SwannMelee.AttackStart" Send="AnimBracketStart AttackCover Attack,Cover"/>
         <On Terms="WeaponStart.SwannMelee.AttackStart; AnimPlaying AttackCover Cover,00" Send="TimerSet 0.400000 MeleeAttackLaunch"/>
         <On Terms="WeaponStart.SwannMelee.AttackStart; AnimPlaying AttackCover Cover,01" Send="TimerSet 0.100000 MeleeAttackLaunch"/>
@@ -52,7 +51,7 @@
         <On Terms="TimerExpired; TimerName MeleeAttackLaunch" Send="Create Swann_MeleeAttackLaunch"/>
         <On Terms="Effect.RorySwann_Weapon@LM.Start; At Caster" Send="AnimPlay AttackRight Attack,Right"/>
         <DeathArray index="Fire" SoundLink="Uni_DeathFXFire"/>
-        <AbilSoundArray AbilCmd="DutchPlaceTurret,Execute" Sound="Swann_PlaceTurretVO"/>
+        <AbilSoundArray AbilCmd="RorySwann_PlaceTurret,Execute" Sound="Swann_PlaceTurretVO"/>
         <ErrorArray Error="CantSeeBuildLocation" Sound="e_cmdBuildTechRequirementsNotMet_Terr"/>
         <ErrorArray Error="CantBuildLocationInvalid" Sound="e_cmdBuildTechRequirementsNotMet_Terr"/>
         <ErrorArray Error="CantFindPlacementLocation" Sound="e_cmdBuildTechRequirementsNotMet_Terr"/>
@@ -255,17 +254,36 @@
     <!-- ========= Abilities ========== -->
     
     <!-- Flame Turret -->
+    <CButton id="RorySwann_PlaceTurret">
+        <Icon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
+    </CButton>
 
     <CAbilEffectTarget id="RorySwann_PlaceTurret">
-
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Effect index="0" value="RorySwann_PlaceTurret@CU"/>
+        <Cost>
+            <Cooldown TimeUse="44"/>
+        </Cost>
+        <Range value="4"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="RorySwann_PlaceTurret"/>
+        <PlaceUnit value="FlamingBetty"/>
+        <CastIntroTime value="0.625"/>
+        <UninterruptibleArray index="Cast" value="1"/>
     </CAbilEffectTarget>
+
+    <CActorSimple id="RorySwann_PlaceTurret@Animation">
+        <On Terms="ActorOrphan" Send="Destroy"/>
+        <On Terms="Abil.RorySwann_PlaceTurret.SourceCastStart" Send="Create"/>
+        <On Terms="ActorCreation" Target="_Unit" Send="AnimPlay Spell Spell 0 -1.000000 -1.000000 1.000000 AsDuration"/>
+        <On Terms="Abil.RorySwann_PlaceTurret.SourceCastStart" Send="Destroy"/>
+    </CActorSimple>
 
     <CBehaviorBuff id="RorySwann_PlaceTurret@TimedLife" parent="PrivateTimedLife">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Duration value="45"/>
     </CBehaviorBuff>
     
-    <CEffectCreateUnit id="DutchPlaceTurretCreateUnit">
+    <CEffectCreateUnit id="RorySwann_PlaceTurret@CU">
         <EditorCategories value="Race:Terran"/>
         <WhichLocation Value="TargetPoint"/>
         <SpawnUnit value="FlamingBetty"/>
@@ -275,6 +293,15 @@
         <EditorCategories value=""/>
         <Behavior value="RorySwann_PlaceTurret@TimedLife"/>
     </CEffectApplyBehavior>
+
+    <CDataCollectionUnit id="RorySwann_PlaceTurret" parent="AbilityBase">
+        <DataRecord Entry="Button,RorySwann_PlaceTurret"/>
+        <DataRecord Entry="Abil,RorySwann_PlaceTurret"/>
+        <DataRecord Entry="Actor,RorySwann_PlaceTurret@Animation"/>
+        <DataRecord Entry="Behavior,RorySwann_PlaceTurret@TimedLife"/>
+        <DataRecord Entry="Effect,RorySwann_PlaceTurret@CU"/>
+        <DataRecord Entry="Effect,RorySwann_PlaceTurret@AB"/>
+    </CDataCollectionUnit>
     
     
 </Catalog>
