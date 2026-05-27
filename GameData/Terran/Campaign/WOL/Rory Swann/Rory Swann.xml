@@ -36,7 +36,7 @@
         <ScoreKill value="150"/>
         <SubgroupPriority value="48"/>
         <GlossaryPriority value="320"/>
-        <WeaponArray Link="SwannMelee"/>
+        <WeaponArray Link="RorySwann_WeaponMelee"/>
         <CostCategory value="Army"/>
     </CUnit>
     
@@ -44,10 +44,10 @@
         <Aliases value="_UnitSmall"/>
         <On Terms="Abil.attack.ReadyStart" Send="AnimGroupApply Ready"/>
         <On Terms="Abil.attack.ReadyStop" Send="AnimGroupRemove Ready"/>
-        <On Terms="WeaponStart.SwannMelee.AttackStart" Send="AnimBracketStart AttackCover Attack,Cover"/>
-        <On Terms="WeaponStart.SwannMelee.AttackStart; AnimPlaying AttackCover Cover,00" Send="TimerSet 0.400000 MeleeAttackLaunch"/>
-        <On Terms="WeaponStart.SwannMelee.AttackStart; AnimPlaying AttackCover Cover,01" Send="TimerSet 0.100000 MeleeAttackLaunch"/>
-        <On Terms="WeaponStop.SwannMelee.AttackStop" Send="AnimBracketStop AttackCover"/>
+        <On Terms="WeaponStart.RorySwann_WeaponMelee.AttackStart" Send="AnimBracketStart AttackCover Attack,Cover"/>
+        <On Terms="WeaponStart.RorySwann_WeaponMelee.AttackStart; AnimPlaying AttackCover Cover,00" Send="TimerSet 0.400000 MeleeAttackLaunch"/>
+        <On Terms="WeaponStart.RorySwann_WeaponMelee.AttackStart; AnimPlaying AttackCover Cover,01" Send="TimerSet 0.100000 MeleeAttackLaunch"/>
+        <On Terms="WeaponStop.RorySwann_WeaponMelee.AttackStop" Send="AnimBracketStop AttackCover"/>
         <On Terms="TimerExpired; TimerName MeleeAttackLaunch" Send="Create Swann_MeleeAttackLaunch"/>
         <On Terms="Effect.RorySwann_Weapon@LM.Start; At Caster" Send="AnimPlay AttackRight Attack,Right"/>
         <DeathArray index="Fire" SoundLink="Uni_DeathFXFire"/>
@@ -61,6 +61,7 @@
         <BarOffset value="60"/>
         <UnitBorderNormalColor value="150,150,150"/>
         <UnitBorderSubgroupColor value="255,255,255"/>
+        <WalkAnimMoveSpeed value="3"/>
         <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds"/>
         <UnitIcon value="Assets\Textures\BTN-Unit-Terran-MarauderSwann.dds"/>
         <HeroIcon value="Assets\Textures\ui-heroicon-swann.dds"/>
@@ -95,6 +96,25 @@
         <Model value="Assets\Portraits\Terran\SwannMarauderPortrait\SwannMarauderPortrait.m3"/>
         <RequiredAnims value="Assets\StoryModeCharacters\Terran\SM_HyperionArmorer_FacialAnims\SM_HyperionArmorer_FacialAnims.m3a"/>
     </CModel>
+
+    <CLight id="RorySwann@Portrait" parent="default">
+        <ToDInfoArray index="0" AmbientColor="0.219608,0.137255,0.129412">
+            <Param index="HDRExposure" value="1.480000"/>
+            <Param index="HDRBloomThreshold" value="1.950000"/>
+            <Param index="HDRSpecMultiplier" value="0.540000"/>
+            <Param index="HDREmisMultiplier" value="1.900000"/>
+            <Param index="CreepSpecularExp" value="40.000000"/>
+            <DirectionalLight index="Key">
+                <Color value="0.984314,0.937255,0.776471"/>
+                <ColorMultiplier value="0.920000"/>
+                <SpecColorMultiplier value="1.679000"/>
+                <Direction value="0.752058,0.534657,-0.385423"/>
+            </DirectionalLight>
+            <DirectionalLight index="Fill" Color="0.000000,0.501961,1.000000" ColorMultiplier="0.767000" Direction="-0.947935,-0.318463,0.000000"/>
+            <DirectionalLight index="Back" Color="0.501961,0.247059,0.247059" ColorMultiplier="0.245000" Direction="-0.876477,0.239942,0.417391"/>
+        </ToDInfoArray>
+        <EditorCategories value="LightGroup:PortraitsUnitsTerran"/>
+    </CLight>
     
     <CSound id="RorySwann@Death" parent="Terran_ExplosionSmall"/>
     <CSound id="RorySwann@Attack" parent="Voice">
@@ -138,6 +158,7 @@
     </CSound>
 
     <CDataCollectionUnit id="RorySwann" parent="UnitGround">
+        <EditorCategories value="DataGroup:Unit,DataFamily:Campaign,Race:Terran,ObjectType:Hero"/>
         <DataRecord Entry="Button,RorySwann"/>
         <DataRecord Entry="Unit,RorySwann"/>
         <DataRecord Entry="Actor,RorySwann"/>
@@ -145,6 +166,7 @@
         <DataRecord Entry="Model,RorySwann@Death"/>
         <DataRecord Entry="Model,RorySwann@DeathFire"/>
         <DataRecord Entry="Model,RorySwann@Portrait"/>
+        <DataRecord Entry="Light,RorySwann@Portrait"/>
         <DataRecord Entry="Sound,RorySwann@Death"/>
         <DataRecord Entry="Sound,RorySwann@Attack"/>
         <DataRecord Entry="Sound,RorySwann@Help"/>
@@ -249,6 +271,44 @@
         <DataRecord Entry="Actor,RorySwann_Weapon@Attack"/>
         <DataRecord Entry="Effect,RorySwann_Weapon"/>
         <DataRecord Entry="Effect,RorySwann_Weapon@Damage"/>
+    </CDataCollectionUnit>
+
+    <!-- Weapon Melee -->
+    <CActorAction id="RorySwann_WeaponMelee@Attack" parent="GenericAttack" effectAttack="RorySwann_WeaponMelee@Damage"/>
+
+    <CWeaponLegacy id="RorySwann_WeaponMelee">
+        <DisplayEffect value="RorySwann_WeaponMelee@Damage"/>
+        <Effect value="RorySwann_WeaponMelee@Damage"/>
+        <Options index="Hidden" value="1"/>
+        <Options index="Melee" value="1"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel0.dds"/>
+        <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="0.5"/>
+        <Cost>
+            <Cooldown Link="Weapon/RorySwann_Weapon"/>
+        </Cost>
+        <Period value="1.2"/>
+        <DamagePoint value="0.2"/>
+    </CWeaponLegacy>
+    
+    <CEffectDamage id="RorySwann_WeaponMelee@Damage" parent="RorySwann_Weapon@Damage">
+        <Kind value="Melee"/>
+    </CEffectDamage>
+
+    <CSound id="RorySwann_WeaponMelee@AttackLaunch" parent="Zerg_AttackLaunchLargeSwing">
+        <Volume value="-12.000000,-12.000000"/>
+        <Pitch value="3.000000,5.000000"/>
+    </CSound>
+    <CSound id="RorySwann_WeaponMelee@AttackImpact" parent="Zerg_AttackImpactLargeSlice">
+        <Pitch value="3.000000,5.000000"/>
+        <Volume value="-12.000000,-12.000000"/>
+    </CSound>
+    
+    <CDataCollectionUnit id="RorySwann_WeaponMelee" parent="Weapon_Instant">
+        <DataRecord Entry="Actor,RorySwann_WeaponMelee"/>
+        <DataRecord Entry="Weapon,RorySwann_WeaponMelee"/>
+        <DataRecord Entry="Effect,RorySwann_WeaponMelee@Damage"/>
+        <DataRecord Entry="Sound,RorySwann_WeaponMelee@AttackImpact"/>
     </CDataCollectionUnit>
     
     <!-- ========= Abilities ========== -->

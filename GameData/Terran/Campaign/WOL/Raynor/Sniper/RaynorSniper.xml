@@ -239,6 +239,7 @@
     <CSound id="RaynorSniper_Weapon@AttackImpact" parent="Terran_SingleBulletAttackImpact"/>
 
     <CDataCollectionUnit id="RaynorSniper_Weapon" parent="Weapon_Instant">
+        <EditorCategories value="DataGroup:Weapon,DataFamily:Campaign,Race:Terran,ObjectType:Other"/>
         <DataRecord Entry="Weapon,RaynorSniper_Weapon"/>
         <DataRecord Entry="Effect,RaynorSniper_Weapon@Damage"/>
         <DataRecord Entry="Actor,RaynorSniper_Weapon@Attack"/>
@@ -246,7 +247,6 @@
         <DataRecord Entry="Model,RaynorSniper_Weapon@AttackImpact"/>
         <DataRecord Entry="Sound,RaynorSniper_Weapon@AttackLaunch"/>
         <DataRecord Entry="Sound,RaynorSniper_Weapon@AttackImpact"/>
-        <EditorCategories value="DataGroup:Weapon,DataFamily:Campaign,Race:Terran"/>
     </CDataCollectionUnit>
 
     <!-- ========== Abilities ========== -->
@@ -416,6 +416,7 @@
     </CDataCollectionPattern>
 
     <CDataCollectionUnit id="RaynorSniper_Snipe" parent="AbilityBase">
+        <EditorCategories value="DataGroup:Ability,DataFamily:Campaign,Race:Terran,ObjectType:Projectile"/>
         <DataRecord Entry="Button,RaynorSniper_Snipe"/>
         <DataRecord Entry="Abil,RaynorSniper_Snipe"/>
         <DataRecord Entry="Effect,RaynorSniper_Snipe@CP"/>
@@ -444,7 +445,6 @@
         <DataRecord Entry="Sound,RaynorSniper_Snipe@ChargeUp"/>
         <DataRecord Entry="Sound,RaynorSniper_Snipe@LaunchSound"/>
         <DataRecord Entry="Sound,RaynorSniper_Snipe@AttackImpact"/>
-        <EditorCategories value="DataGroup:Ability,DataFamily:Campaign,Race:Terran,ObjectType:Spell"/>
     </CDataCollectionUnit>
     
 </Catalog>
