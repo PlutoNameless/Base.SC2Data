@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Catalog>
+    <!-- Requires: Button:UnitButton_OnlyGround[base.xml] -->
+    <!-- Requires: Unit:Generic_Unit_Ground[base.xml] -->
+    <!-- Requires: Actor:AdvancedStandard_Ground[base.xml] -->
+    <!-- Requires: Validator:IsUnit_Default[base.xml] -->
+    <!-- Requires: DataCollection:UnitGround[base.xml] -->
+    <!-- Requires: DataCollection:Weapon_Instant[base.xml] -->
+    <!-- Requires: DataCollection:AbilityMisssile[base.xml] -->
+
     <CButton id="Tychus" parent="UnitButton_OnlyGround">
         <Icon value="Assets\Textures\BTN-Unit-Terran-MarineTychus.dds"/>
     </CButton>
