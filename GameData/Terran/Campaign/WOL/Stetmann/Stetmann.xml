@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog>
+
+    <CButton id="Stetmann">
+        <Icon value="Assets\Textures\BTN-Unit-Terran-MedicStetmann.dds"/>
+    </CButton>
+
+    <CUnit id="Stetmann" parent="Generic_Unit_Ground" race="Terr">
+        <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
+        <Mob value="Campaign"/>
+        <FlagArray index="Hero" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="150"/>
+        <LifeMax value="150"/>
+        <LifeArmor value="1"/>
+        <EnergyStart value="50"/>
+        <EnergyMax value="250"/>
+        <EnergyRegenRate value="0.5625"/>
+        <LateralAcceleration value="46.0625"/>
+        <Sight value="10"/>
+        <CostResource index="Minerals" value="50"/>
+        <CostResource index="Vespene" value="25"/>
+        <RepairTime value="25"/>
+        <AttackTargetPriority value="19"/>
+        <KillXP value="15"/>
+        <AbilArray Link="Stetmann_Heal"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Stetmann_Heal" Type="AbilCmd" AbilCmd="Stetmann_Heal,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="Stetmann_RegenArmor" Type="Passive" Behavior="Stetmann_RegenArmor" Row="2" Column="1"/>
+        </CardLayouts>
+        <InnerRadius value="0.5"/>
+        <CargoSize value="1"/>
+        <ScoreMake value="125"/>
+        <ScoreKill value="250"/>
+        <SubgroupPriority value="47"/>
+        <BehaviorArray Link="Stetmann_RegenArmor"/>
+        <BehaviorArray Link="OutOfCombatEnergyRegenDummy"/>
+        <GlossaryPriority value="330"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="33"/>
+            <ChanceArray index="Idle" value="33"/>
+            <ChanceArray index="Turn" value="33"/>
+        </Fidget>
+        <KillDisplay value="Always"/>
+        <RankDisplay value="Always"/>
+        <CostCategory value="Army"/>
+    </CUnit>
+    
+    <CActorUnit id="Stetmann" parent="AdvancedStandard_Ground" unitName="Stetmann">
+        <On Terms="Abil.Stetmann_Heal.SourceChannelStart" Send="$Spell PlayForever"/>
+        <On Terms="Abil.Stetmann_Heal.SourceChannelStop" Send="AnimClear Spell"/>
+        <On Terms="Behavior.Stetmann_RegenArmor.On" Send="AnimBracketStart Regen Cover,Start Cover Cover,End"/>
+        <On Terms="Behavior.Stetmann_RegenArmor.Off" Send="AnimBracketStop Regen"/>
+        <On Terms="UnitMovementUpdate.Stetmann.Walk" Send="AnimBracketStop Regen"/>
+        <DeathArray index="Normal" ModelLink="Stetmann"/>
+        <WalkAnimMoveSpeed value="2.25"/>
+        <BarWidth value="50"/>
+        <BarOffset value="60"/>
+        <UnitIcon value="Assets\Textures\BTN-Unit-Terran-MedicStetmann.dds"/>
+        <HeroIcon value="Assets\Textures\ui-heroicon-stetmann.dds"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Terran-stetmann.dds"/>
+        </GroupIcon>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Terran-stetmann.dds"/>
+        </Wireframe>
+        <UnitBorderNormalColor value="150,150,150"/>
+        <UnitBorderSubgroupColor value="255,255,255"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds"/>
+        <UnitKillRank Text="UnitKillRank/Stetmann"/>
+    </CActorUnit>
+    
+    <CModel id="Stetmann" parent="Unit">
+        <EditorCategories value="Race:Terran"/>
+        <Model value="Assets\Units\Terran\MedicStetmann\MedicStetmann.m3"/>
+        <Occlusion value="Show"/>
+        <SquibTypeDefault value="Flesh"/>
+        <Flags index="AutoUnload" value="1"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+        <ScaleMax value="1.100000,1.100000,1.100000"/>
+        <ScaleMin value="1.100000,1.100000,1.100000"/>
+    </CModel>
+    <CModel id="Stetmann@DeathBlast" parent="UnitDeath">
+        <EditorCategories value="Race:Terran"/>
+        <Model value="Assets\Units\Terran\MedicDeath\MedicDeath.m3"/>
+        <Occlusion value="Show"/>
+        <LowQualityModel value="TerranBloodDeathLow"/>
+    </CModel>
+    <CModel id="Stetmann@DeathFire" parent="UnitDeath" Race="Terran">
+        <EditorCategories value="Race:Terran"/>
+        <Model value="Assets\Units\Terran\MedicStetmannDeathFire\MedicStetmannDeathFire.m3"/>
+    </CModel>
+    <CModel id="Stetmann@Portrait" parent="FXAPortrait">
+        <EditorCategories value="Race:Terran"/>
+        <Model value="Assets\Portraits\Terran\StetmannMedicPortrait\StetmannMedicPortrait.m3"/>
+        <RequiredAnims value="Assets\StoryModeCharacters\Terran\SM_LabTech01_FacialAnims\SM_LabTech01_FacialAnims.m3a"/>
+        <Flags index="Download" value="1"/>
+    </CModel>
+
+    <CSound id="Stetmann@Death" parent="Death">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Death00.wav"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Death01.wav"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Death02.wav"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Death03.wav"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Death04.wav"/>
+        <Volume value="-1.000000,-1.000000"/>
+    </CSound>
+    <CSound id="Stetmann@Attack" parent="TerranAck">
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Attack00.ogg" FacialAnim="Stetmann_Attack00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Attack01.ogg" FacialAnim="Stetmann_Attack01"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Attack02.ogg" FacialAnim="Stetmann_Attack02"/>
+        <Volume value="-1.000000,-1.000000"/>
+    </CSound>
+    <CSound id="Stetmann@Help" parent="TerranAck">
+        <AssetArray>
+            <File value="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Help00.ogg"/>
+            <FacialAnim value="Swann_Help00"/>
+            <PortraitModel value="StetmannMedicPortrait"/>
+            <Speaker value="ConversationState/Characters/CharStetmann"/>
+        </AssetArray>
+        <Flags index="NeedsUpdate" value="1"/>
+        <Volume value="-1.000000,-1.000000"/>
+        <Category value="Alert"/>
+    </CSound>
+    <CSound id="Stetmann@Pissed" parent="Pissed">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Pissed00.ogg" FacialAnim="Stetmann_Pissed00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Pissed01.ogg" FacialAnim="Stetmann_Pissed01"/>
+        <Volume value="-1.000000,-1.000000"/>
+    </CSound>
+    <CSound id="Stetmann@Ready" parent="Ready">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Ready00.ogg"/>
+        <Volume value="-1.000000,-1.000000"/>
+    </CSound>
+    <CSound id="Stetmann@What" parent="TerranAck">
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_What00.ogg" FacialAnim="Stetmann_What00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_What01.ogg" FacialAnim="Stetmann_What01"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_What02.ogg" FacialAnim="Stetmann_What02"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_What03.ogg" FacialAnim="Stetmann_What03"/>
+        <Volume value="-1.000000,-1.000000"/>
+    </CSound>
+    <CSound id="Stetmann@Yes" parent="TerranAck">
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Yes00.ogg" FacialAnim="Stetmann_Yes00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Yes01.ogg" FacialAnim="Stetmann_Yes01"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Yes02.ogg" FacialAnim="Stetmann_Yes02"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Yes03.ogg" FacialAnim="Stetmann_Yes03"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Yes04.ogg" FacialAnim="Stetmann_Yes04"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Stetmann\Stetmann_Yes05.ogg" FacialAnim="Stetmann_Yes05"/>
+        <Volume value="-1.000000,-1.000000"/>
+    </CSound>
+
+    <CLight id="Stetmann@Portrait" parent="default">
+        <ToDInfoArray index="0" AmbientColor="0.219608,0.137255,0.129412">
+            <Param index="HDRExposure" value="1.480000"/>
+            <Param index="HDRBloomThreshold" value="1.950000"/>
+            <Param index="HDRSpecMultiplier" value="0.540000"/>
+            <Param index="HDREmisMultiplier" value="1.900000"/>
+            <Param index="CreepSpecularExp" value="40.000000"/>
+            <DirectionalLight index="Key">
+                <Color value="0.984314,0.937255,0.776471"/>
+                <ColorMultiplier value="0.920000"/>
+                <SpecColorMultiplier value="1.679000"/>
+                <Direction value="0.869103,0.386223,-0.309017"/>
+            </DirectionalLight>
+            <DirectionalLight index="Fill" Color="0.000000,0.501961,0.760784" ColorMultiplier="1.023000" Direction="-0.781562,-0.180294,-0.597206"/>
+            <DirectionalLight index="Back" Color="0.501961,0.247059,0.247059" ColorMultiplier="0.245000" Direction="0.010646,0.677691,0.735270"/>
+        </ToDInfoArray>
+        <EditorCategories value="LightGroup:PortraitsUnitsTerran"/>
+    </CLight>
+
+    <CValidatorUnitType id="Stetmann@Is" parent="IsUnit_Default" unit="Stetmann"/>
+    <CValidatorUnitType id="Stetmann@Target" parent="TargetIsUnit_Default" unit="Stetmann"/>
+    <CValidatorUnitType id="Stetmann@Not" parent="NotUnit_Default" unit="Stetmann"/>
+    <CValidatorUnitType id="Stetmann@NotTarget" parent="TargetNotUnit_Default" unit="Stetmann"/>
+
+    <CDataCollectionUnit id="Stetmann" parent="UnitGround">
+        <EditorCategories value="DataGroup:Unit,DataFamily:Campaign,Race:Terran,ObjectType:Hero"/>
+        <DataRecord Entry="Button,Stetmann"/>
+        <DataRecord Entry="Unit,Stetmann"/>
+        <DataRecord Entry="Actor,Stetmann"/>
+        <DataRecord Entry="Model,Stetmann"/>
+        <DataRecord Entry="Model,Stetmann@DeathBlast"/>
+        <DataRecord Entry="Model,Stetmann@DeathFire"/>
+        <DataRecord Entry="Model,Stetmann@Portrait"/>
+        <DataRecord Entry="Sound,Stetmann@Attack"/>
+        <DataRecord Entry="Sound,Stetmann@Help"/>
+        <DataRecord Entry="Sound,Stetmann@Pissed"/>
+        <DataRecord Entry="Sound,Stetmann@Yes"/>
+        <DataRecord Entry="Sound,Stetmann@What"/>
+        <DataRecord Entry="Sound,Stetmann@Ready"/>
+        <DataRecord Entry="Light,Stetmann@Portrait"/>
+        <DataRecord Entry="Validator,Stetmann@Is"/>
+        <DataRecord Entry="Validator,Stetmann@Target"/>
+        <DataRecord Entry="Validator,Stetmann@Not"/>
+        <DataRecord Entry="Validator,Stetmann@NotTarget"/>
+    </CDataCollectionUnit>
+
+    <!-- ========= Behaviors ========== -->
+    
+    <!-- Regenerative Armor -->
+    <CButton id="Stetmann_RegenArmor">
+        <Icon value="Assets\Textures\btn-ability-terran-selfixarmor.dds"/>
+        <AlertIcon value="Assets\Textures\btn-ability-terran-selfixarmor.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <TintRacially value="1"/>
+    </CButton>
+
+    <CBehaviorBuff id="Stetmann_RegenArmor">
+        <InfoFlags index="Hidden" value="1"/>
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <DisableValidatorArray value="Stetmann_RegenArmor@Idle"/>
+        <DisableValidatorArray value="Stetmann_RegenArmor@NotDelay"/>
+        <DisableValidatorArray value="Stetmann_RegenArmor@NotMaxEnergyOrNotMaxHP"/>
+        <Modification>
+            <VitalRegenArray index="Life" value="9"/>
+            <VitalRegenArray index="Energy" value="15"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="Stetmann_RegenArmor@Delay">
+        <Duration value="8"/>
+        <Period value="0.5"/>
+        <DisableValidatorArray value="Stetmann_RegenArmor@NotIdle"/>
+        <PeriodicEffect value="Stetmann_RegenArmor@Delay_AB"/>
+    </CBehaviorBuff>
+    <CEffectApplyBehavior id="Stetmann_RegenArmor@Delay">
+        <Behavior value="Stetmann_RegenArmor@Delay"/>
+    </CEffectApplyBehavior>
+
+    <CValidatorUnitState id="Stetmann_RegenArmor@Idle">
+        <State value="Idle"/>
+        <Enabled value="1"/>
+    </CValidatorUnitState>
+    <CValidatorUnitState id="Stetmann_RegenArmor@NotIdle">
+        <State value="Idle"/>
+        <Enabled value="0"/>
+    </CValidatorUnitState>
+    <CValidatorUnitCompareBehaviorCount id="Stetmann_RegenArmor@NotDelay">
+        <Behavior value="Stetmann_RegenArmor@Delay"/>
+        <Value value="0"/>
+        <Compare value="GT"/>
+    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareVital id="Stetmann_RegenArmor@NotMaxEnergy">
+        <ResultFailed value="TooMuchEnergy"/>
+        <Compare value="LT"/>
+        <Type value="Fraction"/>
+        <Value value="1"/>
+        <Vital value="Energy"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorUnitCompareVital id="Stetmann_RegenArmor@NotMaxHP">
+        <ResultFailed value="TooMuchLife"/>
+        <Compare value="LT"/>
+        <Value value="1"/>
+        <Type value="Fraction"/>
+    </CValidatorUnitCompareVital>
+    <CValidatorCombine id="Stetmann_RegenArmor@NotMaxEnergyOrNotMaxHP">
+        <CombineArray value="Stetmann_RegenArmor@NotMaxEnergy"/>
+        <CombineArray value="Stetmann_RegenArmor@NotMaxHP"/>
+    </CValidatorCombine>
+    
+
+    <!-- ========= Abilities ========== -->
+    
+    <!-- Heal -->
+    <CButton id="Stetmann_Heal">
+        <Icon value="Assets\Textures\btn-ability-terran-heal-color.dds"/>
+        <AlertIcon value="Assets\Textures\btn-ability-terran-heal-color.dds"/>
+        <EditorCategories value="Race:Terran"/>
+    </CButton>
+
+    <CAbilEffectTarget id="Stetmann_Heal">
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Flags index="AutoCast" value="1"/>
+        <Flags index="AutoCastOn" value="1"/>
+        <Flags index="ReExecutable" value="1"/>
+        <Flags index="Smart" value="1"/>
+        <TargetFilters value="Ground,Biological,Visible;Self,Enemy,Air,Structure,Missile,UnderConstruction,Dead,Hidden,Invulnerable"/>
+        <TargetSorts RequestCount="1">
+            <SortArray value="TSMarker"/>
+            <SortArray value="TSAlliancePassive"/>
+            <SortArray value="TSLifeFraction"/>
+            <SortArray value="TSDistance"/>
+        </TargetSorts>
+        <Effect index="0" value="Stetmann_Heal@CH"/>
+        <Range value="3"/>
+        <SmartValidatorArray value="healSmartTargetFilters"/>
+        <AutoCastRange value="6"/>
+        <AutoCastValidatorArray value="healCasterMinEnergy"/>
+        <AutoCastValidatorArray value="noMarkers"/>
+        <Marker Link="Abil/MedivacHeal"/>
+        <UseMarkerArray index="Approach" value="0"/>
+        <UseMarkerArray index="Prep" value="0"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Stetmann_Heal"/>
+        <AcquireAttackers value="1"/>
+        <DefaultError value="RequiresHealTarget"/>
+        <AutoCastAcquireLevel value="Defensive"/>
+        <AutoCastFilters value="-;Neutral,Enemy"/>
+        <Alignment value="Positive"/>
+    </CAbilEffectTarget>
+    
+    <CEffectCreateHealer id="Stetmann_Heal@CH">
+        <EditorCategories value="Race:Terran"/>
+        <DrainVital value="Energy"/>
+        <DrainVitalCostFactor value="0.1665"/>
+        <RechargeVitalRate value="25.7968"/>
+        <!-- <PeriodicEffect value="HealApplyCasterBehavior"/> -->
+        <ValidatorArray value="noMarkers"/>
+    </CEffectCreateHealer>
+
+    <CActorModel id="Stetmann_Heal@ImpactModel" parent="ModelAnimationStyleContinuous">
+        <On Terms="ActorCreation" Send="AnimPlay Birth Birth PlayForever"/>
+        <On Terms="Effect.Stetmann_Heal@CH.TargetStart; At Target" Send="Create"/>
+        <On Terms="Effect.Stetmann_Heal@CH.TargetStop; At Target" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+    </CActorModel>
+
+    <CActorSound id="Stetmann_Heal@Sound" parent="SoundContinuous">
+        <On Terms="Effect.Stetmann_Heal@CH.TargetStart" Send="Create"/>
+        <On Terms="Effect.Stetmann_Heal@CH.TargetStop" Send="Destroy"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+    </CActorSound>
+
+    <CModel id="Stetmann_Heal@ImpactModel" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Terran\MedicHeal\MedicHeal.m3"/>
+        <EditorCategories value="Race:Terran"/>
+    </CModel>
+
+    <CSound id="Stetmann_Heal@Sound" parent="Spell">
+        <LoopCount value="-1"/>
+        <AssetArray File="Assets\Sounds\Terran\Medivac\Medivac_HealLoop.wav"/>
+        <DupeDestroyCount value="4"/>
+        <Pitch value="-1.820000,1.640000"/>
+        <Volume value="-12.000000,-12.000000"/>
+        <EditorCategories value="Race:Terran"/>
+    </CSound>
+    
+</Catalog>
