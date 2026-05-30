@@ -35,7 +35,6 @@
         <ScoreKill value="250"/>
         <SubgroupPriority value="47"/>
         <BehaviorArray Link="Stetmann_RegenArmor"/>
-        <BehaviorArray Link="OutOfCombatEnergyRegenDummy"/>
         <GlossaryPriority value="330"/>
         <Fidget>
             <ChanceArray index="Anim" value="33"/>
@@ -57,18 +56,18 @@
         <WalkAnimMoveSpeed value="2.25"/>
         <BarWidth value="50"/>
         <BarOffset value="60"/>
+        <UnitBorderNormalColor value="150,150,150"/>
+        <UnitBorderSubgroupColor value="255,255,255"/>
+        <UnitKillRank Text="UnitKillRank/Stetmann"/>
         <UnitIcon value="Assets\Textures\BTN-Unit-Terran-MedicStetmann.dds"/>
         <HeroIcon value="Assets\Textures\ui-heroicon-stetmann.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds"/>
         <GroupIcon>
             <Image value="Assets\Textures\Wireframe-Terran-stetmann.dds"/>
         </GroupIcon>
         <Wireframe>
             <Image value="Assets\Textures\Wireframe-Terran-stetmann.dds"/>
         </Wireframe>
-        <UnitBorderNormalColor value="150,150,150"/>
-        <UnitBorderSubgroupColor value="255,255,255"/>
-        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds"/>
-        <UnitKillRank Text="UnitKillRank/Stetmann"/>
     </CActorUnit>
     
     <CModel id="Stetmann" parent="Unit">
@@ -211,39 +210,57 @@
     </CButton>
 
     <CBehaviorBuff id="Stetmann_RegenArmor">
-        <InfoFlags index="Hidden" value="1"/>
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
-        <DisableValidatorArray value="Stetmann_RegenArmor@Idle"/>
-        <DisableValidatorArray value="Stetmann_RegenArmor@NotDelay"/>
-        <DisableValidatorArray value="Stetmann_RegenArmor@NotMaxEnergyOrNotMaxHP"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <FinalEffect value="Stetmann_RegenArmor@AB_Delay"/>
+        <RemoveValidatorArray value="Stetmann_RegenArmor@Idle"/>   
+        <RemoveValidatorArray value="Stetmann_RegenArmor@NotCombat"/>
+        <RemoveValidatorArray value="Stetmann_RegenArmor@VitalNotFull"/>
         <Modification>
             <VitalRegenArray index="Life" value="9"/>
             <VitalRegenArray index="Energy" value="15"/>
+            <ModifyFlags index="SuppressTurning" value="1"/>
+            <ModifyFlags index="Movement" value="0"/>
         </Modification>
     </CBehaviorBuff>
     <CBehaviorBuff id="Stetmann_RegenArmor@Delay">
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <ExpireEffect value="Stetmann_RegenArmor@AB"/>
+        <FinalEffect value="Stetmann_RegenArmor@AB"/>
+        <RemoveValidatorArray value="Stetmann_RegenArmor@Not"/>
         <Duration value="8"/>
-        <Period value="0.5"/>
-        <DisableValidatorArray value="Stetmann_RegenArmor@NotIdle"/>
-        <PeriodicEffect value="Stetmann_RegenArmor@Delay_AB"/>
     </CBehaviorBuff>
-    <CEffectApplyBehavior id="Stetmann_RegenArmor@Delay">
-        <Behavior value="Stetmann_RegenArmor@Delay"/>
-    </CEffectApplyBehavior>
 
+    <CEffectApplyBehavior id="Stetmann_RegenArmor@AB_Delay">
+        <Behavior value="Stetmann_RegenArmor@Delay"/>
+        <ValidatorArray index="0" value="Stetmann_RegenArmor@Alive"/>
+    </CEffectApplyBehavior>
+    <CEffectApplyBehavior id="Stetmann_RegenArmor@AB">
+        <Behavior value="Stetmann_RegenArmor"/>
+    </CEffectApplyBehavior>
+    
+    <CActorSound id="Stetmann_RegenArmor@Sound" parent="SoundContinuous">
+        <On Terms="Behavior.Stetmann_RegenArmor.On" Send="Create"/>
+        <On Terms="Behavior.Stetmann_RegenArmor.Off" Send="Destroy"/>
+    </CActorSound>
+
+    <CSound id="Stetmann_RegenArmor@Sound" parent="Stetmann_Heal@Sound"/>
+
+    <CValidatorCombine id="Stetmann_RegenArmor@Not">
+        <Type value="Or"/>
+        <CombineArray value="Stetmann_RegenArmor@Idle"/>
+        <CombineArray value="Stetmann_RegenArmor@NotCombat"/>
+        <CombineArray value="Stetmann_RegenArmor@VitalNotFull"/>
+    </CValidatorCombine>
     <CValidatorUnitState id="Stetmann_RegenArmor@Idle">
         <State value="Idle"/>
         <Enabled value="1"/>
     </CValidatorUnitState>
-    <CValidatorUnitState id="Stetmann_RegenArmor@NotIdle">
-        <State value="Idle"/>
-        <Enabled value="0"/>
-    </CValidatorUnitState>
-    <CValidatorUnitCompareBehaviorCount id="Stetmann_RegenArmor@NotDelay">
-        <Behavior value="Stetmann_RegenArmor@Delay"/>
-        <Value value="0"/>
-        <Compare value="GT"/>
-    </CValidatorUnitCompareBehaviorCount>
+    <CValidatorUnitCompareDamageTakenTime id="Stetmann_RegenArmor@NotCombat">
+        <Compare value="GE"/>
+        <Value value="6"/>
+    </CValidatorUnitCompareDamageTakenTime>
     <CValidatorUnitCompareVital id="Stetmann_RegenArmor@NotMaxEnergy">
         <ResultFailed value="TooMuchEnergy"/>
         <Compare value="LT"/>
@@ -251,16 +268,15 @@
         <Value value="1"/>
         <Vital value="Energy"/>
     </CValidatorUnitCompareVital>
-    <CValidatorUnitCompareVital id="Stetmann_RegenArmor@NotMaxHP">
-        <ResultFailed value="TooMuchLife"/>
-        <Compare value="LT"/>
-        <Value value="1"/>
-        <Type value="Fraction"/>
-    </CValidatorUnitCompareVital>
-    <CValidatorCombine id="Stetmann_RegenArmor@NotMaxEnergyOrNotMaxHP">
+    <CValidatorCombine id="Stetmann_RegenArmor@VitalNotFull">
         <CombineArray value="Stetmann_RegenArmor@NotMaxEnergy"/>
-        <CombineArray value="Stetmann_RegenArmor@NotMaxHP"/>
+        <CombineArray value="TargetLifeNotFull"/>
     </CValidatorCombine>
+    
+    <CValidatorUnitState id="Stetmann_RegenArmor@Alive">
+        <State value="Alive"/>
+        <Enabled value="1"/>
+    </CValidatorUnitState>
     
 
     <!-- ========= Abilities ========== -->
