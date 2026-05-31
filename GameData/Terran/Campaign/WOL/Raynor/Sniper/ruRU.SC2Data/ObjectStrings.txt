@@ -1,3 +1,57 @@
+Actor/Name/RaynorSniper=Raynor Sniper
+Model/Name/RaynorSniper=Raynor Sniper
+Model/Name/RaynorSniper@DeathFire=Death Fire
+Model/Name/RaynorSniper@Portrait
+Sound/Name/RaynorSniper@Death=Death
+Sound/Name/RaynorSniper@DeathVoice=Death Voice
+Sound/Name/RaynorSniper@Attack=Attack
+Sound/Name/RaynorSniper@Help=Help
+Sound/Name/RaynorSniper@Ready=Ready
+Sound/Name/RaynorSniper@Pissed=Pissed
+Sound/Name/RaynorSniper@What=What
+Sound/Name/RaynorSniper@Yes=Yes
+Sound/Name/RaynorSniper@SnipeVO=Snipe VO
+Light/Name/RaynorSniper@Portrait
+Validator/Name/RaynorSniper@Is=Caster Is Unit
+Validator/Name/RaynorSniper@Target=Target Is Unit
+Validator/Name/RaynorSniper@Not=Caster Is Not Unit
+Validator/Name/RaynorSniper@NotTarget=Target Is Not Unit
+
+Effect/Name/RaynorSniper_Weapon@Damage=Damage
+Actor/Name/RaynorSniper_Weapon@Attack=Attack
+Model/Name/RaynorSniper_Weapon@AttackLaunch=Attack Launch
+Model/Name/RaynorSniper_Weapon@AttackImpact=Attack Impact
+Sound/Name/RaynorSniper_Weapon@AttackLaunch=Attack Launch
+Sound/Name/RaynorSniper_Weapon@AttackImpact=Attack Impact
+
+Abil/Name/RaynorSniper_Snipe=Патрон "Игла"
+Effect/Name/RaynorSniper_Snipe@CP=CP
+Effect/Name/RaynorSniper_Snipe@Search=Search
+Effect/Name/RaynorSniper_Snipe@Set=Set
+Effect/Name/RaynorSniper_Snipe@Damage=Damage
+Effect/Name/RaynorSniper_Snipe@AB=AB
+Actor/Name/RaynorSniper_Snipe@Attack=Attack
+Actor/Name/RaynorSniper_Snipe@Range=Range
+Actor/Name/RaynorSniper_Snipe@Splat=Splat
+Actor/Name/RaynorSniper_Snipe@LaunchModel=Launch Model
+Actor/Name/RaynorSniper_Snipe@Cursor=Cursor
+Actor/Name/RaynorSniper_Snipe@BloodImpact_Big=Blood Impact (Big)
+Actor/Name/RaynorSniper_Snipe@LaunchSound=Launch Sound
+Actor/Name/RaynorSniper_Snipe@ChargeUp=Charge Up
+Actor/Name/RaynorSniper_Snipe@Beam=Beam
+Actor/Name/RaynorSniper_Snipe@KillDoodad=Kill Doodad
+Actor/Name/RaynorSniper_Snipe@BigBloodImpactLaunch=Big Blood Impact Launch
+Actor/Name/RaynorSniper_Snipe@ForwardLaunch=Forward Launch
+Actor/Name/RaynorSniper_Snipe@Offset=Offset
+Model/Name/RaynorSniper_Snipe@BloodImpact_Big=Blood Impact (Big)
+Model/Name/RaynorSniper_Snipe@LaunchModel=Launch Model
+Model/Name/RaynorSniper_Snipe@Beam=Beam
+Model/Name/RaynorSniper_Snipe@Splat=Splat
+Sound/Name/RaynorSniper_Snipe@ChargeUp=Charge Up
+Sound/Name/RaynorSniper_Snipe@LaunchSound=Launch Sound
+Sound/Name/RaynorSniper_Snipe@AttackImpact=Attack Impact
+DataCollectionPattern/Name/Шаблон - Патрон "Игла"
+
 DataCollectionPattern/Name/RaynorSniper_Snipe/PeriodicOffsetArray=Смещения линии (X,Y,Z)
 DataCollectionPattern/Name/RaynorSniper_Snipe/ChargeUpSound=Звук зарядки
 DataCollectionPattern/Name/RaynorSniper_Snipe/LaunchSound=Звук выстрела
