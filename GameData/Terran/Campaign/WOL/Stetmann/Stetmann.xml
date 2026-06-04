@@ -245,7 +245,14 @@
         <On Terms="Behavior.Stetmann_RegenArmor.Off" Send="Destroy"/>
     </CActorSound>
 
-    <CSound id="Stetmann_RegenArmor@Sound" parent="Stetmann_Heal@Sound"/>
+    <CSound id="Stetmann_RegenArmor@Sound" parent="Spell">
+        <LoopCount value="-1"/>
+        <AssetArray File="Assets\Sounds\Terran\Medivac\Medivac_HealLoop.wav"/>
+        <DupeDestroyCount value="4"/>
+        <Pitch value="-1.820000,1.640000"/>
+        <Volume value="-12.000000,-12.000000"/>
+        <EditorCategories value="Race:Terran"/>
+    </CSound>
 
     <CValidatorCombine id="Stetmann_RegenArmor@Not">
         <Type value="Or"/>

@@ -11,7 +11,7 @@ Sound/Name/RaynorSniper@Pissed=Pissed
 Sound/Name/RaynorSniper@What=What
 Sound/Name/RaynorSniper@Yes=Yes
 Sound/Name/RaynorSniper@SnipeVO=Snipe VO
-Light/Name/RaynorSniper@Portrait
+Light/Name/RaynorSniper@Portrait=Portrait
 Validator/Name/RaynorSniper@Is=Caster Is Unit
 Validator/Name/RaynorSniper@Target=Target Is Unit
 Validator/Name/RaynorSniper@Not=Caster Is Not Unit
@@ -24,7 +24,7 @@ Model/Name/RaynorSniper_Weapon@AttackImpact=Attack Impact
 Sound/Name/RaynorSniper_Weapon@AttackLaunch=Attack Launch
 Sound/Name/RaynorSniper_Weapon@AttackImpact=Attack Impact
 
-Abil/Name/RaynorSniper_Snipe=Патрон "Игла"
+Abil/Name/RaynorSniper_Snipe=Выстрел патроном «Игла»
 Effect/Name/RaynorSniper_Snipe@CP=CP
 Effect/Name/RaynorSniper_Snipe@Search=Search
 Effect/Name/RaynorSniper_Snipe@Set=Set
@@ -50,7 +50,7 @@ Model/Name/RaynorSniper_Snipe@Splat=Splat
 Sound/Name/RaynorSniper_Snipe@ChargeUp=Charge Up
 Sound/Name/RaynorSniper_Snipe@LaunchSound=Launch Sound
 Sound/Name/RaynorSniper_Snipe@AttackImpact=Attack Impact
-DataCollectionPattern/Name/Шаблон - Патрон "Игла"
+DataCollectionPattern/Name/RaynorSnipe_Pattern=Шаблон - Патрон "Игла"
 
 DataCollectionPattern/Name/RaynorSniper_Snipe/PeriodicOffsetArray=Смещения линии (X,Y,Z)
 DataCollectionPattern/Name/RaynorSniper_Snipe/ChargeUpSound=Звук зарядки

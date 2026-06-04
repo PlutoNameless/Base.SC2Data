@@ -1,0 +1,15 @@
+Button/Name/RaynorSniper=Нанять Джима Рейнора
+Button/Tooltip/RaynorSniper=Джим Рейнор
+Unit/Name/RaynorSniper=Джим Рейнор
+UnitKillRank/Raynor=Лидер повстанцев
+
+Button/Name/RaynorSniper_Radar=Радар
+Button/Tooltip/RaynorSniper_Radar=Рейнор может засекать передвижение противников на значительном удалении. Данная способность не открывает местность.
+Behavior/Name/RaynorSniper_Radar=Радар
+Behavior/Tooltip/RaynorSniper_Radar=Рейнор может засекать передвижение противников на значительном удалении. Данная способность не открывает местность.
+
+Button/Name/RaynorSniper_Snipe=Выстрел патроном «Игла»
+Button/Tooltip/RaynorSniper_Snipe=Прицельный выстрел патроном «Игла», поражающим все на своем пути и наносящим <d ref="Effect,RaynorSniper_Snipe@Damage,Amount"/> ед. урона.
+Behavior/Name/RaynorSniper_Snipe@Sniped=Застрелен из винтовки коммандо Рейнора
+
+Weapon/Name/RaynorSniper_Weapon=Винтовка Гаусса
