@@ -1,2 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Catalog/>
+<Catalog>
+
+    <!-- Data Collections -->
+    
+
+
+    <!-- Units -->
+    
+    <CUnit default="1" id="Generic_Zerg_Unit" parent="Generic_Unit">
+        <LifeRegenRate value="0.2734"/>
+    </CUnit>
+    <CUnit default="1" id="Generic_Zerg_Unit_Ground" parent="Generic_Zerg_Unit">
+        <SpeedBonusCreep value="1.3"/>
+    </CUnit>
+    <CUnit default="1" id="Generic_Zerg_Unit_Structure" parent="Generic_Structure">
+        <LifeRegenRate value="0.2734"/>
+        <BehaviorArray Link="OnCreep"/>
+        <BehaviorArray Link="ZergBuildingNotOnCreep"/>
+    </CUnit>
+    
+
+</Catalog>
