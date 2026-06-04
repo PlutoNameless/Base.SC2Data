@@ -1,0 +1,9 @@
+Button/Name/RorySwann=Нанять Рори Свонна
+Button/Tooltip/RorySwann=Свонн может устанавливать огневые турели, которые он любовно называет «Огненными Бетти». <n/><n/><c val="#ColorAttackInfo">Атакует только наземные цели.</c><n/>
+
+Button/Name/RorySwann_PlaceTurret=Установить «Огненную Бетти»
+Button/Tooltip/RorySwann_PlaceTurret=Стационарный огнемет, действующий в течение <d time="[d ref='Behavior,RorySwann_PlaceTurret@TimedLife,Duration'/]"/> Служит для уничтожения больших скоплений зергов и отвлечения противника.
+
+Unit/Name/RorySwann=Рори Свонн
+UnitKillRank/RorySwann=главный инженер
+Weapon/Name/RorySwann_Weapon=Фугасная граната

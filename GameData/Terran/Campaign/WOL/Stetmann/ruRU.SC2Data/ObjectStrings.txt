@@ -1,0 +1,35 @@
+Actor/Name/Stetmann=Stetmann
+Model/Name/Stetmann=Stetmann
+Model/Name/Stetmann@DeathBlast=Death Blast
+Model/Name/Stetmann@DeathFire=Death Fire
+Model/Name/Stetmann@Portrait=Portrait
+Light/Name/Stetmann@Portrait=Portrait
+Sound/Name/Stetmann@Death=Death
+Sound/Name/Stetmann@Attack=Attack
+Sound/Name/Stetmann@Help=Help
+Sound/Name/Stetmann@Pissed=Pissed
+Sound/Name/Stetmann@Ready=Ready
+Sound/Name/Stetmann@What=What
+Sound/Name/Stetmann@Yes=Yes
+Validator/Name/Stetmann@Is=Caster Is Unit
+Validator/Name/Stetmann@Target=Target Is Unit
+Validator/Name/Stetmann@Not=Caster Is Not Unit
+Validator/Name/Stetmann@NotTarget=Target Is Not Unit
+
+Effect/Name/Stetmann_RegenArmor@AB_Delay=Applied Delay
+Effect/Name/Stetmann_RegenArmor@AB=AB
+Actor/Name/Stetmann_RegenArmor@Sound=Sound
+Sound/Name/Stetmann_RegenArmor@Sound=Sound
+Validator/Name/Stetmann_RegenArmor@Not=Not
+Validator/Name/Stetmann_RegenArmor@Idle=Idle
+Validator/Name/Stetmann_RegenArmor@NotCombat=Not Combat
+Validator/Name/Stetmann_RegenArmor@NotMaxEnergy=Not Max Energy
+Validator/Name/Stetmann_RegenArmor@VitalNotFull=Vital Not Full
+Validator/Name/Stetmann_RegenArmor@Alive=Alive
+
+Abil/Name/Stetmann_Heal=Лечение
+Effect/Name/Stetmann_Heal@CH=Healer
+Actor/Name/Stetmann_Heal@ImpactModel=Impact Model
+Actor/Name/Stetmann_Heal@Sound=Sound
+Model/Name/Stetmann_Heal@ImpactModel=Impact Model
+Sound/Name/Stetmann_Heal@Sound=Sound

@@ -1,0 +1,13 @@
+Button/Name/Tychus=Нанять Тайкуса Финдли
+Button/Tooltip/Tychus=В этом задании Тайкус может бросать гранаты.
+Unit/Name/Tychus=Тайкус Финдли
+
+Button/Name/Tychus_Weapon@Passive=Свинцовый град
+Button/Tooltip/Tychus_Weapon@Passive=Пулемет Тайкуса наносит урон по небольшой области вокруг цели.
+
+Button/Name/Tychus_TossGrenade=Граната
+Button/Tooltip/Tychus_TossGrenade=Бросить гранату, которая взрывается, нанося <d ref="Effect,Tychus_TossGrenade@Damage,Amount"/> ед. урона всем вражеским целям в небольшом радиусе. <n/><n/><c val="ffff8a">Союзники не получают урона.</c>
+
+Unit/Name/Tychus_TossGrenade@AttackMissile=Граната
+
+Weapon/Name/Tychus_Weapon=Пулемет

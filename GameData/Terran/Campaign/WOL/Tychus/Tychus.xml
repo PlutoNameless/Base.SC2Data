@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog>
+    <!-- Requires: Button:UnitButton_OnlyGround[base.xml] -->
+    <!-- Requires: Unit:Generic_Unit_Ground[base.xml] -->
+    <!-- Requires: Actor:AdvancedStandard_Ground[base.xml] -->
+    <!-- Requires: Validator:IsUnit_Default[base.xml] -->
+    <!-- Requires: DataCollection:UnitGround[base.xml] -->
+    <!-- Requires: DataCollection:Weapon_Instant[base.xml] -->
+    <!-- Requires: DataCollection:AbilityMisssile[base.xml] -->
+
+    <CButton id="Tychus" parent="UnitButton_OnlyGround">
+        <Icon value="Assets\Textures\BTN-Unit-Terran-MarineTychus.dds"/>
+    </CButton>
+    
+    <CUnit id="Tychus" parent="Generic_Unit_Ground" race="Terr">
+        <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
+        <CostCategory value="Army"/>
+        <Mob value="Campaign"/>
+        <FlagArray index="Hero" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Biological" value="1"/>
+        <LifeStart value="200"/>
+        <LifeMax value="200"/>
+        <LifeArmor value="1"/>
+        <LateralAcceleration value="46.0625"/>
+        <StationaryTurningRate value="719.2968"/>
+        <TurningRate value="719.2968"/>
+        <Sight value="10"/>
+        <CostResource index="Minerals" value="50"/>
+        <RepairTime value="20"/>
+        <KillXP value="15"/>
+        <AbilArray Link="Tychus_TossGrenade"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="Tychus_Weapon@Passive" Type="Passive" Row="2" Column="1"/>
+            <LayoutButtons Face="Tychus_TossGrenade" Type="AbilCmd" AbilCmd="Tychus_TossGrenade,Execute" Row="2" Column="0"/>
+        </CardLayouts>
+        <InnerRadius value="0.5"/>
+        <CargoSize value="1"/>
+        <ScoreMake value="50"/>
+        <ScoreKill value="100"/>
+        <SubgroupPriority value="49"/>
+        <BehaviorArray Link="HeroDeathPrevention"/>
+        <BehaviorArray Link="HailOfLeadDummy"/>
+        <GlossaryPriority value="310"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="33"/>
+            <ChanceArray index="Idle" value="33"/>
+            <ChanceArray index="Turn" value="33"/>
+        </Fidget>
+    </CUnit>
+    
+    <CActorUnit id="Tychus" parent="AdvancedStandard_Ground" unitName="Tychus">
+        <DeathArray index="Normal" ModelLink="Tychus"/>
+        <DeathArray index="Fire" SoundLink="Uni_DeathFXFire"/>
+        <StandAnimTurnTime value="5"/>
+        <BarWidth value="50"/>
+        <BarOffset value="50"/>
+        <UnitBorderNormalColor value="150,150,150"/>
+        <UnitBorderSubgroupColor value="255,255,255"/>
+        <AbilSoundArray AbilCmd="BonesTossGrenade,Execute" Sound="Tychus@TossGrenade_VO"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-terran-infantryarmorlevel0.dds"/>
+        <UnitKillRank Text="UnitKillRank/Tychus"/>
+        <ModelFlags index="SuppressPlayerDecals" value="1"/>
+        <UnitIcon value="Assets\Textures\BTN-Unit-Terran-MarineTychus.dds"/>
+        <HeroIcon value="Assets\Textures\ui-heroicon-tychus.dds"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Terran-marine-tychus.dds"/>
+        </GroupIcon>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Terran-marine-tychus.dds"/>
+        </Wireframe>
+        <Aliases value="_UnitSmall"/>
+    </CActorUnit>
+    
+    <CModel id="Tychus" parent="Unit">
+        <Model value="Assets\Units\Terran\MarineTychus\MarineTychus.m3"/>
+        <SquibTypeDefault value="Flesh"/>
+        <EditorCategories value="Race:Terran"/>
+        <Occlusion value="Show"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+        <SelectionRadius value="0.416500"/>
+        <ShadowRadius value="0.416500"/>
+        <TechPurchaseCamera value="Star2CameraMid04"/>
+        <UnitGlossaryCamera value="Star2CameraMid04"/>
+        <PlanetPanelCamera value="Star2CameraMid04"/>
+    </CModel>
+    <CModel id="Tychus@DeathFire" parent="UnitDeath">
+        <Model value="Assets\Units\Terran\MarineTychusDeathFire\MarineTychusDeathFire.m3"/>
+    </CModel>
+    <CModel id="Tychus@Portrait" parent="FXAPortrait">
+        <Model value="Assets\Portraits\Terran\TychusPortrait\TychusPortrait.m3"/>
+        <RequiredAnims value="Assets\Portraits\Terran\TychusPortrait_RequiredAnims\TychusPortrait_RequiredAnims.m3a"/>
+    </CModel>
+
+    <CSound id="Tychus@Death" parent="Zerg_ExplosionMedium">
+        <EditorCategories value="Race:Terran"/>
+    </CSound>
+    <CSound id="Tychus@DeathVoice" parent="DeathVoice">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Death00.wav"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Death01.wav"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Death02.wav"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Death03.wav"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Death04.wav"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Death05.wav"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Death06.wav"/>
+    </CSound>
+    <CSound id="Tychus@Attack" parent="Voice">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Attack00.ogg" FacialAnim="Tychus_Attack00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Attack01.ogg" FacialAnim="Tychus_Attack01"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Attack02.ogg" FacialAnim="Tychus_Attack02"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Attack03.ogg" FacialAnim="Tychus_Attack03"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Attack04.ogg" FacialAnim="Tychus_Attack04"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Attack05.ogg" FacialAnim="Tychus_Attack05"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Attack06.ogg" FacialAnim="Tychus_Attack06"/>
+    </CSound>
+    <CSound id="Tychus@Help" parent="Alert">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Help00.ogg" FacialAnim="Tychus_Help00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Help01.ogg" FacialAnim="Tychus_Help01"/>
+    </CSound>
+    <CSound id="Tychus@Pissed" parent="Pissed">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Pissed00.ogg" FacialAnim="Tychus_Pissed00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Pissed01.ogg" FacialAnim="Tychus_Pissed01"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Pissed02.ogg" FacialAnim="Tychus_Pissed02"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Pissed03.ogg" FacialAnim="Tychus_Pissed03"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Pissed04.ogg" FacialAnim="Tychus_Pissed04"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Pissed05.ogg" FacialAnim="Tychus_Pissed05"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Pissed06.ogg" FacialAnim="Tychus_Pissed06"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Pissed07.ogg" FacialAnim="Tychus_Pissed07"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Pissed08.ogg" FacialAnim="Tychus_Pissed08"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Pissed09.ogg" FacialAnim="Tychus_Pissed09"/>
+    </CSound>
+    <CSound id="Tychus@Yes" parent="Voice">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Yes00.ogg" FacialAnim="Tychus_Yes00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Yes01.ogg" FacialAnim="Tychus_Yes01"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Yes02.ogg" FacialAnim="Tychus_Yes02"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Yes03.ogg" FacialAnim="Tychus_Yes03"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Yes04.ogg" FacialAnim="Tychus_Yes04"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Yes05.ogg" FacialAnim="Tychus_Yes05"/>
+    </CSound>
+    <CSound id="Tychus@What" parent="Voice">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_What00.ogg" FacialAnim="Tychus_What00"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_What01.ogg" FacialAnim="Tychus_What01"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_What02.ogg" FacialAnim="Tychus_What02"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_What03.ogg" FacialAnim="Tychus_What03"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_What04.ogg" FacialAnim="Tychus_What04"/>
+    </CSound>
+    <CSound id="Tychus@Ready" parent="Ready">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Tychus\Tychus_Ready00.ogg" FacialAnim="Tychus_Ready00"/>
+    </CSound>
+    
+    <!-- Abilities VO -->
+    <CSound id="Tychus@TossGrenade_VO" parent="TerranAck">
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignVO\TValerian02ATychus00013.ogg" FacialAnim="TValerian02ATychus00013"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignVO\TValerian02ATychus00060.ogg" FacialAnim="TValerian02ATychus00060"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignVO\TValerian02ATychus00061.ogg" FacialAnim="TValerian02ATychus00061"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignVO\TValerian02ATychus00062.ogg" FacialAnim="TValerian02ATychus00062"/>
+        <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignVO\TValerian02ATychus00002.ogg" FacialAnim="TValerian02ATychus00002"/>
+    </CSound>
+    
+    <CLight id="Tychus@Portrait" parent="default">
+        <EditorCategories value="LightGroup:PortraitsUnitsTerran"/>
+        <ToDInfoArray index="0" AmbientColor="0.325490,0.211765,0.000000">
+            <Param index="HDRExposure" value="1.480000"/>
+            <Param index="HDRBloomThreshold" value="1.950000"/>
+            <DirectionalLight index="Key" Direction="0.818614,0.484127,-0.309017"/>
+            <DirectionalLight index="Fill" Color="0.000000,0.239216,1.000000" ColorMultiplier="1.189000" Direction="-0.949972,-0.146894,0.275637"/>
+            <DirectionalLight index="Back" Color="1.000000,0.501961,0.000000" ColorMultiplier="0.188000" Direction="-0.943813,0.309397,-0.116151"/>
+        </ToDInfoArray>
+    </CLight>
+
+    <CRequirement id="Tychus@Use"/>
+
+    <CValidatorUnitType id="Tychus@Is" parent="IsUnit_Default" unit="Tychus"/>
+    <CValidatorUnitType id="Tychus@Target" parent="TargetIsUnit_Default" unit="Tychus"/>
+    <CValidatorUnitType id="Tychus@Not" parent="NotUnit_Default" unit="Tychus"/>
+    <CValidatorUnitType id="Tychus@NotTarget" parent="TargetNotUnit_Default" unit="Tychus"/>
+
+    <CDataCollectionUnit id="Tychus" parent="UnitGround">
+        <EditorCategories value="DataGroup:Unit,DataFamily:Campaign,Race:Terran,ObjectType:Hero"/>
+        <DataRecord Entry="Button,Tychus"/>
+        <DataRecord Entry="Unit,Tychus"/>
+        <DataRecord Entry="Actor,Tychus"/>
+        <DataRecord Entry="Model,Tychus"/>
+        <DataRecord Entry="Model,Tychus@DeathFire"/>
+        <DataRecord Entry="Model,Tychus@Portrait"/>
+        <DataRecord Entry="Sound,Tychus@Attack"/>
+        <DataRecord Entry="Sound,Tychus@Help"/>
+        <DataRecord Entry="Sound,Tychus@Pissed"/>
+        <DataRecord Entry="Sound,Tychus@Yes"/>
+        <DataRecord Entry="Sound,Tychus@What"/>
+        <DataRecord Entry="Sound,Tychus@Ready"/>
+        <DataRecord Entry="Requirement,Tychus@Use"/>
+        <DataRecord Entry="Light,Tychus@Portrait"/>
+        <DataRecord Entry="Validator,Tychus@Is"/>
+        <DataRecord Entry="Validator,Tychus@Target"/>
+        <DataRecord Entry="Validator,Tychus@Not"/>
+        <DataRecord Entry="Validator,Tychus@NotTarget"/>
+    </CDataCollectionUnit>
+    <!-- ========= Weapons ========== -->
+    
+    <!-- Chaingun -->
+
+    <CButton id="Tychus_Weapon@Passive">
+        <Icon value="Assets\Textures\btn-ability-terran-haleoflead.dds"/>
+        <AlertIcon value="Assets\Textures\btn-ability-terran-haleoflead.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <TintRacially value="1"/>
+    </CButton>
+    
+    <CWeaponLegacy id="Tychus_Weapon">
+        <EditorCategories value="Race:Terran"/>
+        <Icon value="Assets\Textures\btn-upgrade-terran-infantryweaponslevel0.dds"/>
+        <DisplayEffect value="Tychus_Weapon@Damage"/>
+        <TargetFilters value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Period value="0.2"/>
+        <Effect value="Tychus_Weapon@Damage"/>
+    </CWeaponLegacy>
+    
+    <CEffectDamage id="Tychus_Weapon@Damage">
+        <EditorCategories value="Race:Terran"/>
+        <ArmorReduction value="1"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <Flags index="Notification" value="1"/>
+        <Kind value="Ranged"/>
+        <Amount value="5"/>
+        <SearchFlags index="CallForHelp" value="1"/>
+        <SearchFlags index="OffsetByUnitRadius" value="1"/>
+        <AreaArray Radius="1.25" Fraction="0.5"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Visible;Self,Player,Ally"/>
+    </CEffectDamage>
+
+    <CActorAction id="Tychus_Weapon@Attack" parent="GenericAttack" effectAttack="Tychus_Weapon@Damage"/>
+    
+    <CModel id="Tychus_Weapon@AttackLaunch" parent="LaunchFX">
+        <Model value="Assets\Effects\Terran\AutoTurretWeaponLaunch\AutoTurretWeaponLaunch.m3"/>
+        <EditorCategories value="Race:Terran"/>
+        <Lighting value="DutchTurretAttackLaunch"/>
+    </CModel>
+    <CModel id="Tychus_Weapon@AttackImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Terran\AutoTurretWeaponImpact\AutoTurretWeaponImpact.m3"/>
+        <EditorCategories value="Race:Terran"/>
+        <Lighting value="DutchTurretAttackImpact"/>
+    </CModel>
+
+    <CSound id="Tychus_Weapon@AttackLaunch" parent="Combat">
+        <AssetArray File="Assets\Sounds\Terran\Raven\Raven_AutoTurretAttack0.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Raven\Raven_AutoTurretAttack1.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Raven\Raven_AutoTurretAttack2.wav"/>
+        <AssetArray File="Assets\Sounds\Terran\Raven\Raven_AutoTurretAttack3.wav"/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-1.000000,0.500000"/>
+        <Volume value="-3.000000,-3.000000"/>
+        <EditorCategories value="Race:Terran"/>
+        <DupeMaximumMethod value="Replace"/>
+        <Flags index="VariationFallback" value="0"/>
+    </CSound>
+
+    <CDataCollectionUnit id="Tychus_Weapon" parent="Weapon_Instant">
+        <EditorCategories value="DataGroup:Weapon,DataFamily:Campaign,Race:Terran,ObjectType:Other"/>
+        <DataRecord Entry="Button,Tychus_Weapon@Passive"/>
+        <DataRecord Entry="Weapon,Tychus_Weapon"/>
+        <DataRecord Entry="Effect,Tychus_Weapon@Damage"/>
+        <DataRecord Entry="Actor,Tychus_Weapon@Attack"/>
+        <DataRecord Entry="Model,Tychus_Weapon@AttackLaunch"/>
+        <DataRecord Entry="Model,Tychus_Weapon@AttackImpact"/>
+        <DataRecord Entry="Sound,Tychus_Weapon@AttackImpact"/>
+    </CDataCollectionUnit>
+
+    <!-- ========= Abilities ========== -->
+    
+    <!-- Toss Grenade -->
+    <CButton id="Tychus_TossGrenade">
+        <Icon value="Assets\Textures\BTN-Ability-Terran-TychusTossGrenade.dds"/>
+        <EditorCategories value="Race:Terran"/>
+        <TintRacially value="1"/>
+    </CButton>
+
+    <CAbilEffectTarget id="Tychus_TossGrenade">
+        <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
+        <Effect index="0" value="Tychus_TossGrenade@CP"/>
+        <Cost>
+            <Cooldown TimeUse="20"/>
+        </Cost>
+        <Range value="7"/>
+        <CastOutroTime value="0.6875"/>
+        <CursorEffect value="Tychus_TossGrenade@Damage"/>
+        <AINotifyEffect value="TossGrenade"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="Tychus_TossGrenade"/>
+        <UninterruptibleArray index="Cast" value="1"/>
+        <UninterruptibleArray index="Channel" value="1"/>
+        <Alignment value="Negative"/>
+    </CAbilEffectTarget>
+    
+    <CEffectCreatePersistent id="Tychus_TossGrenade@CP">
+        <EditorCategories value="Race:Terran"/>
+        <ExpireDelay value="0.3125"/>
+        <FinalEffect value="Tychus_TossGrenade@LM"/>
+        <Flags index="Channeled" value="1"/>
+    </CEffectCreatePersistent>
+    <CEffectLaunchMissile id="Tychus_TossGrenade@LM">
+        <EditorCategories value="Race:Terran"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <ImpactEffect value="Tychus_TossGrenade@Damage"/>
+        <AmmoUnit value="Tychus_TossGrenade@AttackMissile"/>
+        <ValidatorArray index="0" value="HasVision"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="Tychus_TossGrenade@Damage">
+        <EditorCategories value="Race:Terran"/>
+        <ResponseFlags index="Acquire" value="1"/>
+        <ResponseFlags index="Flee" value="1"/>
+        <Amount value="200"/>
+        <AreaArray Radius="2" Fraction="1"/>
+        <SearchFilters value="Visible;Self,Player,Ally,Air,Missile,Stasis,Dead,Invulnerable"/>
+        <SearchFlags index="ExtendByUnitRadius" value="1"/>
+    </CEffectDamage>
+
+    <CActorSplat id="Tychus_TossGrenade@Cursor" parent="TerranCursorSplat" abil="Tychus_TossGrenade"/>
+    <CActorRange id="Tychus_TossGrenade@Range" parent="RangeAbil" abil="Tychus_TossGrenade"/>
+    <CActorAction id="Tychus_TossGrenade@Attack" parent="GenericAttack" effectImpact="Tychus_TossGrenade@Damage" effectLaunch="Tychus_TossGrenade@LM">
+        <LaunchAttachQuery Methods="Weapon 1"/>
+    </CActorAction>
+    <CActorModel id="Tychus_TossGrenade@InHand" parent="ModelAddition">
+        <HostSiteOps Ops="SOpAttachWeapon01"/>
+        <On Terms="Effect.Tychus_TossGrenade@CP.Start" Target="::Creator" Send="Create"/>
+        <On Terms="Effect.Tychus_TossGrenade@CP.Stop" Send="Destroy"/>
+        <Model value="Tychus_TossGrenade@AttackMissile"/>
+        <Inherits index="BaseModelScale" value="0"/>
+        <Inherits index="Scale" value="0"/>
+    </CActorModel>
+    <CActorRegionCircle id="Tychus_TossGrenade@DoodadKiller">
+        <Radius value="2.000000"/>
+        <On Terms="Effect.Tychus_TossGrenade@Damage.Start; At Effect" Send="Create"/>
+        <On Terms="ActorCreation" Send="QueryRegion ::Self DoodadKillQuery AgainstCenter"/>
+        <On Terms="Effect.Tychus_TossGrenade@Damage.Start; At Effect" Send="Destroy"/>
+    </CActorRegionCircle>
+    <CActorSimple id="Tychus_TossGrenade@Animation">
+        <On Terms="ActorOrphan" Send="Destroy"/>
+        <On Terms="Abil.Tychus_TossGrenade.SourceCastStart" Send="Create"/>
+        <On Terms="ActorCreation" Target="_Unit" Send="AnimPlay Spell Spell 0 -1.000000 -1.000000 2.000000 AsTimeScale"/>
+        <On Terms="Abil.Tychus_TossGrenade.SourceCastStart" Send="Destroy"/>
+    </CActorSimple>
+    
+    <CModel id="Tychus_TossGrenade@AttackImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Terran\TerranLargeUnitDeath\TerranLargeUnitDeath.m3"/>
+        <EditorCategories value="Race:Terran"/>
+    </CModel>
+
+    <CSound id="Tychus_TossGrenade@AttackLaunch" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing0.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing1.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing2.wav"/>
+        <AssetArray File="Assets\Sounds\Zerg\SharedEffects\Attacks\Zerg_AttackLaunchSmallSwing3.wav"/>
+        <DupeDestroyCount value="5"/>
+        <Pitch value="-3.000000,-2.000000"/>
+        <Volume value="-13.000000,-12.000000"/>
+    </CSound>
+    <CSound id="Tychus_TossGrenade@AttackImpact" parent="Combat">
+        <EditorCategories value="Race:Terran"/>
+        <AssetArray File="Assets\Sounds\Terran\SharedEffects\Explosions\Terran_ExplosionSmall0.wav" Pitch="-3.000000,3.000000"/>
+        <AssetArray File="Assets\Sounds\Terran\SharedEffects\Explosions\Terran_ExplosionSmall1.wav" Pitch="-3.000000,3.000000"/>
+        <AssetArray File="Assets\Sounds\Terran\SharedEffects\Explosions\Terran_ExplosionSmall2.wav" Pitch="-3.000000,3.000000"/>
+        <AssetArray File="Assets\Sounds\Terran\SharedEffects\Explosions\Terran_ExplosionSmall3.wav" Pitch="-3.000000,3.000000"/>
+        <AssetArray File="Assets\Sounds\Terran\SharedEffects\Explosions\Terran_ExplosionSmall4.wav" Pitch="-3.000000,3.000000"/>
+        <AssetArray File="Assets\Sounds\Terran\SharedEffects\Explosions\Terran_ExplosionSmall5.wav" Pitch="-3.000000,3.000000"/>
+        <AssetArray File="Assets\Sounds\Terran\SharedEffects\Explosions\Terran_ExplosionSmall6.wav" Pitch="-3.000000,3.000000"/>
+        <AssetArray File="Assets\Sounds\Terran\SharedEffects\Explosions\Terran_ExplosionSmall7.wav" Pitch="-3.000000,3.000000"/>
+        <AssetArray File="Assets\Sounds\Terran\SharedEffects\Explosions\Terran_ExplosionSmall8.wav" Pitch="-3.000000,3.000000"/>
+        <AssetArray File="Assets\Sounds\Terran\SharedEffects\Explosions\Terran_ExplosionSmall9.wav" Pitch="-3.000000,3.000000"/>
+        <DupeDestroyCount value="5"/>
+        <DupeMaximumMethod value="Replace"/>
+        <Pitch value="2.000000,3.000000"/>
+        <Volume value="-2.000000,-2.000000"/>
+    </CSound>
+
+    <!-- Missile -->
+    <CActorMissile id="Tychus_TossGrenade@AttackMissile" parent="GenericAttackMissile" unitName="Tychus_TossGrenade@AttackMissile"/>
+
+    <CUnit id="Tychus_TossGrenade@AttackMissile" parent="MISSILE">
+        <EditorCategories value="ObjectType:Projectile,ObjectFamily:Campaign"/>
+        <Race value="Terr"/>
+    </CUnit>
+    <CMoverMissile id="Tychus_TossGrenade@AttackMissile">
+        <MotionPhases Driver="Ballistic" Gravity="12" FlightTime="0.5"/>
+    </CMoverMissile>
+
+    <CModel id="Tychus_TossGrenade@AttackMissile" parent="MissileFX">
+        <Model value="Assets\Effects\Terran\PodMissile\PodMissile.m3"/>
+        <EditorCategories value="Race:Terran"/>
+        <ScaleMax value="0.600000,0.600000,0.600000"/>
+        <ScaleMin value="0.600000,0.600000,0.600000"/>
+        <SelectionRadius value="0.833200"/>
+        <ShadowRadius value="0.833200"/>
+    </CModel>
+
+    <CDataCollectionUnit id="Tychus_TossGrenade" parent="AbilityMisssile">
+        <EditorCategories value="DataGroup:Ability,DataFamily:Campaign,Race:Terran,ObjectType:Projectile"/>
+        <DataRecord Entry="Button,Tychus_TossGrenade"/>
+        <DataRecord Entry="Abil,Tychus_TossGrenade"/>
+        <DataRecord Entry="Effect,Tychus_TossGrenade@CP"/>
+        <DataRecord Entry="Effect,Tychus_TossGrenade@LM"/>
+        <DataRecord Entry="Effect,Tychus_TossGrenade@Damage"/>
+        <DataRecord Entry="Actor,Tychus_TossGrenade@Cursor"/>
+        <DataRecord Entry="Actor,Tychus_TossGrenade@Range"/>
+        <DataRecord Entry="Actor,Tychus_TossGrenade@Attack"/>
+        <DataRecord Entry="Actor,Tychus_TossGrenade@InHand"/>
+        <DataRecord Entry="Actor,Tychus_TossGrenade@DoodadKiller"/>
+        <DataRecord Entry="Actor,Tychus_TossGrenade@Animation"/>
+        <DataRecord Entry="Model,Tychus_TossGrenade@AttackImpact"/>
+        <DataRecord Entry="Sound,Tychus_TossGrenade@AttackLaunch"/>
+        <DataRecord Entry="Sound,Tychus_TossGrenade@AttackImpact"/>
+        <DataRecord Entry="Actor,Tychus_TossGrenade@AttackMissile"/>
+        <DataRecord Entry="Unit,Tychus_TossGrenade@AttackMissile"/>
+        <DataRecord Entry="Mover,Tychus_TossGrenade@AttackMissile"/>
+        <DataRecord Entry="Model,Tychus_TossGrenade@AttackMissile"/>
+    </CDataCollectionUnit>
+    
+</Catalog>

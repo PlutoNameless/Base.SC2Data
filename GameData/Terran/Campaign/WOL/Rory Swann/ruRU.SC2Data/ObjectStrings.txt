@@ -1,0 +1,34 @@
+Actor/Name/RorySwann=Rory Swann
+Model/Name/RorySwann=Rory Swann
+Model/Name/RorySwann@Death=Death
+Model/Name/RorySwann@DeathFire=Death Fire
+Model/Name/RorySwann@Portrait=Protrait
+Light/Name/RorySwann@Portrait=Protrait
+Sound/Name/RorySwann@Death=Death
+Sound/Name/RorySwann@Attack=Attack
+Sound/Name/RorySwann@Help=Help
+Sound/Name/RorySwann@Pissed=Pissed
+Sound/Name/RorySwann@Yes=Yes
+Sound/Name/RorySwann@What=What
+Sound/Name/RorySwann@Ready=Ready
+
+Effect/Name/RorySwann_Weapon@Damage=Damage
+Effect/Name/RorySwann_Weapon@LM=LM
+Model/Name/RorySwann_Weapon@AttackImpact=AttackImpact
+Sound/Name/RorySwann_Weapon@AttackImpact=AttackImpact
+Sound/Name/RorySwann_Weapon@AttackLaunch=AttackLaunch
+Actor/Name/RorySwann_Weapon@Attack=Attack
+Actor/Name/RorySwann_Weapon@AttackMissile=AttackMissile
+Unit/Name/RorySwann_Weapon@AttackMissile=AttackMissile
+Model/Name/RorySwann_Weapon@AttackMissile=AttackMissile
+Mover/Name/RorySwann_Weapon@AttackMissile=AttackMissile
+
+Effect/Name/RorySwann_WeaponMelee@Damage=Damage
+Actor/Name/RorySwann_WeaponMelee@Attack=Attack
+Sound/Name/RorySwann_WeaponMelee@AttackLaunch=Attack Launch
+Sound/Name/RorySwann_WeaponMelee@AttackImpact=Attack Impact
+
+Abil/Name/RorySwann_PlaceTurret=Установить «Огненную Бетти»
+Actor/Name/RorySwann_PlaceTurret@Animation=Animation
+Effect/Name/RorySwann_PlaceTurret@CU=CU
+Effect/Name/RorySwann_PlaceTurret@AB=AB
