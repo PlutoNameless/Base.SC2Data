@@ -1,0 +1,13 @@
+Button/Name/Stetmann=Нанять Стетманна
+Button/Tooltip/Stetmann=Стетманн способен восстанавливать здоровье своих союзников за считанные секунды. <n/><n/><c val="#ColorAttackInfo">Не может атаковать.</c><n/>
+
+Button/Name/Stetmann_RegenArmor=Броня «Сделай сам!»
+Button/Tooltip/Stetmann_RegenArmor=Стетманн способен быстро восстанавливать свои здоровье и энергию в перерывах между боями и лечением союзников.
+Behavior/Name/Stetmann_RegenArmor=Броня «Сделай сам!»
+Behavior/Name/Stetmann_RegenArmor@Delay=Задержка восстановления
+
+Button/Name/Stetmann_Heal=Лечение
+Button/Tooltip/Stetmann_Heal=Восполняет союзной органической цели <c val="FFE000"><d ref="[d ref='Effect,Stetmann_Heal@CH,RechargeVitalRate'/] / Behavior,TimeScaleConversionBehavior,Duration)" precision="1"/></c> ед. здоровья в секунду.<n/><n/><c val="f078ff">Расходует <d ref="3 / time='1'"/> ед. энергии в секунду.</c><n/>
+
+Unit/Name/Stetmann=Игон Стетманн
+UnitKillRank/Stetmann=кандидат наук

@@ -56,7 +56,7 @@
         <ErrorArray Error="CantBuildLocationInvalid" Sound="e_cmdBuildTechRequirementsNotMet_Terr"/>
         <ErrorArray Error="CantFindPlacementLocation" Sound="e_cmdBuildTechRequirementsNotMet_Terr"/>
         <ErrorArray Error="CantBuildOnThat" Sound="e_cmdBuildTechRequirementsNotMet_Terr"/>
-        <UnitKillRank Text="UnitKillRank/Swann"/>
+        <UnitKillRank Text="UnitKillRank/RorySwann"/>
         <BarWidth value="50"/>
         <BarOffset value="60"/>
         <UnitBorderNormalColor value="150,150,150"/>
@@ -177,11 +177,6 @@
     </CDataCollectionUnit>
     
     <!-- ========== Weapons ========== -->
-
-    <CActorAction id="RorySwann_Weapon@Attack" parent="GenericAttack" effectLaunch="RorySwann_Weapon@LM" effectImpact="RorySwann_Weapon@Damage">
-        <LaunchAttachQuery Methods="AMFilterWeaponRight"/>
-        <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
-    </CActorAction>
     
     <CWeaponLegacy id="RorySwann_Weapon">
         <EditorCategories value="Race:Terran"/>
@@ -246,6 +241,10 @@
         <DupePrioritization value="Oldest"/>
     </CSound>
 
+    <CActorAction id="RorySwann_Weapon@Attack" parent="GenericAttack" effectLaunch="RorySwann_Weapon@LM" effectImpact="RorySwann_Weapon@Damage">
+        <LaunchAttachQuery Methods="AMFilterWeaponRight"/>
+        <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
+    </CActorAction>
     <CActorMissile id="RorySwann_Weapon@AttackMissile" parent="GenericAttackMissile" unitName="RorySwann_Weapon@AttackMissile"/>
 
     <CUnit id="RorySwann_Weapon@AttackMissile" parent="MISSILE">
@@ -274,8 +273,6 @@
     </CDataCollectionUnit>
 
     <!-- Weapon Melee -->
-    <CActorAction id="RorySwann_WeaponMelee@Attack" parent="GenericAttack" effectAttack="RorySwann_WeaponMelee@Damage"/>
-
     <CWeaponLegacy id="RorySwann_WeaponMelee">
         <DisplayEffect value="RorySwann_WeaponMelee@Damage"/>
         <Effect value="RorySwann_WeaponMelee@Damage"/>
@@ -294,6 +291,8 @@
     <CEffectDamage id="RorySwann_WeaponMelee@Damage" parent="RorySwann_Weapon@Damage">
         <Kind value="Melee"/>
     </CEffectDamage>
+
+    <CActorAction id="RorySwann_WeaponMelee@Attack" parent="GenericAttack" effectAttack="RorySwann_WeaponMelee@Damage"/>
 
     <CSound id="RorySwann_WeaponMelee@AttackLaunch" parent="Zerg_AttackLaunchLargeSwing">
         <Volume value="-12.000000,-12.000000"/>
@@ -314,7 +313,7 @@
     <!-- ========= Abilities ========== -->
     
     <!-- Flame Turret -->
-    <CButton id="RorySwann_PlaceTurret">
+    <CButton id="RorySwann_PlaceTurret" parent="UnitButton_OnlyGround">
         <Icon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
     </CButton>
 

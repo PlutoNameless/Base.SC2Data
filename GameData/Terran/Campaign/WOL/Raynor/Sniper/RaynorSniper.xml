@@ -475,6 +475,7 @@
         <DataRecord Entry="Sound,RaynorSniper_Snipe@ChargeUp"/>
         <DataRecord Entry="Sound,RaynorSniper_Snipe@LaunchSound"/>
         <DataRecord Entry="Sound,RaynorSniper_Snipe@AttackImpact"/>
+        <Pattern value="RaynorSnipe_Pattern"/>
     </CDataCollectionUnit>
     
 </Catalog>
