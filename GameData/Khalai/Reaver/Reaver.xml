@@ -1,0 +1,712 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Catalog>
+    <!-- Requires: DataCollectionUnit:Weapon_Base[base.xml] -->
+    <!-- Requires: DataCollectionUnit:AbilityBase[base.xml] -->
+
+    <!-- ==================== UNIT: Reaver ==================== -->
+    <CButton id="Reaver">
+        <EditorCategories value="Race:Protoss"/>
+        <Icon value="Assets\Textures\btn-unit-protoss-reaver.dds"/>
+    </CButton>
+    <CButton id="ReaverScarabs">
+        <Icon value="Assets\Textures\BTN-Ability-Protoss-ScarabShot.dds"/>
+        <AlertIcon value="Assets\Textures\BTN-Ability-Protoss-ScarabShot.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CButton>
+
+    <CUnit id="Reaver">
+        <DeathRevealRadius value="3"/>
+        <Race value="Prot"/>
+        <Mob value="Multiplayer"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="AlwaysThreatens" value="1"/>
+        <FlagArray index="AIThreatGround" value="1"/>
+        <FlagArray index="AISplash" value="1"/>
+        <FlagArray index="AIPressForwardDisabled" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Locust" value="1"/>
+        <Collide index="Small" value="1"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <Attributes index="Massive" value="1"/>
+        <LifeStart value="200"/>
+        <LifeMax value="200"/>
+        <LifeArmor value="1"/>
+        <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"/>
+        <ShieldsStart value="150"/>
+        <ShieldsMax value="150"/>
+        <ShieldRegenDelay value="10"/>
+        <ShieldRegenRate value="2"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <Mover value="Ground"/>
+        <Speed value="2"/>
+        <Acceleration value="1000"/>
+        <Deceleration value="1000"/>
+        <LateralAcceleration value="46"/>
+        <Sight value="10"/>
+        <Food value="-6"/>
+        <CostCategory value="Army"/>
+        <CostResource index="Minerals" value="300"/>
+        <CostResource index="Vespene" value="200"/>
+        <RepairTime value="60"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="120"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <AbilArray Link="Warpable"/>
+        <AbilArray Link="ProgressRally"/>
+        <AbilArray Link="ReaverHangar"/>
+        <AbilArray Link="ReaverHangarQueue"/>
+        <WeaponArray Link="ReaverScarabsLaunch"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+            <LayoutButtons Face="ReaverScarabs" Type="AbilCmd" AbilCmd="ReaverHangar,0" Row="2" Column="0"/>
+        </CardLayouts>
+        <Radius value="1"/>
+        <SeparationRadius value="1"/>
+        <InnerRadius value="0.375"/>
+        <CargoSize value="4"/>
+        <ScoreMake value="600"/>
+        <ScoreKill value="600"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="9"/>
+        <MinimapRadius value="1"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
+        <Mass value="0.6"/>
+        <GlossaryCategory value="Unit/Category/ProtossUnits"/>
+        <GlossaryPriority value="130"/>
+        <HotkeyCategory value="Unit/Category/ProtossUnits"/>
+    </CUnit>
+    <CActorUnit id="Reaver" parent="GenericUnitStandard" unitName="Reaver">
+        <Aliases value="_UnitLarge"/>
+        <Macros value="TerrainSquibAnimations"/>
+        <Macros value="PhysicsDeathsSwarmGround"/>
+        <Macros value="PhysicsDeathsVoidGround"/>
+        <On Terms="WeaponStart.ReaverScarabsLaunch.AttackStart; AnimPlaying Birth" Send="AnimClear Birth"/>
+        <On Terms="Effect.ReaverScarabLM.Start; At Caster" Send="AnimPlay Attack Attack"/>
+        <On Terms="Effect.ReaverScarabLaunchPersistentInitial.Start; At Caster" Send="AnimBracketStart Cover Cover,Start Cover Cover,End"/>
+        <On Terms="Effect.ReaverScarabLaunchPersistentInitial.Start; At Caster" Send="TimerKill CoverDelay"/>
+        <On Terms="Effect.ReaverScarabLaunchPersistentInitial.Start; At Caster" Send="TimerSet 5.000000 CoverDelay"/>
+        <On Terms="UnitHeightUpdate.*.Land" Send="Create Reaver_Land"/>
+        <On Terms="Effect.ReaverScarabLaunchPersistentInitial.Start; At Caster" Send="StatusSet Cover 1"/>
+        <On Terms="TimerExpired; TimerName CoverDelay" Send="AnimBracketStop Cover"/>
+        <On Terms="Upgrade.PurifierProtoss.Add" Send="TextureSelectById PurifierHackDiffuse"/>
+        <On Terms="UnitBirth; ValidateUnit HasPurifierProtoss" Send="TextureSelectById PurifierHackDiffuse"/>
+        <On Terms="Signal.*.PurifierHack" Send="TextureSelectById PurifierHackDiffuse"/>
+        <ModelFlags index="OutlineEmitter" value="1"/>
+        <BuildModel value="Reaver@WarpIn"/>
+        <DeathArray index="Normal" ModelLink="Reaver@Death" SoundLink="Reaver@DeathExplosion"/>
+        <DeathCustoms index="0" ModelLink="ZergSmallUnitDeathLow" Name="AntiGravGeneric"/>
+        <DeathCustoms index="1" ModelLink="ProtossSmallUnitDeathLow" Name="AntiGravProtoss"/>
+        <DeathCustoms index="2" ModelLink="TerranSmallUnitDeathLow" Name="AntiGravTerran"/>
+        <DeathCustoms index="3" ModelLink="ZergSmallUnitDeathLow" Name="AntiGravZerg"/>
+        <DeathCustoms index="4" ModelLink="Invisible" Name="Vortex"/>
+        <DeathCustoms ModelLink="ProtossLargeUnitDeathLow" Name="AntiGravProtoss"/>
+        <DeathCustoms ModelLink="Reaver@DeathRagdoll" Name="RagdollBasic">
+            <BodySquibs Name="Basic" Model="ProtossRobotSquibDeathRagdoll"/>
+            <BodySquibs Name="BloodReduced" Model="ProtossRobotBloodSquibDeathRagdoll"/>
+        </DeathCustoms>
+        <DeathCustoms Name="RagdollSiegeTank" InheritsFrom="RagdollBasic"/>
+        <DeathCustoms Name="RagdollNuke" InheritsFrom="RagdollBasic">
+            <BodySquibs Name="Fire"/>
+        </DeathCustoms>
+        <DeathCustoms Name="RagdollFire" InheritsFrom="RagdollBasic">
+            <BodySquibs Name="Fire"/>
+        </DeathCustoms>
+        <DeathCustoms Name="RagdollAcid" InheritsFrom="RagdollBasic">
+            <BodySquibs Name="Acid"/>
+        </DeathCustoms>
+        <DeathCustoms Name="RagdollBaneling" InheritsFrom="RagdollBasic">
+            <BodySquibs Name="Acid"/>
+        </DeathCustoms>
+        <DeathCustoms Name="RagdollUltraUnburrow" InheritsFrom="RagdollBasic"/>
+        <DeathCustoms Name="RagdollOverkillDPRH" InheritsFrom="RagdollBasic"/>
+        <DeathCustoms Name="RagdollOverkillDOI" InheritsFrom="RagdollBasic"/>
+        <DeathCustoms Name="RagdollMidair" InheritsFrom="RagdollBasic"/>
+        <PlacementModel value="Reaver@Placement"/>
+        <PortraitModel value="Reaver@Portrait"/>
+        <TerrainSquibs>
+            <MovementDistance value="0.150000,0.150000"/>
+            <IdlePeriod value="0.100000,0.250000"/>
+            <RangeUp value="0.600000"/>
+            <RangeDown value="1.000000"/>
+            <AttachQuery Methods="AMFilterCenter"/>
+            <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleImmortal"/>
+        </TerrainSquibs>
+        <WalkAnimMoveSpeed value="1.875"/>
+        <BarOffset value="70"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\wireframe-protoss-reaver.dds"/>
+        </GroupIcon>
+        <HeroIcon value="Assets\Textures\btn-unit-protoss-reaver.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
+        <SoundArray index="Ready" value="Reaver@Ready"/>
+        <SoundArray index="Help" value="Reaver@Help"/>
+        <SoundArray index="What" value="Reaver@What"/>
+        <SoundArray index="Yes" value="Reaver@Yes"/>
+        <SoundArray index="Attack" value="Reaver@Attack"/>
+        <SoundArray index="Pissed" value="Reaver@Pissed"/>
+        <SoundArray index="Movement" value="Reaver@MoveStart"/>
+        <UnitIcon value="Assets\Textures\btn-unit-protoss-reaver.dds"/>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-protoss-reaver.dds"/>
+        </Wireframe>
+        <WireframeShield>
+            <Image value="Assets\Textures\wireframe-protoss-reaver-shield01.dds"/>
+            <Image value="Assets\Textures\Wireframe-protoss-reaver-shield02.dds"/>
+            <Image value="Assets\Textures\Wireframe-protoss-reaver-shield03.dds"/>
+        </WireframeShield>
+    </CActorUnit>
+
+    <!-- Models -->
+    <CModel id="Reaver@Placement">
+        <Model value="Assets\Units\Protoss\Reaver_Placement\Reaver_Placement.m3"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+    </CModel>
+    <CModel id="Reaver@WarpIn">
+        <Model value="Assets\Units\Protoss\Reaver_WarpIn\Reaver_WarpIn.m3"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+    </CModel>
+    <CModel id="Reaver" parent="Unit" Race="Protoss">
+        <Model value="Assets\Units\Protoss\Reaver\Reaver.m3"/>
+        <AttachProps>
+            <Id value="Ref_Center"/>
+            <SquibType value="Metal"/>
+            <RadiusTarget value="0.750000"/>
+            <RadiusShield value="1.000000"/>
+        </AttachProps>
+        <Occlusion value="Show"/>
+        <PlanetPanelCamera value="Star2CameraMid09"/>
+        <Radius value="0.800000"/>
+        <ScaleMax value="0.850000,0.850000,0.850000"/>
+        <ScaleMin value="0.850000,0.850000,0.850000"/>
+        <SelectionRadius value="1.029000"/>
+        <ShadowRadius value="0.800000"/>
+        <SquibTypeDefault value="Metal"/>
+        <TechPurchaseCamera value="Star2CameraMid09"/>
+        <Tipability value="1.000000"/>
+        <TipabilityLength value="1.800000"/>
+        <TipabilityWidth value="1.200000"/>
+        <TextureDeclares Prefix="reaver_">
+            <Adaptions TriggerOnSubstring="_Diffuse" Slot="main"/>
+        </TextureDeclares>
+        <UnitGlossaryCamera value="Star2CameraMid09"/>
+    </CModel>
+    <CModel id="Reaver@Death" parent="UnitDeath" Race="Protoss">
+        <Model value="Assets\Units\Protoss\Reaver_Death\Reaver_Death.m3"/>
+        <LowQualityModel value="ProtossLargeUnitDeathLow"/>
+        <Events>
+            <Variation value="0"/>
+            <Anim value="Death,00"/>
+            <Name value="Reaver_DeathExplosion"/>
+            <Type value="Sound"/>
+            <Time value="1.370000"/>
+            <Payload value="Reaver@DeathExplosion"/>
+        </Events>
+        <VariationCount value="2"/>
+    </CModel>
+    <CModel id="Reaver@DeathRagdoll" parent="UnitDeathRagdoll" Race="Protoss">
+        <Model value="Assets\Units\Protoss\Reaver_Ragdoll_Death\Reaver_Ragdoll_Death.m3"/>
+        <Events>
+            <Variation value="0"/>
+            <Anim value="Death,00"/>
+            <Name value="Reaver_DeathExplosion"/>
+            <Type value="Sound"/>
+            <Time value="1.370000"/>
+            <Payload value="Reaver@DeathExplosion"/>
+        </Events>
+        <VariationCount value="2"/>
+    </CModel>
+    <CModel id="Reaver@Portrait" parent="Portrait" Race="Protoss">
+        <Model value="Assets\Portraits\Protoss\ReaverEx2Portrait\ReaverEx2Portrait.m3"/>
+        <Image value="Assets\Textures\ReaverPortrait_Static.dds"/>
+        <Lighting value="PortraitReaver"/>
+    </CModel>
+    <CModel id="Invisible" Race="Neutral">
+        <Model value="Assets\Units\Test\InvisibleUnit\InvisibleUnit.m3"/>
+        <EditorCategories value="Race:Neutral"/>
+        <Flags index="TeenSafe" value="1"/>
+        <Radius value="-1.000000"/>
+        <SelectionRadius value="0.000000"/>
+        <ShadowRadius value="0.000000"/>
+    </CModel>
+    <CModel id="ProtossSmallUnitDeathLow" parent="UnitDeath" Race="Protoss">
+        <Model value="Assets\Effects\Protoss\ProtossUnitDeath\ProtossUnitDeath_Low.m3"/>
+        <Flags index="TeenSafe" value="1"/>
+        <ScaleMax value="1.250000,1.250000,1.250000"/>
+        <ScaleMin value="1.250000,1.250000,1.250000"/>
+        <SelectionRadius value="0.400000"/>
+        <ShadowRadius value="0.400000"/>
+    </CModel>
+    <CModel id="ProtossLargeUnitDeathLow" parent="UnitDeath" Race="Protoss">
+        <Model value="Assets\Effects\Protoss\ProtossLargeUnitDeath\ProtossLargeUnitDeath_Low.m3"/>
+        <Flags index="TeenSafe" value="1"/>
+        <SelectionRadius value="0.270200"/>
+        <ShadowRadius value="0.270200"/>
+    </CModel>
+    <CModel id="TerranSmallUnitDeathLow" parent="UnitDeath" Race="Terran">
+        <Model value="Assets\Effects\Terran\TerranSmallUnitDeath\TerranSmallUnitDeath_Low.m3"/>
+        <Flags index="TeenSafe" value="1"/>
+        <ScaleMax value="1.100000,1.100000,1.100000"/>
+        <ScaleMin value="1.100000,1.100000,1.100000"/>
+        <SelectionRadius value="0.454300"/>
+        <ShadowRadius value="0.454300"/>
+    </CModel>
+    <CModel id="ZergSmallUnitDeathLow" parent="UnitDeath" Race="Zerg">
+        <Model value="Assets\Effects\Zerg\ZergSmallUnitDeath\ZergSmallUnitDeath_low.m3"/>
+        <Flags index="TeenSafe" value="1"/>
+        <Occlusion value="Show"/>
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
+        <SelectionRadius value="0.625000"/>
+        <ShadowRadius value="0.625000"/>
+    </CModel>
+
+    <!-- Sounds -->
+    <CSound id="Reaver@Ready" parent="ProtossReady">
+        <AssetArray File="Assets\Sounds\Reaver_Ready00.ogg" FacialGroup=""/>
+        <Pitch value="-0.300000,0.000000"/>
+        <Volume value="2.000000,2.000000"/>
+    </CSound>
+    <CSound id="Reaver@Help" parent="ProtossHelp">
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Executor\Alert_ProtossForcesUnderAttack.ogg" FacialGroup=""/>
+    </CSound>
+    <CSound id="Reaver@What" parent="ProtossAck_Void">
+        <AssetArray File="Assets\Sounds\Reaver_What00.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_What01.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_What02.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_What04.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Pissed02.ogg" FacialGroup=""/>
+        <Pitch value="-0.300000,0.000000"/>
+        <Volume value="-1.000000,-1.000000"/>
+    </CSound>
+    <CSound id="Reaver@Yes" parent="ProtossAck_Void">
+        <AssetArray File="Assets\Sounds\Reaver_Yes00.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Yes01.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Yes02.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Yes03.ogg" FacialGroup=""/>
+        <Pitch value="-0.300000,0.300000"/>
+        <Volume value="-1.000000,-1.000000"/>
+    </CSound>
+    <CSound id="Reaver@Attack" parent="ProtossAck_Void">
+        <AssetArray File="Assets\Sounds\Reaver_Attack00.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Attack01.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Attack02.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Attack03.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Attack04.ogg" FacialGroup=""/>
+        <Pitch value="-0.300000,0.000000"/>
+        <Volume value="-1.000000,-1.000000"/>
+    </CSound>
+    <CSound id="Reaver@Pissed" parent="ProtossPissed">
+        <AssetArray File="Assets\Sounds\Reaver_Pissed00.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Pissed01.ogg" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Pissed03.ogg" FacialGroup=""/>
+        <Pitch value="-0.300000,0.000000"/>
+        <Volume value="-1.000000,-1.000000"/>
+    </CSound>
+    <CSound id="Reaver@MoveStart" parent="Movement">
+        <EditorCategories value="Race:Protoss"/>
+        <AssetArray File="Assets\Sounds\Reaver_Move00.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Move01.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Move02.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Move03.wav" FacialGroup=""/>
+        <DupeMuteCount value="3"/>
+        <Pitch value="-1.000000,1.000000"/>
+        <Volume value="-8.000000,-8.000000"/>
+    </CSound>
+    <CSound id="Reaver@DeathExplosion" parent="ProtossDeath">
+        <AssetArray File="Assets\Sounds\Reaver_Death00.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Death01.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Death02.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_Death03.wav" FacialGroup=""/>
+        <Pitch value="-1.000000,1.000000"/>
+        <Volume value="-1.000000,0.000000"/>
+    </CSound>
+    <!-- Звуки скараба (из твоих фрагментов, без "2") -->
+    <CSound id="ReaverScarab@AttackLaunch" parent="Combat">
+        <AssetArray File="Assets\Sounds\Reaver_AttackLaunch00.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_AttackLaunch01.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_AttackLaunch02.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_AttackLaunch03.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_AttackLaunch04.wav" FacialGroup=""/>
+        <DupeMaximumMethod value="Replace"/>
+        <Pitch value="-3.000000,0.000000"/>
+        <Volume value="-6.000000,-4.000000"/>
+    </CSound>
+    <CSound id="ReaverScarab@Explode" parent="Death">
+        <AssetArray File="Assets\Sounds\Reaver_ScarabImpact00.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_ScarabImpact01.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_ScarabImpact02.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_ScarabImpact03.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Reaver_ScarabImpact04.wav" FacialGroup=""/>
+        <Category value="Combat"/>
+        <Pitch value="-4.000000,0.000000"/>
+        <Volume value="0.000000,1.000000"/>
+    </CSound>
+
+    <!-- Data Collection Unit -->
+    <CDataCollectionUnit id="Reaver" parent="UnitGround">
+        <EditorCategories value="DataGroup:Unit,DataFamily:Campaign,Race:Protoss,ObjectType:Unit"/>
+        <DataRecord Entry="Button,Reaver"/>
+        <DataRecord Entry="Unit,Reaver"/>
+        <DataRecord Entry="Actor,Reaver"/>
+        <DataRecord Entry="Model,Reaver@Placement"/>
+        <DataRecord Entry="Model,Reaver@WarpIn"/>
+        <DataRecord Entry="Model,Reaver"/>
+        <DataRecord Entry="Model,Reaver@Death"/>
+        <DataRecord Entry="Model,Reaver@DeathRagdoll"/>
+        <DataRecord Entry="Model,Reaver@Portrait"/>
+        <DataRecord Entry="Model,Invisible"/>
+        <DataRecord Entry="Model,ProtossSmallUnitDeathLow"/>
+        <DataRecord Entry="Model,ProtossLargeUnitDeathLow"/>
+        <DataRecord Entry="Model,TerranSmallUnitDeathLow"/>
+        <DataRecord Entry="Model,ZergSmallUnitDeathLow"/>
+        <DataRecord Entry="Sound,Reaver@Ready"/>
+        <DataRecord Entry="Sound,Reaver@Help"/>
+        <DataRecord Entry="Sound,Reaver@What"/>
+        <DataRecord Entry="Sound,Reaver@Yes"/>
+        <DataRecord Entry="Sound,Reaver@Attack"/>
+        <DataRecord Entry="Sound,Reaver@Pissed"/>
+        <DataRecord Entry="Sound,Reaver@MoveStart"/>
+        <DataRecord Entry="Sound,Reaver@DeathExplosion"/>
+        <TechInfoUpgradeUsed value="ProtossGroundArmors@1"/>
+        <TechInfoUpgradeUsed value="ProtossGroundArmors@2"/>
+        <TechInfoUpgradeUsed value="ProtossGroundArmors@3"/>
+        <TechInfoUpgradeUsed value="ProtossShields@1"/>
+        <TechInfoUpgradeUsed value="ProtossShields@2"/>
+        <TechInfoUpgradeUsed value="ProtossShields@3"/>
+        <TechInfoUpgradeUsed value="ProtossGroundWeapons@1"/>
+        <TechInfoUpgradeUsed value="ProtossGroundWeapons@2"/>
+        <TechInfoUpgradeUsed value="ProtossGroundWeapons@3"/>
+    </CDataCollectionUnit>
+
+    <!-- ==================== WEAPON + SCARAB ==================== -->
+    <!-- Валидатор: проверяем, есть ли скарабы в ангаре -->
+    <CValidatorUnitCompareMagazineCount id="ReaverScarab@Ammo">
+        <Compare value="GE"/>
+        <Value value="1"/>
+        <AbilLink value="ReaverHangar"/>
+    </CValidatorUnitCompareMagazineCount>
+
+    <CWeaponLegacy id="ReaverScarabsLaunch">
+        <EditorCategories value="Race:Protoss"/>
+        <Options index="LinkedCooldown" value="0"/>
+        <Icon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel0.dds"/>
+        <DisplayEffect value="ReaverScarab@Damage"/>
+        <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Range value="9"/>
+        <Arc value="4.9987"/>
+        <Period value="2"/>
+        <DamagePoint value="0"/>
+        <Backswing value="0"/>
+        <Effect value="ReaverScarab@LaunchPersistentInitial"/>
+        <ValidatorArray value="ReaverScarab@Ammo"/>
+        <AllowedMovement value="Slowing"/>
+    </CWeaponLegacy>
+
+    <!-- Эффекты (из твоих фрагментов, переименованы) -->
+    <CEffectSet id="ReaverScarab@LaunchPersistentInitial">
+        <EffectArray value="ReaverScarab@LaunchPersistent"/>
+    </CEffectSet>
+    <CEffectCreatePersistent id="ReaverScarab@LaunchPersistent">
+        <ValidatorArray value="ReaverScarab@Ammo"/>
+        <EditorCategories value="Race:Protoss"/>
+        <WhichLocation Value="TargetUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <Flags index="Channeled" value="1"/>
+        <PeriodCount value="1"/>
+        <PeriodicValidator value="CasterNotDead"/>
+        <PeriodicEffectArray value="ReaverScarab@LaunchSet"/>
+        <PeriodicPeriodArray value="0.75"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="ReaverScarab@LaunchSet">
+        <EffectArray value="ReaverScarab@ApplyReveal"/>
+        <EffectArray value="ReaverScarab@UseMagazine"/>
+        <EffectArray value="ReaverScarab@LM"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="ReaverScarab@ApplyReveal">
+        <Behavior value="ReaverScarab@Reveal"/>
+    </CEffectApplyBehavior>
+    <CEffectUseMagazine id="ReaverScarab@UseMagazine">
+        <AmmoEffect value="ReaverScarab@TimedLifeApply"/>
+    </CEffectUseMagazine>
+    <CEffectLaunchMissile id="ReaverScarab@LM">
+        <ImpactEffect value="ReaverScarab@Explode"/>
+        <AmmoUnit value="ReaverScarab@Missile"/>
+        <ImpactRange value="1"/>
+    </CEffectLaunchMissile>
+    <CEffectSet id="ReaverScarab@Explode">
+        <ValidatorArray value="CasterIsNotHidden"/>
+        <EffectArray value="ReaverScarab@Damage"/>
+        <EffectArray value="ReaverScarab@Suicide"/>
+    </CEffectSet>
+    <CEffectDamage id="ReaverScarab@Damage" parent="DU_WEAP">
+        <AttributeBonus index="Structure" value="50"/>
+        <Kind value="Ranged"/>
+        <KindSplash value="Splash"/>
+        <Amount value="100"/>
+        <Death value="Blast"/>
+        <AreaArray Radius="0.25" Fraction="0.8"/>
+        <AreaArray Radius="0.5" Fraction="0.6"/>
+        <AreaArray Radius="1" Fraction="0.5"/>
+        <AreaArray Radius="1.5" Fraction="0.25"/>
+        <ExcludeArray Value="Target"/>
+        <SearchFilters value="Ground;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+    </CEffectDamage>
+    <CEffectDamage id="ReaverScarab@Suicide">
+        <ImpactLocation Value="SourceUnit"/>
+        <Flags index="Kill" value="1"/>
+        <Flags index="NoKillCredit" value="1"/>
+    </CEffectDamage>
+    <CEffectDamage id="ReaverScarab@SuicideRemove">
+        <ImpactLocation Value="SourceUnit"/>
+        <Flags index="Kill" value="1"/>
+        <Death value="Remove"/>
+    </CEffectDamage>
+    <CEffectApplyBehavior id="ReaverScarab@TimedLifeApply">
+        <Behavior value="ReaverScarab@TimedLife"/>
+    </CEffectApplyBehavior>
+
+    <!-- Поведения скараба -->
+    <CBehaviorBuff id="ReaverScarab@Reveal">
+        <Alignment value="Negative"/>
+        <InfoFlags index="Hidden" value="1"/>
+        <RemoveValidatorArray value="NotCloaked"/>
+        <Duration value="7"/>
+        <Modification>
+            <ModifyFlags index="Reveal" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+    <CBehaviorBuff id="ReaverScarab@TimedLife">
+        <InfoFlags index="Hidden" value="1"/>
+        <Duration value="0.0625"/>
+        <InitialEffect value="ReaverScarab@SuicideRemove"/>
+        <ExpireEffect value="ReaverScarab@SuicideRemove"/>
+        <Modification>
+            <StateFlags index="Summoned" value="1"/>
+        </Modification>
+        <KillCredit Value="Caster"/>
+    </CBehaviorBuff>
+
+    <!-- Акторы атаки скараба (на основе твоих фрагментов) -->
+    <CActorAction id="ReaverScarab@Attack" parent="GenericAttack" effectImpact="ReaverScarab@Damage" effectLaunch="ReaverScarab@LM">
+        <LaunchAssets Sound="ReaverScarab@AttackLaunch"/>
+        <LaunchModel value="ReaverScarab@LaunchModel"/>
+        <LaunchSound value="ReaverScarab@AttackLaunch"/>
+        <Missile value="ReaverScarab@MissileActor"/>
+        <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeStandard SOpForwardLaunchGuide"/>
+        <ImpactMap index="None" Model="ReaverScarab@ImpactModel" Sound="ReaverScarab@Explode"/>
+        <ImpactModel value="ReaverScarab@LaunchModel"/>
+        <ImpactSound value="ReaverScarab@Explode"/>
+        <DamageModel value="ReaverScarab@LaunchModel"/>
+        <DamageSound value="ReaverScarab@Explode"/>
+    </CActorAction>
+
+    <CActorModel id="ReaverScarab@LaunchModel" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Model value="Invisible"/>
+    </CActorModel>
+
+    <CActorMissile id="ReaverScarab@MissileActor" parent="GenericAttackMissileWithDeathAnim" unitName="ReaverScarab@Missile">
+        <Model value="ReaverScarab@MissileModel"/>
+        <Macros value="GlobalLoopMacro"/>
+    </CActorMissile>
+
+    <!-- Модели снаряда и импакта -->
+    <CModel id="ReaverScarab@MissileModel" parent="MissileFX">
+        <Model value="Assets\Effects\Protoss\Reaver_Missile\Reaver_Missile.m3"/>
+    </CModel>
+    <CModel id="ReaverScarab@ImpactModel" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\Reaver_Missile_Impact\Reaver_Missile_Impact.m3"/>
+    </CModel>
+
+    <!-- Юнит снаряда -->
+    <CUnit id="ReaverScarab@Missile" parent="MISSILE_INVULNERABLE">
+        <Race value="Prot"/>
+        <Mover value="ReaverScarab@Mover"/>
+    </CUnit>
+
+    <!-- Мувер с боковой волной (исправленная ось) -->
+    <CMoverMissile id="ReaverScarab@Mover">
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <MaxSpeed value="10"/>
+            <ClearanceAcceleration value="75"/>
+            <Outro value="-0.2,-0.1"/>
+            <YawPitchRoll value="719.2968"/>
+            <Overlays Scale="0.7,0.1"/>
+        </MotionPhases>
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="3200"/>
+            <MaxSpeed value="10"/>
+            <ClearanceAcceleration value="75"/>
+            <YawPitchRoll value="MAX"/>
+            <Overlays Scale="0.1,0.1"/>
+        </MotionPhases>
+        <!-- Волна влево-вправо -->
+        <MotionOverlays Type="Wave" Axis="0,1,0" Wavelength="6,0.1"/>
+    </CMoverMissile>
+
+    <!-- Актор для юнита-снаряда (чтобы не было варнингов) -->
+    <CActorUnit id="ReaverScarab@Missile" parent="GenericUnitStandard" unitName="ReaverScarab@Missile">
+        <Model value="Invisible"/>
+        <BuildModel value="Invisible"/>
+        <DeathArray index="Normal" ModelLink="Invisible" SoundLink=""/>
+    </CActorUnit>
+
+    <!-- Ангарный скараб (невидимый, для производства) -->
+    <CUnit id="ReaverScarab">
+        <DeathRevealRadius value="3"/>
+        <Race value="Prot"/>
+        <FlagArray index="Uncommandable" value="1"/>
+        <FlagArray index="Unselectable" value="1"/>
+        <FlagArray index="Untargetable" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="Invulnerable" value="1"/>
+        <FlagArray index="AILifetime" value="1"/>
+        <FlagArray index="ArmySelect" value="1"/>
+        <EditorFlags index="NoPlacement" value="1"/>
+        <EditorFlags index="BlockStructures" value="0"/>
+        <PlaneArray index="Ground" value="1"/>
+        <Collide index="Flying" value="1"/>
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+        <LifeStart value="10"/>
+        <LifeMax value="10"/>
+        <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"/>
+        <Mover value="Fly"/>
+        <Speed value="6"/>
+        <Acceleration value="1000"/>
+        <StationaryTurningRate value="999.8437"/>
+        <TurningRate value="999.8437"/>
+        <Height value="0.5"/>
+        <CostCategory value="Army"/>
+        <AttackTargetPriority value="20"/>
+        <DamageDealtXP value="1"/>
+        <DamageTakenXP value="1"/>
+        <KillXP value="5"/>
+        <AbilArray Link="stop"/>
+        <AbilArray Link="attack"/>
+        <AbilArray Link="move"/>
+        <CardLayouts>
+            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
+            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
+            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
+            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
+            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
+        </CardLayouts>
+        <Radius value="0.125"/>
+        <SeparationRadius value="0.125"/>
+        <SubgroupPriority value="19"/>
+        <MinimapRadius value="0"/>
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <AIEvalFactor value="0"/>
+        <Mass value="0.2"/>
+        <GlossaryCategory value="Unit/Category/ProtossUnits"/>
+        <GlossaryPriority value="180"/>
+    </CUnit>
+
+    <CActorUnit id="ReaverScarab" parent="GenericUnitStandard" unitName="ReaverScarab">
+        <Model value="Invisible"/>
+        <BuildModel value="Invisible"/>
+        <DeathArray index="Normal" ModelLink="Invisible" SoundLink=""/>
+        <PlacementModel value="Invisible"/>
+        <PortraitModel value="Invisible"/>
+        <BarOffset value="25"/>
+        <BarWidth value="36"/>
+    </CActorUnit>
+
+    <!-- Способность ангара -->
+    <CAbilArmMagazine id="ReaverHangar">
+        <AbilSetId value="ReaverHanger"/>
+        <Leash value="20"/>
+        <InfoArray index="Ammo1" Time="8" CountStart="5" Unit="ReaverScarab">
+            <Charge Link="ReaverScarabs" Location="Unit"/>
+            <Button DefaultButtonFace="ReaverScarabs" Requirements="ArmScarab">
+                <Flags index="ToSelection" value="1"/>
+            </Button>
+            <Flags index="AutoBuild" value="1"/>
+            <Flags index="AutoBuildOn" value="1"/>
+        </InfoArray>
+        <Alert value="TrainComplete"/>
+        <MaxCount value="5"/>
+    </CAbilArmMagazine>
+    <CAbilQueue id="ReaverHangarQueue">
+        <QueueSize value="5"/>
+        <Flags index="Passive" value="1"/>
+    </CAbilQueue>
+
+    <!-- DataCollection для оружия/скараба -->
+    <CDataCollectionUnit id="ReaverScarabs" parent="Weapon_Base">
+        <DataRecord Entry="Weapon,ReaverScarabsLaunch"/>
+        <DataRecord Entry="Effect,ReaverScarab@LaunchPersistentInitial"/>
+        <DataRecord Entry="Effect,ReaverScarab@LaunchPersistent"/>
+        <DataRecord Entry="Effect,ReaverScarab@LaunchSet"/>
+        <DataRecord Entry="Effect,ReaverScarab@ApplyReveal"/>
+        <DataRecord Entry="Effect,ReaverScarab@UseMagazine"/>
+        <DataRecord Entry="Effect,ReaverScarab@LM"/>
+        <DataRecord Entry="Effect,ReaverScarab@Explode"/>
+        <DataRecord Entry="Effect,ReaverScarab@Damage"/>
+        <DataRecord Entry="Effect,ReaverScarab@Suicide"/>
+        <DataRecord Entry="Effect,ReaverScarab@SuicideRemove"/>
+        <DataRecord Entry="Effect,ReaverScarab@TimedLifeApply"/>
+        <DataRecord Entry="Behavior,ReaverScarab@Reveal"/>
+        <DataRecord Entry="Behavior,ReaverScarab@TimedLife"/>
+        <DataRecord Entry="Actor,ReaverScarab@Attack"/>
+        <DataRecord Entry="Actor,ReaverScarab@LaunchModel"/>
+        <DataRecord Entry="Actor,ReaverScarab@MissileActor"/>
+        <DataRecord Entry="Model,ReaverScarab@MissileModel"/>
+        <DataRecord Entry="Model,ReaverScarab@ImpactModel"/>
+        <DataRecord Entry="Model,Invisible"/>
+        <DataRecord Entry="Sound,ReaverScarab@AttackLaunch"/>
+        <DataRecord Entry="Sound,ReaverScarab@Explode"/>
+        <DataRecord Entry="Unit,ReaverScarab@Missile"/>
+        <DataRecord Entry="Mover,ReaverScarab@Mover"/>
+        <DataRecord Entry="Validator,ReaverScarab@Ammo"/>
+        <TechInfoUpgradeUsed value="ProtossGroundWeapons@1"/>
+        <TechInfoUpgradeUsed value="ProtossGroundWeapons@2"/>
+        <TechInfoUpgradeUsed value="ProtossGroundWeapons@3"/>
+    </CDataCollectionUnit>
+
+    <CDataCollectionUnit id="ReaverHangar" parent="AbilityBase">
+        <DataRecord Entry="Button,ReaverScarabs"/>
+        <DataRecord Entry="Abil,ReaverHangar"/>
+        <DataRecord Entry="Abil,ReaverHangarQueue"/>
+        <DataRecord Entry="Unit,ReaverScarab"/>
+    </CDataCollectionUnit>
+
+    <!-- ==================== MISC ==================== -->
+    <CAbilWarpable id="Warpable">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <PowerUserBehavior value="PowerUserWarpable"/>
+    </CAbilWarpable>
+    <CBehaviorPowerUser id="PowerUserWarpable">
+        <Alignment value="Positive"/>
+        <InfoIcon value="Assets\Textures\btn-building-protoss-pylon.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <PowerLink value="PowerSource"/>
+        <PlacementMinPowerLevel value="1"/>
+        <Flags index="KillIfUnpowered" value="1"/>
+        <PoweredWhileUnderConstruction value="1"/>
+        <PowerStageArray/>
+    </CBehaviorPowerUser>
+    <CMoverAvoid id="Ground">
+        <PlacementArray index="Prevent">
+            <Bits index="GroundNoSpawn" value="1"/>
+        </PlacementArray>
+    </CMoverAvoid>
+</Catalog>
