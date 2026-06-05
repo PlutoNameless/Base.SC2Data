@@ -8,12 +8,6 @@
         <EditorCategories value="Race:Protoss"/>
         <Icon value="Assets\Textures\btn-unit-protoss-reaver.dds"/>
     </CButton>
-    <CButton id="ReaverScarabs">
-        <Icon value="Assets\Textures\BTN-Ability-Protoss-ScarabShot.dds"/>
-        <AlertIcon value="Assets\Textures\BTN-Ability-Protoss-ScarabShot.dds"/>
-        <EditorCategories value="Race:Protoss"/>
-    </CButton>
-
     <CUnit id="Reaver">
         <DeathRevealRadius value="3"/>
         <Race value="Prot"/>
@@ -395,12 +389,11 @@
 
     <!-- ==================== WEAPON + SCARAB ==================== -->
     <!-- Валидатор: проверяем, есть ли скарабы в ангаре -->
-    <CValidatorUnitCompareMagazineCount id="ReaverScarab@Ammo">
-        <Compare value="GE"/>
-        <Value value="1"/>
-        <AbilLink value="ReaverHangar"/>
-    </CValidatorUnitCompareMagazineCount>
-
+    <CButton id="ReaverScarabs">
+        <Icon value="Assets\Textures\BTN-Ability-Protoss-ScarabShot.dds"/>
+        <AlertIcon value="Assets\Textures\BTN-Ability-Protoss-ScarabShot.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CButton>
     <CWeaponLegacy id="ReaverScarabsLaunch">
         <EditorCategories value="Race:Protoss"/>
         <Options index="LinkedCooldown" value="0"/>
@@ -416,7 +409,6 @@
         <ValidatorArray value="ReaverScarab@Ammo"/>
         <AllowedMovement value="Slowing"/>
     </CWeaponLegacy>
-
     <!-- Эффекты (из твоих фрагментов, переименованы) -->
     <CEffectSet id="ReaverScarab@LaunchPersistentInitial">
         <EffectArray value="ReaverScarab@LaunchPersistent"/>
@@ -500,6 +492,12 @@
         </Modification>
         <KillCredit Value="Caster"/>
     </CBehaviorBuff>
+    
+    <CValidatorUnitCompareMagazineCount id="ReaverScarab@Ammo">
+        <Compare value="GE"/>
+        <Value value="1"/>
+        <AbilLink value="ReaverHangar"/>
+    </CValidatorUnitCompareMagazineCount>
 
     <!-- Акторы атаки скараба (на основе твоих фрагментов) -->
     <CActorAction id="ReaverScarab@Attack" parent="GenericAttack" effectImpact="ReaverScarab@Damage" effectLaunch="ReaverScarab@LM">
