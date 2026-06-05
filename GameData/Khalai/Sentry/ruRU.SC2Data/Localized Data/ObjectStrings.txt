@@ -1,0 +1,44 @@
+Actor/Name/SentryAiur=Sentry Aiur
+Actor/Name/SentryAttack=Attack
+Actor/Name/SentryAttackBeam=Attack Beam
+Actor/Name/SentryAttackStart=Attack Start Sound
+Actor/Name/SentryAttackLoop=Attack Loop Sound
+Actor/Name/SentryAttackStop=Attack Stop Sound
+Actor/Name/GuardianShield=Guardian Shield Bubble
+Actor/Name/GuardianShieldImpact=Guardian Shield Impact
+Actor/Name/SentryShieldRepairBeam=Shield Repair Beam
+Actor/Name/SentryShieldRepairModel=Shield Repair Impact Model
+Actor/Name/SentryShieldRepairSoundLoop=Shield Repair Loop Sound
+Actor/Name/ProtossFastWarpinMarker=Fast Warp-In Marker
+
+Model/Name/SentryAiur=Sentry Aiur
+Model/Name/SentryAiurDeath=Death
+Model/Name/SentryAiurPlacement=Placement
+Model/Name/SentryAiurWarpIn=Warp-In
+Model/Name/SentryPortrait=Portrait
+Model/Name/ProtossSmallUnitDeathLow=Protoss Small Unit Death Low
+Model/Name/TerranSmallUnitDeathLow=Terran Small Unit Death Low
+Model/Name/ZergSmallUnitDeathLow=Zerg Small Unit Death Low
+Model/Name/Invisible=Invisible
+Model/Name/SentryAttackBeam=Attack Beam
+Model/Name/GuardianShield=Guardian Shield
+Model/Name/GuardianShieldImpact=Guardian Shield Impact
+Model/Name/Sentry_HealingBeam=Healing Beam
+Model/Name/Sentry_HealingBeam_Impact=Healing Beam Impact
+Model/Name/ProtossFastWarpinMarker=Fast Warp-In Marker
+
+Sound/Name/Protoss_BuildingPlacementSmall=Building Placement Small
+Sound/Name/Sentry_Attack=Attack
+Sound/Name/Sentry_Explode=Explode
+Sound/Name/Sentry_Pissed=Pissed
+Sound/Name/Sentry_Ready=Ready
+Sound/Name/Sentry_What=What
+Sound/Name/Sentry_Yes=Yes
+Sound/Name/Sentry_WeaponStart=Weapon Start
+Sound/Name/Sentry_WeaponLoop=Weapon Loop
+Sound/Name/Sentry_WeaponEnd=Weapon End
+Sound/Name/SentryShieldRepair_Loop=Shield Repair Loop
+
+Light/Name/SentryAiur@Portrait=Portrait Light
+
+Requirement/Name/SentryAiur=Sentry Aiur

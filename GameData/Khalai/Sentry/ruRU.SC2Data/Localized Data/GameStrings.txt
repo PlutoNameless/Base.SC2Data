@@ -1,0 +1,40 @@
+Button/Name/SentryAiur=Обучить Часового Айура
+Button/Tooltip/SentryAiur=Часовой Айура — юнит поддержки протоссов. Может использовать защитное поле и восстанавливать щиты союзникам.
+Unit/Name/SentryAiur=Часовой Айура
+
+Button/Name/GuardianShield=Защитное поле
+Button/Tooltip/GuardianShield=Создаёт временное поле, уменьшающее получаемый урон на 2 ед. для всех союзных юнитов в радиусе 4. Длится 15 секунд. Требует 75 ед. энергии.
+Abil/Name/GuardianShieldVoid=Защитное поле
+Behavior/Name/GuardianShield=Защитное поле
+
+Button/Name/VoidSentryShieldRepairDouble=Двойной ремонт щитов
+Button/Tooltip/VoidSentryShieldRepairDouble=Восстанавливает щиты выбранному союзному юниту со скоростью 9 ед. в секунду. Расходует 0.33 ед. энергии за цикл. Требует 10 ед. энергии для активации.
+Abil/Name/VoidSentryShieldRepairDouble=Двойной ремонт щитов
+
+Abil/Name/Warpable=Варп
+Behavior/Name/PowerUserWarpable=Потребитель энергии пилона
+
+Weapon/Name/DisruptionBeam=Луч разрушения
+Effect/Name/DisruptionBeam=Луч разрушения
+Effect/Name/DisruptionBeamDamage=Урон (Луч разрушения)
+
+Effect/Name/GuardianShieldPersistent=Защитное поле
+Effect/Name/GuardianShieldSearch=Поиск союзников
+Effect/Name/GuardianShieldApplyBehavior=Наложить защитное поле
+
+Effect/Name/VoidSentryShieldRepairDouble=Ремонт щитов
+Effect/Name/VoidSentryShieldRepairDoublePeriodicSet=Периодический ремонт щитов
+Effect/Name/VoidSentryShieldRepairDoubleInitialSet=Начальный ремонт щитов
+Effect/Name/SentryShieldRepairDoubleRemoveBehavior=Снять поведение ремонта щитов
+
+Validator/Name/SentryAiur@Is=Часовой Айура
+Validator/Name/SentryAiur@Target=Цель — Часовой Айура
+Validator/Name/SentryAiur@Not=Это не Часовой Айура
+Validator/Name/SentryAiur@NotTarget=Цель — не Часовой Айура
+Validator/Name/CasterHas10Energy=Маг имеет 10 энергии
+Validator/Name/NotWarpingIn=Не перемещается варпом
+Validator/Name/UnitOrAttackingStructure=Юнит или атакующая структура
+
+TargetSort/Name/TSAlliancePassive=Сначала пассивные союзники
+TargetSort/Name/TSDistance=По расстоянию
+TargetSort/Name/TSShieldsFraction=По проценту щитов
