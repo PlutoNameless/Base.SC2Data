@@ -2,11 +2,12 @@
 <Catalog>
 
     <CButton id="FlamingBetty" parent="UnitButton_OnlyGround">
+        <EditorCategories value="Race:Terran"/>
         <Icon value="Assets\Textures\btn-building-terran-autoturret.dds"/>
     </CButton>
     
     <CUnit id="FlamingBetty" parent="Generic_Structure_Terran" race="Terr">
-        <EditorCategories value="ObjectType:Hero,ObjectFamily:Campaign"/>
+        <EditorCategories value="ObjectType:Structure,ObjectFamily:Campaign"/>
         <FlagArray index="PreventDefeat" value="0"/>
         <FlagArray index="PreventDestroy" value="0"/>
         <Attributes index="Mechanical" value="1"/>
@@ -109,6 +110,7 @@
     </CFootprint>
 
     <CDataCollectionUnit id="FlamingBetty" parent="UnitGround">
+        <EditorCategories value="DataGroup:Unit,DataFamily:Campaign,ObjectType:Structure,Race:Terran"/>
         <DataRecord Entry="Button,FlamingBetty"/>
         <DataRecord Entry="Unit,FlamingBetty"/>
         <DataRecord Entry="Actor,FlamingBetty"/>
@@ -216,6 +218,7 @@
     </CSound>
 
     <CDataCollectionUnit id="FlamingBetty_Weapon" parent="Weapon_Instant">
+        <EditorCategories value="DataGroup:Weapon,DataFamily:Campaign,ObjectType:Instant,Race:Terran"/>
         <DataRecord Entry="Weapon,FlamingBetty_Weapon"/>
         <DataRecord Entry="Effect,FlamingBetty_Weapon@Damage"/>
         <DataRecord Entry="Effect,FlamingBetty_Weapon@Search"/>

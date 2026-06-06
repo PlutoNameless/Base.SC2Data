@@ -340,6 +340,7 @@
     </CEffectApplyBehavior>
 
     <CBehaviorBuff id="RaynorSniper_Snipe@Sniped">
+        <EditorCategories value="Race:Terran"/>
         <Duration value="0.125"/>
         <InfoFlags index="Hidden" value="1"/>
     </CBehaviorBuff>
@@ -402,26 +403,26 @@
     </CActorSiteOpLocalOffset>
 
     <CModel id="RaynorSniper_Snipe@BloodImpact_Big" parent="ImpactFX">
-        <Model value="Assets\Effects\Other\BloodTargetImpact\BloodTargetImpact.m3"/>
         <EditorCategories value="Race:Terran"/>
+        <Model value="Assets\Effects\Other\BloodTargetImpact\BloodTargetImpact.m3"/>
         <ScaleMax value="3.500000,3.500000,3.500000"/>
         <ScaleMin value="3.500000,3.500000,3.500000"/>
     </CModel>
     <CModel id="RaynorSniper_Snipe@LaunchModel" parent="LaunchFX">
-        <Model value="Assets\Effects\Terran\MarineWeaponLaunch\MarineWeaponLaunch.m3"/>
         <EditorCategories value="Race:Terran"/>
+        <Model value="Assets\Effects\Terran\MarineWeaponLaunch\MarineWeaponLaunch.m3"/>
         <ScaleMax value="2.000000,2.000000,2.000000"/>
         <ScaleMin value="2.000000,2.000000,2.000000"/>
         <SelectionRadius value="0.250000"/>
         <ShadowRadius value="0.250000"/>
     </CModel>
     <CModel id="RaynorSniper_Snipe@Beam" parent="PersistentSpellFX">
-        <Model value="Assets\Effects\Terran\GhostSnipeBeam\GhostSnipeBeam.m3"/>
         <EditorCategories value="Race:Terran"/>
+        <Model value="Assets\Effects\Terran\GhostSnipeBeam\GhostSnipeBeam.m3"/>
     </CModel>
     <CModel id="RaynorSniper_Snipe@Splat" parent="Splat">
-        <Model value="Assets\Effects\Terran\LaserSightSplat\LaserSightSplat.m3"/>
         <EditorCategories value="Race:Terran"/>
+        <Model value="Assets\Effects\Terran\LaserSightSplat\LaserSightSplat.m3"/>
     </CModel>
 
     <CSound id="RaynorSniper_Snipe@ChargeUp" parent="Combat">

@@ -140,20 +140,19 @@
         <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Pissed03.ogg" FacialAnim="Swann_Pissed03"/>
         <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Pissed04.ogg" FacialAnim="Swann_Pissed04"/>
     </CSound>
-    <CSound id="RorySwann@Yes" parent="Voice">
+    <CSound id="RorySwann@Yes" parent="TerranAck">
         <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Yes00.ogg" FacialAnim="Swann_Yes00"/>
         <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Yes01.ogg" FacialAnim="Swann_Yes01"/>
         <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Yes02.ogg" FacialAnim="Swann_Yes02"/>
         <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Yes03.ogg" FacialAnim="Swann_Yes03"/>
     </CSound>
-    <CSound id="RorySwann@What" parent="Voice">
+    <CSound id="RorySwann@What" parent="TerranAck">
         <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_What00.ogg" FacialAnim="Swann_What00"/>
         <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_What01.ogg" FacialAnim="Swann_What01"/>
         <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_What02.ogg" FacialAnim="Swann_What02"/>
         <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_What03.ogg" FacialAnim="Swann_What03"/>
     </CSound>
-    <CSound id="RorySwann@Ready" parent="Ready">
-        <EditorCategories value="Race:Terran"/>
+    <CSound id="RorySwann@Ready" parent="TerranAck">
         <AssetArray File="LocalizedData\Sounds\TerranVO\CampaignUnits\Swann\Swann_Ready01.ogg" FacialAnim="Swann_Ready00"/>
     </CSound>
 
