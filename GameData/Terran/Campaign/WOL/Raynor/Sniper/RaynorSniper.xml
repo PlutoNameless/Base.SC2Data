@@ -315,7 +315,6 @@
         <PeriodicOffsetArray value="0,-6.5,0"/>
     </CEffectCreatePersistent>
     <CEffectEnumArea id="RaynorSniper_Snipe@Search">
-        <DebugTrace value="1"/>
         <EditorCategories value="Race:Terran"/>
         <SearchFilters value="Ground,Visible;Self,Player,Ally,Missile,Invulnerable"/>
         <SearchFlags index="CallForHelp"/>
