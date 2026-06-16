@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Catalog>
+    <!-- Requires: Button:UnitButton_OnlyGround[base.xml] -->
     <!-- Requires: Unit:UnitGround[base.xml] -->
     <!-- Requires: Unit:Generic_Protoss_Unit_Ground[protoss.xml] -->
 
@@ -76,10 +77,10 @@
         <RequiredAnims value="Assets\Units\Protoss\Immortal_SwarmAnims\Immortal_SwarmAnims.m3a"/>
         <UnitGlossaryCamera value="Star2CameraHigh09"/>
         <AttachProps Id="Ref_Weapon Left">
-            <Keys index="CustomA" value="0"/>
+            <Keys index="Weapon" value="0"/>
         </AttachProps>
         <AttachProps Id="Ref_Weapon Right">
-            <Keys index="CustomA" value="1"/>
+            <Keys index="Weapon" value="1"/>
         </AttachProps>
     </CModel>
     <CModel id="Vanguard@Death" parent="UnitDeath">
@@ -285,7 +286,7 @@
         <Volume value="-1.000000,-1.000000"/>
     </CSound>
 
-    <CLight id="Vanguard" parent="default">
+    <CLight id="Vanguard@Portrait" parent="default">
         <ToDInfoArray index="0" Id="PortraitTalDarimImmortal" AmbientColor="0.000000,0.000000,0.000000" Colorize="1">
             <Param index="HDRExposure" value="2.075000"/>
             <Param index="HDRSpecMultiplier" value="2.000000"/>
@@ -332,7 +333,7 @@
         <DataRecord Entry="Sound,Vanguard@Ready"/>
         <DataRecord Entry="Sound,Vanguard@What"/>
         <DataRecord Entry="Sound,Vanguard@Yes"/>
-        <DataRecord Entry="Light,Vanguard"/>
+        <DataRecord Entry="Light,Vanguard@Portrait"/>
         <DataRecord Entry="Turret,Vanguard"/>
         <DataRecord Entry="Validator,Vanguard@Is"/>
         <DataRecord Entry="Validator,Vanguard@Target"/>
@@ -344,13 +345,19 @@
     </CDataCollectionUnit>
 
     <!-- ========== Weapons ========== -->
+    
+    <CButton id="Vanguard_Weapon">
+        <Icon value="Assets\Textures\BTN-Ability-Protoss-ScatterCannon.dds"/>
+        <AlertIcon value="Assets\Textures\BTN-Ability-Protoss-ScatterCannon.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CButton>
 
     <CWeaponLegacy id="Vanguard_Weapon">
         <Arc value="360"/>
         <DisplayEffect value="Vanguard_Weapon@Damage"/>
         <Effect value="Vanguard_Weapon@CP"/>
         <DisplayAttackCount value="8"/>
-        <Icon value=""/>
+        <Icon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel0.dds"/>
         <MinScanRange value="6.5"/>
         <Period value="3.75"/>
         <Range value="6"/>
@@ -403,10 +410,8 @@
         <EffectArray value="Vanguard_Weapon@Damage"/>
     </CEffectSet>
 
-    <!-- Actors -->
-
     <CActorAction id="Vanguard_Weapon@Attack" parent="GenericAttack" effectImpact="Vanguard_Weapon@Search" effectLaunch="Vanguard_Weapon@LM">
-        <LaunchAttachQuery Methods="AMFilterWeaponRight"/>
+        <LaunchAttachQuery Methods="Vanguard_Weapon@AMPattern"/>
     </CActorAction>
     <CActorSimple id="Vanguard_Weapon@Animation">
         <On Terms="Effect.Vanguard_Weapon@CP.Start" Send="Create"/>
@@ -447,11 +452,10 @@
         <AssetArray File="Assets\Sounds\Vanguard_ScatterCannon_Impact07_1ch.wav" Pitch="0.000000,0.000000" FacialGroup=""/>
     </CSound>
     
-    <!-- Missile -->
     <CUnit id="Vanguard_Weapon@AttackMissile" parent="MISSILE">
         <Race value="Prot"/>
     </CUnit>
-    <CActorUnit id="Vanguard_Weapon@AttackMissile" parent="GenericUnitStandard" unitName="Vanguard_Weapon@AttackMissile"/>
+    <CActorMissile id="Vanguard_Weapon@AttackMissile" parent="GenericAttackMissile" unitName="Vanguard_Weapon@AttackMissile"/>
     <CModel id="Vanguard_Weapon@AttackMissile" parent="MissileFX">
         <Model value="Assets\Effects\Protoss\ScatterCannonMissile\ScatterCannonMissile.m3"/>
     </CModel>
@@ -467,8 +471,15 @@
         </MotionPhases>
     </CMoverMissile>
 
-    <CDataCollectionUnit id="Vanguard_Weapon">
+    <CAttachMethodPattern id="Vanguard_Weapon@AMPattern">
+        <Keyword value="Weapon"/>
+        <Base value="::RollingIndex"/>
+        <Driver value="Vanguard_Weapon@LM"/>
+    </CAttachMethodPattern>
+
+    <CDataCollectionUnit id="Vanguard_Weapon" parent="Weapon_Missile">
         <EditorCategories value="DataGroup:Weapon,DataFamily:Campaign,Race:Protoss,ObjectType:Projectile"/>
+        <DataRecord Entry="Button,Vanguard_Weapon"/>
         <DataRecord Entry="Weapon,Vanguard_Weapon"/>
         <DataRecord Entry="Effect,Vanguard_Weapon@Damage"/>
         <DataRecord Entry="Effect,Vanguard_Weapon@LM"/>
@@ -490,11 +501,4 @@
         <DataRecord Entry="AttachMethod,Vanguard_Weapon@AMPattern"/>
     </CDataCollectionUnit>
 
-    <!-- Other Data -->
-
-    <CAttachMethodPattern id="Vanguard_Weapon@AMPattern">
-        <Base value="::RollingIndex"/>
-        <Driver value="Vanguard_Weapon@LM"/>
-        <Keyword value="CustomA"/>
-    </CAttachMethodPattern>
 </Catalog>

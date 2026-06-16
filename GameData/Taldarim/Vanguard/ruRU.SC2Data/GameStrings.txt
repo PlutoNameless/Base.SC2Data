@@ -1,2 +1,7 @@
+Button/Name/Vanguard_Weapon=Кассетная пушка
+Button/Name/Vanguard=Вызвать ревнителя
+Button/Tooltip/Vanguard=Талдаримы<n/>Штурмовой шагающий робот. Наносит урон в области вокруг основной цели.
+Button/Tooltip/Vanguard_Weapon=Атаки наносят урон указанной наземной боевой единице противника, а также другим находящимся рядом с ней наземным войскам.
 Unit/Name/Vanguard=Ревнитель
-Button/Tooltip/Vanguard=Мощный артиллерийский робот. Хоть он и называет себя ничтожеством
+Unit/Name/Vanguard_Weapon@AttackMissile=Снаряд
+Weapon/Name/Vanguard_Weapon=Кассетная пушка

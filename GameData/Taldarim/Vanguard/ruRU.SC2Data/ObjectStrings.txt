@@ -1,5 +1,46 @@
+Model/Name/Vanguard
+Model/Name/Vanguard@Death=Death
+Model/Name/Vanguard@Portrait=Portrait
+Model/Name/Vanguard@Placement=Placement
+Model/Name/Vanguard@WarpIn=WarpIn
+
+Sound/Name/Vanguard@Attack=Attack
+Sound/Name/Vanguard@Death=Death
+Sound/Name/Vanguard@Help=Help
+Sound/Name/Vanguard@Pissed=Pissed
+Sound/Name/Vanguard@Ready=Ready
+Sound/Name/Vanguard@What=What
+Sound/Name/Vanguard@Yes=Yes
+
+Light/Name/Vanguard@Portrait=Portrait
+
+Turret/Name/Vanguard=Turret
 
 Validator/Name/Vanguard@Is=Caster Is Unit
 Validator/Name/Vanguard@Target=Target Is Unit
 Validator/Name/Vanguard@Not=Caster Not Unit
 Validator/Name/Vanguard@NotTarget=Target Not Unit
+
+Effect/Name/Vanguard_Weapon@Damage=Damage
+Effect/Name/Vanguard_Weapon@LM=LM
+Effect/Name/Vanguard_Weapon@CP=CP
+Effect/Name/Vanguard_Weapon@Search=Search
+Effect/Name/Vanguard_Weapon@RB=RB
+Effect/Name/Vanguard_Weapon@Set=Set
+
+Actor/Name/Vanguard_Weapon@Attack=Attack
+Actor/Name/Vanguard_Weapon@Animation=Animation
+
+Model/Name/Vanguard_Weapon@AttackLaunch=Attack Launch
+Model/Name/Vanguard_Weapon@AttackImpact=Attack Impact
+
+Sound/Name/Vanguard_Weapon@AttackLaunch=Attack Launch
+Sound/Name/Vanguard_Weapon@AttackImpact=Attack Impact
+
+Actor/Name/Vanguard_Weapon@AttackMissile=Attack Missile
+
+Model/Name/Vanguard_Weapon@AttackMissile=Attack Missile
+
+Mover/Name/Vanguard_Weapon@AttackMissile=Attack Missile
+
+AttachMethod/Name/Vanguard_Weapon@AMPattern=AM Pattern
