@@ -1,9 +1,13 @@
-Button/Name/Wrathwalker=Wrathwalker
+Button/Name/Wrathwalker=Вызвать Странника гнева
+Button/Name/Wrathwalker_Weapon=Энергетический заряд
 
-Unit/Name/Wrathwalker=Wrathwalker
-Unit/Name/ChargedBlast=Missile
+Button/Tooltip/Wrathwalker=Талдаримы<n/>Шагающий робот, наносящий высокий урон одиночным целям. Может свободно преодолевать уступы.
+Button/Tooltip/Wrathwalker_Weapon=Наносит значительный урон одиночной боевой единице или строению. Может атаковать в движении. Наносит увеличенный урон строениям.
 
-Weapon/Name/ChargedBlast=Charged Blast
+Unit/Name/Wrathwalker=Странник гнева
+Unit/Name/Wrathwalker_Weapon@AttackMissile=Снаряд
 
-DataCollection/Name/Wrathwalker=Wrathwalker
-DataCollection/Name/ChargedBlast=Charged Blast
+Weapon/Name/Wrathwalker_Weapon=Энергетический заряд
+
+DataCollection/Name/Wrathwalker=Странник гнева
+DataCollection/Name/Wrathwalker_Weapon=Энергетический заряд

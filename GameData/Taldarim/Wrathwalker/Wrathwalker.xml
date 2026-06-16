@@ -8,15 +8,15 @@
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         <FlagArray index="Turnable" value="0"/>
 
-        <!-- Wrathwalker Properties -->
         <CardLayouts index="0">
-            <LayoutButtons Face="ChargedBlast" Type="Passive" Row="2" Column="1"/>
+            <LayoutButtons Face="Wrathwalker_Weapon" Type="Passive" Row="2" Column="1"/>
         </CardLayouts>
-        <WeaponArray Link="ChargedBlast" Turret="Colossus"/>
+        <WeaponArray index="0" Turret="Colossus"/>
 
         <Collide index="Small" value="0"/>
         <Collide index="Ground" value="0"/>
         <Collide index="ForceField" value="0"/>
+        <Collide index="Locust" value="0"/>
         
         <Collide index="Structure" value="1"/>
         <Collide index="Colossus" value="1"/>
@@ -394,12 +394,18 @@
     </CDataCollectionUnit>
 
     <!-- ============ Weapons ============ -->
+
+    <CButton id="Wrathwalker_Weapon">
+        <Icon value="Assets\Textures\btn-ability-protoss-chargedblast.dds"/>
+        <AlertIcon value="Assets\Textures\btn-ability-protoss-chargedblast.dds"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CButton>
     
-    <CWeaponLegacy id="ChargedBlast">
+    <CWeaponLegacy id="Wrathwalker_Weapon">
         <EditorCategories value="Race:Taldarim"/>
         <Icon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel0.dds"/>
-        <Effect value="ChargedBlast@LM"/>
-        <DisplayEffect value="ChargedBlast@Damage"/>
+        <Effect value="Wrathwalker_Weapon@LM"/>
+        <DisplayEffect value="Wrathwalker_Weapon@Damage"/>
         <DisplayAttackCount value="1"/>
         <TargetFilters value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <AcquirePrioritization value="ByDistanceFromTarget"/>
@@ -413,35 +419,35 @@
         <Options index="OnlyFireAtAttackOrderTarget" value="0"/>
     </CWeaponLegacy>
 
-    <CEffectDamage id="ChargedBlast@Damage" parent="DU_WEAP">
+    <CEffectDamage id="Wrathwalker_Weapon@Damage" parent="DU_WEAP">
         <EditorCategories value="Race:Taldarim"/>
         <Kind value="Ranged"/>
         <Amount value="100"/>
         <Death value="Fire"/>
         <AttributeBonus index="Structure" value="75"/>
     </CEffectDamage>
-    <CEffectLaunchMissile id="ChargedBlast@LM">
+    <CEffectLaunchMissile id="Wrathwalker_Weapon@LM">
         <EditorCategories value="Race:Taldarim"/>
-        <ImpactEffect value="ChargedBlast@Damage"/>
-        <AmmoUnit value="ChargedBlast@AttackMissile"/>
+        <ImpactEffect value="Wrathwalker_Weapon@Damage"/>
+        <AmmoUnit value="Wrathwalker_Weapon@AttackMissile"/>
         <LaunchLocation Value="CasterUnit"/>
     </CEffectLaunchMissile>
 
-    <CActorMissile id="ChargedBlast@AttackMissile" parent="GenericAttackMissileWithDeathAnim" unitName="ChargedBlast@AttackMissile"/>
-    <CActorAction id="ChargedBlast@Attack" parent="GenericAttack" effectImpact="ChargedBlast@Damage" effectLaunch="ChargedBlast@LM">
+    <CActorMissile id="Wrathwalker_Weapon@AttackMissile" parent="GenericAttackMissileWithDeathAnim" unitName="Wrathwalker_Weapon@AttackMissile"/>
+    <CActorAction id="Wrathwalker_Weapon@Attack" parent="GenericAttack" effectImpact="Wrathwalker_Weapon@Damage" effectLaunch="Wrathwalker_Weapon@LM">
         <LaunchAttachQuery Methods="Head"/>
-        <ImpactPhysics Name="ChargedBlastImpulse" MatchKeys="Basic" Physics="ChargedBlast@PhysicsForce"/>
+        <ImpactPhysics Name="Wrathwalker_WeaponImpulse" MatchKeys="Basic" Physics="Wrathwalker_Weapon@PhysicsForce"/>
     </CActorAction>
-    <CActorModel id="ChargedBlast@Charge" parent="ModelAnimationStyleOneShot">
-        <On Terms="WeaponStart.ChargedBlast" Send="Create"/>
-        <On Terms="WeaponStop.ChargedBlast" Send="AnimBracketStop BSD"/>
-        <On Terms="WeaponStop.ChargedBlast" Target="GenericAttackSound" Send="Destroy"/>
+    <CActorModel id="Wrathwalker_Weapon@Charge" parent="ModelAnimationStyleOneShot">
+        <On Terms="WeaponStart.Wrathwalker_Weapon" Send="Create"/>
+        <On Terms="WeaponStop.Wrathwalker_Weapon" Send="AnimBracketStop BSD"/>
+        <On Terms="WeaponStop.Wrathwalker_Weapon" Target="GenericAttackSound" Send="Destroy"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachHead"/>
-        <EventDataSound Name="ChargedBlast_Charge" Sound="ChargedBlast@Charge"/>
+        <EventDataSound Name="Wrathwalker_Weapon_Charge" Sound="Wrathwalker_Weapon@Charge"/>
         <EventDataSoundActor value="GenericAttackSound"/>
     </CActorModel>
-    <CActorForceSphere id="ChargedBlast@PhysicsForce">
+    <CActorForceSphere id="Wrathwalker_Weapon@PhysicsForce">
         <HostSiteOps Ops="SOpIncomingDirectDot25 SOpMoveDownByDot35 SOpRandomPointInCircleDot35"/>
         <Field value="Directional"/>
         <Magnitude value="150.000000,10.000000"/>
@@ -449,18 +455,18 @@
         <Flags index="VisionTestCenterOnly" value="1"/>
     </CActorForceSphere>
 
-    <CModel id="ChargedBlast@AttackImpact" parent="ImpactFX">
+    <CModel id="Wrathwalker_Weapon@AttackImpact" parent="ImpactFX">
         <Model value="Assets\Effects\Protoss\ColossusTaldarim_Beam_Impact\ColossusTaldarim_Beam_Impact.m3"/>
     </CModel>
-    <CModel id="ChargedBlast@AttackMissile" parent="MissileFX">
+    <CModel id="Wrathwalker_Weapon@AttackMissile" parent="MissileFX">
         <Model value="Assets\Effects\Protoss\ColossusTaldarim_Missile\ColossusTaldarim_Missile.m3"/>
     </CModel>
-    <CModel id="ChargedBlast@Charge" parent="OneShotSpellFX">
+    <CModel id="Wrathwalker_Weapon@Charge" parent="OneShotSpellFX">
         <Model value="Assets\Effects\Protoss\ColossusTaldarim_Powerup\ColossusTaldarim_Powerup.m3"/>
-        <Events Anim="Birth" Name="ChargedBlast_Charge" Type="Sound"/>
+        <Events Anim="Birth" Name="Wrathwalker_Weapon_Charge" Type="Sound"/>
     </CModel>
 
-    <CSound id="ChargedBlast@AttackLaunch" parent="Combat">
+    <CSound id="Wrathwalker_Weapon@AttackLaunch" parent="Combat">
         <EditorCategories value="Race:Taldarim"/>
         <AssetArray File="Assets\Sounds\ColossusTaldarim_Missile_Launch01_1ch.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\ColossusTaldarim_Missile_Launch02_1ch.wav" FacialGroup=""/>
@@ -473,7 +479,7 @@
         <SustainFade index="1" Time="2500"/>
         <Volume value="-2.200000,-1.200000"/>
     </CSound>
-    <CSound id="ChargedBlast@AttackImpact" parent="Combat">
+    <CSound id="Wrathwalker_Weapon@AttackImpact" parent="Combat">
         <EditorCategories value="Race:Taldarim"/>
         <AssetArray File="Assets\Sounds\ColossusTaldarim_Missile_Impact01_1ch.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\ColossusTaldarim_Missile_Impact02_1ch.wav" FacialGroup=""/>
@@ -486,7 +492,7 @@
         <Pitch value="-2.000000,1.000000"/>
         <Volume value="-6.000000,-6.000000"/>
     </CSound>
-    <CSound id="ChargedBlast@Charge" parent="Combat">
+    <CSound id="Wrathwalker_Weapon@Charge" parent="Combat">
         <EditorCategories value="Race:Taldarim"/>
         <AssetArray File="Assets\Sounds\ColossusTaldarim_Missile_PowerUpPreLaunch01_1ch.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\ColossusTaldarim_Missile_PowerUpPreLaunch02_1ch.wav" FacialGroup=""/>
@@ -497,29 +503,29 @@
         <Volume value="-8.000000,-8.000000"/>
     </CSound>
 
-    <CMoverMissile id="ChargedBlast@AttackMissile" parent="MissileDefault"/>
+    <CMoverMissile id="Wrathwalker_Weapon@AttackMissile" parent="MissileDefault"/>
 
-    <CUnit id="ChargedBlast@AttackMissile" parent="MISSILE_INVULNERABLE">
+    <CUnit id="Wrathwalker_Weapon@AttackMissile" parent="MISSILE_INVULNERABLE">
         <Race value="Prot"/>
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:Campaign"/>
     </CUnit>
 
-    <CDataCollectionUnit id="ChargedBlast">
+    <CDataCollectionUnit id="Wrathwalker_Weapon" parent="Weapon_Missile">
         <EditorCategories value="DataGroup:Weapon,DataFamily:Campaign,Race:Taldarim,ObjectType:Projectile"/>
-        <DataRecord Entry="Weapon,ChargedBlast"/>
-        <DataRecord Entry="Effect,ChargedBlast@Damage"/>
-        <DataRecord Entry="Effect,ChargedBlast@LM"/>
-        <DataRecord Entry="Actor,ChargedBlast@AttackMissile"/>
-        <DataRecord Entry="Actor,ChargedBlast@Attack"/>
-        <DataRecord Entry="Actor,ChargedBlast@Charge"/>
-        <DataRecord Entry="Actor,ChargedBlast@PhysicsForce"/>
-        <DataRecord Entry="Model,ChargedBlast@AttackImpact"/>
-        <DataRecord Entry="Model,ChargedBlast@AttackMissile"/>
-        <DataRecord Entry="Model,ChargedBlast@Charge"/>
-        <DataRecord Entry="Sound,ChargedBlast@AttackLaunch"/>
-        <DataRecord Entry="Sound,ChargedBlast@AttackImpact"/>
-        <DataRecord Entry="Sound,ChargedBlast@Charge"/>
-        <DataRecord Entry="Mover,ChargedBlast@AttackMissile"/>
-        <DataRecord Entry="Unit,ChargedBlast@AttackMissile"/>
+        <DataRecord Entry="Weapon,Wrathwalker_Weapon"/>
+        <DataRecord Entry="Effect,Wrathwalker_Weapon@Damage"/>
+        <DataRecord Entry="Effect,Wrathwalker_Weapon@LM"/>
+        <DataRecord Entry="Actor,Wrathwalker_Weapon@AttackMissile"/>
+        <DataRecord Entry="Actor,Wrathwalker_Weapon@Attack"/>
+        <DataRecord Entry="Actor,Wrathwalker_Weapon@Charge"/>
+        <DataRecord Entry="Actor,Wrathwalker_Weapon@PhysicsForce"/>
+        <DataRecord Entry="Model,Wrathwalker_Weapon@AttackImpact"/>
+        <DataRecord Entry="Model,Wrathwalker_Weapon@AttackMissile"/>
+        <DataRecord Entry="Model,Wrathwalker_Weapon@Charge"/>
+        <DataRecord Entry="Sound,Wrathwalker_Weapon@AttackLaunch"/>
+        <DataRecord Entry="Sound,Wrathwalker_Weapon@AttackImpact"/>
+        <DataRecord Entry="Sound,Wrathwalker_Weapon@Charge"/>
+        <DataRecord Entry="Mover,Wrathwalker_Weapon@AttackMissile"/>
+        <DataRecord Entry="Unit,Wrathwalker_Weapon@AttackMissile"/>
     </CDataCollectionUnit>
 </Catalog>
