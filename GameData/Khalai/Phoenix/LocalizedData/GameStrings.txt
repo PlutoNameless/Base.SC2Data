@@ -1,0 +1,33 @@
+Button/Name/PhoenixAiur=Обучить Феникса Айура
+Button/Tooltip/PhoenixAiur=Феникс Айура — воздушный юнит протоссов. Может захватывать наземных врагов гравитационным лучом, в том числе двух сразу.
+
+Unit/Name/PhoenixAiur=Феникс Айура
+
+Button/Name/GravitonBeam=Гравитационный луч
+Button/Tooltip/GravitonBeam=Поднимает наземного врага в воздух, лишая его возможности атаковать и применять способности. Длится 10 секунд. Требует 50 ед. энергии.
+
+Abil/Name/GravitonBeam=Гравитационный луч (ручной)
+Abil/Name/GravitonBeamVoidCampaign=Гравитационный луч (автоматический)
+
+Button/Name/PhoenixAiurGravitonBeam=Гравитационный луч
+Button/Tooltip/PhoenixAiurGravitonBeam=Захватывает наземных врагов гравитационным лучом, делая их воздушными объектами и оглушая их.
+Button/Name/PhoenixAiurGravitonBeamPassive=Двойной гравитационный луч
+Button/Tooltip/PhoenixAiurGravitonBeamPassive=Позволяет Фениксу Айура захватывать дополнительного врага гравитационным лучом.
+
+Weapon/Name/IonCannons=Ионные пушки
+Effect/Name/IonCannons=Ионные пушки
+Effect/Name/IonCannonsLMLeft=Запуск снаряда (левый)
+Effect/Name/IonCannonsLMRight=Запуск снаряда (правый)
+Effect/Name/IonCannonsU=Урон (ионные пушки)
+Effect/Name/IonCannonsULeft=Урон (левый)
+Effect/Name/IonCannonsURight=Урон (правый)
+
+Behavior/Name/GravitonBeamStun=Гравитационный захват (стан)
+Behavior/Name/GravitonBeamHeight=Гравитационный захват (высота)
+Behavior/Name/GravitonBeamVoidCampaignStun=Гравитационный захват (двойной, стан)
+Behavior/Name/GravitonBeamHeightVoidCampaign=Гравитационный захват (двойной, высота)
+
+Validator/Name/PhoenixAiur@Is=Это Феникс Айура
+Validator/Name/PhoenixAiur@Target=Цель — Феникс Айура
+Validator/Name/PhoenixAiur@Not=Это не Феникс Айура
+Validator/Name/PhoenixAiur@NotTarget=Цель — не Феникс Айура
