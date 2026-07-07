@@ -1,0 +1,41 @@
+Actor/Name/TaldarimMothership=Taldarim Mothership
+Actor/Name/TaldarimMothership@@DeathModel=Death Model
+Actor/Name/TaldarimMothership@@DeathRagdoll=Death Ragdoll
+Actor/Name/TaldarimMothership@@RagdollDetonationForce=Ragdoll Detonation Force
+
+Model/NameTaldarimMothership=Taldarim Mothership
+Model/NameTaldarimMothership@DeathRagdoll=Death Ragdoll
+Model/NameTaldarimMothership@Death=Death
+Model/NameTaldarimMothership@Placement=Placement
+Model/NameTaldarimMothership@WarpIn=WarpIn
+Model/NameTaldarimMothership@Portrait=Portrait
+
+Sound/Name/TaldarimMothership@Death=Death
+Sound/Name/TaldarimMothership@Attack=Attack
+Sound/Name/TaldarimMothership@Help=Help
+Sound/Name/TaldarimMothership@Pissed=Pissed
+Sound/Name/TaldarimMothership@Yes=Yes
+Sound/Name/TaldarimMothership@What=What
+Sound/Name/TaldarimMothership@Ready=Ready
+Sound/Name/TaldarimMothership@Movement=Movement
+
+Light/Name/TaldarimMothership@Portrait=Portrait
+
+Effect/Name/TaldarimMothership_Weapon@Set=Set
+Effect/Name/TaldarimMothership_Weapon@Beam=Beam
+Effect/Name/TaldarimMothership_Weapon@Beam_Secondary=Beam Secondary
+Effect/Name/TaldarimMothership_Weapon@Damage=Damage
+Effect/Name/TaldarimMothership_Weapon@Dummy=Dummy
+
+Actor/Name/TaldarimMothership_Weapon@Attack=Attack
+Actor/Name/TaldarimMothership_Weapon@Attack_Secondary=Attack Secondary
+Actor/Name/TaldarimMothership_Weapon@AttackBeam=Attack Beam
+Actor/Name/TaldarimMothership_Weapon@Attack_SecondaryBeam=Attack Secondary Beam
+Actor/Name/TaldarimMothership_Weapon@AttackLoop=Attack Loop
+
+Model/Name/TaldarimMothership_Weapon@AttackBeam=Attack Beam
+Model/Name/TaldarimMothership_Weapon@AttackImpact=Attack Impact
+
+Sound/Name/TaldarimMothership_Weapon@AttackLoop=Attack Loop
+Sound/Name/TaldarimMothership_Weapon@AttackImpact=Attack Impact
+Sound/Name/TaldarimMothership_Weapon@AttackLaunch=Attack Launch

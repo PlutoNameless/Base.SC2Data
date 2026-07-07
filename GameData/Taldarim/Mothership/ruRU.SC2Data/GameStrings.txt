@@ -1,0 +1,15 @@
+Button/Name/TaldarimMothership=Вызвать материнский корабль
+Unit/Name/TaldarimMothership=Материнский корабль
+
+Weapon/Name/TaldarimMothership_Weapon=Термальный луч
+
+Button/Name/TaldarimMothership_Blink=Скачок
+Abil/Name/TaldarimMothership_Blink=Скачок
+
+Button/Name/TaldarimMothership_ThermalLance=Термальный луч
+Abil/Name/TaldarimMothership_ThermalLance=Термальный луч
+Unit/Name/TaldarimMothership_ThermalLance@AttackMissile=Снаряд
+
+Button/Name/TaldarimMothership_BlackHole=Чёрная дыра
+Abil/Name/TaldarimMothership_BlackHole=Чёрная дыра
+Behavior/Name/TaldarimMothership_BlackHole=Чёрная дыра

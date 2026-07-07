@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Catalog>
-    <CButton id="TaldarimMothership">
+    <CButton id="TaldarimMothership" parent="UnitButton_GroundAir">
         <Icon value=""/>
+        <EditorCategories value="Race:Taldarim"/>
     </CButton>
     
     <CUnit id="TaldarimMothership" parent="Generic_Protoss_Unit_Air" race="Tald">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         <FlagArray index="Turnable" value="0"/>
         <Attributes index="Armored" value="1"/>
         <Attributes index="Mechanical" value="1"/>
@@ -26,16 +28,15 @@
         <CostResource index="Minerals" value="1000"/>
         <CostResource index="Vespene" value="1000"/>
         <KillXP value="50"/>
-        <AbilArray Link="SOAMothershipLineAttack"/>
-        <AbilArray Link="VoidSentryBlackHole"/>
-        <AbilArray Link="SOAMothershipBlink"/>
-        <WeaponArray Link="TaldarimMothership_Weapon" Turret="FreeRotate"/>
-        <WeaponArray Turret="MothershipRotate"/>
-        <CardLayouts>
-            <LayoutButtons Face="VoidSentryBlackHole" Type="AbilCmd" AbilCmd="VoidSentryBlackHole,Execute" Row="2" Column="0"/>
-            <!--LayoutButtons Face="SOAMothershipBlinkStrike" Type="AbilCmd" AbilCmd="SOAMothershipBlinkStrike,Execute" Row="2" Column="1"/-->
-            <LayoutButtons Face="SOAMothershipLineAttack" Type="AbilCmd" AbilCmd="SOAMothershipLineAttack,Execute" Row="2" Column="1"/>
-            <LayoutButtons Face="SOAMothershipBlink" Type="AbilCmd" AbilCmd="SOAMothershipBlink,Execute" Row="2" Column="2"/>
+        <AbilArray Link="TaldarimMothership_ThermalLance"/>
+        <AbilArray Link="TaldarimMothership_BlackHole"/>
+        <AbilArray Link="TaldarimMothership_Blink"/>
+        <WeaponArray index="0" Turret="FreeRotate"/>
+        <TurretArray value="MothershipRotate"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="TaldarimMothership_BlackHole" Type="AbilCmd" AbilCmd="TaldarimMothership_BlackHole,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="TaldarimMothership_ThermalLance" Type="AbilCmd" AbilCmd="TaldarimMothership_ThermalLance,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="TaldarimMothership_Blink" Type="AbilCmd" AbilCmd="TaldarimMothership_Blink,Execute" Row="2" Column="2"/>
         </CardLayouts>
         <Radius value="1.375"/>
         <SeparationRadius value="1.375"/>
@@ -43,7 +44,6 @@
         <ScoreKill value="800"/>
         <SubgroupPriority value="50"/>
         <MinimapRadius value="1.375"/>
-        <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         <GlossaryPriority value="190"/>
         <BehaviorArray Link="MothershipTaldarimTurretDisabler"/>
         <BehaviorArray Link="SOAHeroicShieldProcBuff"/>
@@ -236,7 +236,7 @@
         <Volume value="2.000000,2.000000"/>
     </CSound>
     <CSound id="TaldarimMothership@Movement" parent="Movement">
-        <EditorCategories value="Race:Protoss"/>
+        <EditorCategories value="Race:Taldarim"/>
         <AssetArray File="Assets\Sounds\MothershipVoid_MoveStart00_LR.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\MothershipVoid_MoveStart01_LR.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\MothershipVoid_MoveStart02_LR.wav" FacialGroup=""/>
@@ -268,10 +268,34 @@
         <EditorCategories value="LightGroup:PortraitsUnitsProtoss"/>
     </CLight>
 
+    <CDataCollectionUnit id="TaldarimMothership" parent="UnitGround">
+        <DataRecord Entry="Button,TaldarimMothership"/>
+        <DataRecord Entry="Unit,TaldarimMothership"/>
+        <DataRecord Entry="Actor,TaldarimMothership"/>
+        <DataRecord Entry="Actor,TaldarimMothership@Death Model"/>
+        <DataRecord Entry="Actor,TaldarimMothership@Death Ragdoll"/>
+        <DataRecord Entry="Actor,TaldarimMothership@Ragdoll Detonation Force"/>
+        <DataRecord Entry="Model,TaldarimMothership"/>
+        <DataRecord Entry="Model,TaldarimMothership@DeathRagdoll"/>
+        <DataRecord Entry="Model,TaldarimMothership@Death"/>
+        <DataRecord Entry="Model,TaldarimMothership@Placement"/>
+        <DataRecord Entry="Model,TaldarimMothership@WarpIn"/>
+        <DataRecord Entry="Model,TaldarimMothership@Portrait"/>
+        <DataRecord Entry="Sound,TaldarimMothership@Death"/>
+        <DataRecord Entry="Sound,TaldarimMothership@Attack"/>
+        <DataRecord Entry="Sound,TaldarimMothership@Help"/>
+        <DataRecord Entry="Sound,TaldarimMothership@Pissed"/>
+        <DataRecord Entry="Sound,TaldarimMothership@Yes"/>
+        <DataRecord Entry="Sound,TaldarimMothership@What"/>
+        <DataRecord Entry="Sound,TaldarimMothership@Ready"/>
+        <DataRecord Entry="Sound,TaldarimMothership@Movement"/>
+        <DataRecord Entry="Light,TaldarimMothership@Portrait"/>
+    </CDataCollectionUnit>
+
     <!-- ================ Weapons ================ -->
     
     <CWeaponLegacy id="TaldarimMothership_Weapon">
-        <EditorCategories value="Race:Protoss"/>
+        <EditorCategories value="Race:Taldarim"/>
         <Options index="OnlyFireWhileInAttackOrder" value="0"/>
         <Options index="OnlyFireAtAttackOrderTarget" value="0"/>
         <Icon value="Assets\Textures\btn-upgrade-protoss-airweaponslevel0.dds"/>
@@ -287,12 +311,12 @@
     </CWeaponLegacy>
 
     <CEffectSet id="TaldarimMothership_Weapon@Set">
-        <EditorCategories value="Race:Protoss"/>
+        <EditorCategories value="Race:Taldarim"/>
         <EffectArray value="TaldarimMothership_Weapon@Beam"/>
         <EffectArray value="TaldarimMothership_Weapon@Beam_Secondary"/>
     </CEffectSet>
     <CEffectCreatePersistent id="TaldarimMothership_Weapon@Beam">
-        <EditorCategories value="Race:Protoss"/>
+        <EditorCategories value="Race:Taldarim"/>
         <WhichLocation Value="TargetUnit"/>
         <TimeScaleSource Value="Caster"/>
         <Flags index="Channeled" value="1"/>
@@ -303,7 +327,7 @@
         <PeriodicPeriodArray value="0.375"/>
     </CEffectCreatePersistent>
     <CEffectCreatePersistent id="TaldarimMothership_Weapon@Beam_Secondary">
-        <EditorCategories value="Race:Protoss"/>
+        <EditorCategories value="Race:Taldarim"/>
         <WhichLocation Value="TargetUnit"/>
         <TimeScaleSource Value="Caster"/>
         <Flags index="Channeled" value="1"/>
@@ -315,7 +339,7 @@
         <PeriodicPeriodArray value="0.375"/>
     </CEffectCreatePersistent>
     <CEffectDamage id="TaldarimMothership_Weapon@Damage" parent="DU_WEAP_MISSILE">
-        <EditorCategories value="Race:Protoss"/>
+        <EditorCategories value="Race:Taldarim"/>
         <Amount value="38"/>
         <Death value="Fire"/>
         <Visibility value="Visible"/>
@@ -324,14 +348,14 @@
     </CEffectDamage>
     <CEffectModifyUnit id="TaldarimMothership_Weapon@Dummy">
         <ValidatorArray value="MothershipRangeCheck"/>
-        <EditorCategories value="Race:Protoss"/>
+        <EditorCategories value="Race:Taldarim"/>
     </CEffectModifyUnit>
 
     <CActorAction id="TaldarimMothership_Weapon@Attack" parent="GenericAttackBase">
         <On Terms="Effect.TaldarimMothership_Weapon@Beam.Start" Send="Create"/>
         <On Terms="Effect.TaldarimMothership_Weapon@Damage.Start; FromEffectTreeDescendant" Send="ActionDamage"/>
         <On Terms="Effect.TaldarimMothership_Weapon@Beam.Stop" Send="Destroy WhenReady"/>
-        <LaunchAttachQuery Methods="AMFilterWeaponSetA0 AMClosest2ToTarget AMPatternSOAMothershipv4Beam"/>
+        <LaunchAttachQuery Methods="AMFilterWeaponSetA0 AMClosest2ToTarget TaldarimMothership_Weapon@AMPattern"/>
         <ActionFlags index="AlignedImpactsAndDamages" value="1"/>
         <ActionFlags index="ImpactMonitorsTeleports" value="1"/>
         <Lifetime value="-1.000000"/>
@@ -340,7 +364,7 @@
         <On Terms="Effect.TaldarimMothership_Weapon@Beam_Secondary.Start" Send="Create"/>
         <On Terms="Effect.TaldarimMothership_Weapon@Damage.Start; FromEffectTreeDescendant" Send="ActionDamage"/>
         <On Terms="Effect.TaldarimMothership_Weapon@Beam.Stop" Send="Destroy WhenReady"/>
-        <LaunchAttachQuery Methods="AMFilterWeaponSetA0 AMClosest2ToTarget AMPatternSOAMothershipv4Beam"/>
+        <LaunchAttachQuery Methods="AMFilterWeaponSetA0 AMClosest2ToTarget TaldarimMothership_Weapon@AMPattern"/>
         <ActionFlags index="AlignedImpactsAndDamages" value="1"/>
         <ActionFlags index="ImpactMonitorsTeleports" value="1"/>
         <Lifetime value="-1.000000"/>
@@ -361,7 +385,7 @@
     
     <CModel id="TaldarimMothership_Weapon@AttackBeam" parent="MissileFX">
         <Model value="Assets\Effects\Protoss\Mothership_Taldarim_Terminator_Beam\Mothership_Taldarim_Terminator_Beam.m3"/>
-        <EditorCategories value="Race:Protoss"/>
+        <EditorCategories value="Race:Taldarim"/>
         <RadiusLoose value="1.000000"/>
         <ScaleMax value="0.700000,0.700000,0.700000"/>
         <ScaleMin value="0.700000,0.700000,0.700000"/>
@@ -374,33 +398,624 @@
     </CModel>
 
     <CSound id="TaldarimMothership_Weapon@AttackLoop" parent="Combat">
-        <EditorCategories value="Race:Protoss"/>
+        <EditorCategories value="Race:Taldarim"/>
         <AssetArray File="Assets\Sounds\Keystone_StandB_loop.wav" FacialGroup=""/>
         <DupeMuteCount value="3"/>
         <LoopCount value="-1"/>
         <Pitch value="0.000000,0.300000"/>
     </CSound>
     <CSound id="TaldarimMothership_Weapon@AttackImpact" parent="Combat">
-        <EditorCategories value="Race:Protoss"/>
+        <EditorCategories value="Race:Taldarim"/>
         <AssetArray File="Assets\Sounds\MothershipVoid_AttackImpact00.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\MothershipVoid_AttackImpact01.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\MothershipVoid_AttackImpact02.wav" FacialGroup=""/>
         <Pitch value="-1.000000,1.000000"/>
     </CSound>
     <CSound id="TaldarimMothership_Weapon@AttackLaunch" parent="Combat">
-        <EditorCategories value="Race:Protoss"/>
+        <EditorCategories value="Race:Taldarim"/>
         <AssetArray File="Assets\Sounds\MothershipVoid_AttackLaunch00.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\MothershipVoid_AttackLaunch01.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\MothershipVoid_AttackLaunch02.wav" FacialGroup=""/>
         <Pitch value="-1.000000,1.000000"/>
         <Volume value="-1.000000,-1.000000"/>
     </CSound>
-    
-    <!-- ================ Weapons ================ -->
 
-    <CAbilEffectTarget id="TaldarimMothership_BlackHole">
-        
+    <CAttachMethodPattern id="TaldarimMothership_Weapon@AMPattern">
+        <Keyword value="Weapon"/>
+        <Base value="::RollingIndex"/>
+        <Driver value="TaldarimMothership_Weapon@Dummy"/>
+    </CAttachMethodPattern>
+
+    <CDataCollectionUnit id="TaldarimMothership_Weapon" parent="Weapon_Instant">
+        <DataRecord Entry="Weapon,TaldarimMothership_Weapon"/>
+        <DataRecord Entry="Effect,TaldarimMothership_Weapon@Damage"/>
+        <DataRecord Entry="Actor,TaldarimMothership_Weapon@Attack"/>
+        <DataRecord Entry="Model,TaldarimMothership_Weapon@AttackLaunch"/>
+        <DataRecord Entry="Model,TaldarimMothership_Weapon@AttackImpact"/>
+        <DataRecord Entry="Sound,TaldarimMothership_Weapon@AttackLoop"/>
+        <DataRecord Entry="Sound,TaldarimMothership_Weapon@AttackLaunch"/>
+        <DataRecord Entry="Sound,TaldarimMothership_Weapon@AttackImpact"/>
+    </CDataCollectionUnit>
+    
+    <!-- ========== Abilities ========== -->
+
+    <!-- Blink -->
+    <CButton id="TaldarimMothership_Blink">
+        <Icon value="Assets\Textures\btn-ability-protoss-blink-color.dds"/>
+        <EditorCategories value="Race:Taldarim"/>
+    </CButton>
+
+    <CAbilEffectTarget id="TaldarimMothership_Blink">
+        <EditorCategories value="Race:Taldarim,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="TaldarimMothership_Blink"/>
+        <Flags index="AllowMovement" value="1"/>
+        <UninterruptibleArray index="Prep" value="1"/>
+        <Effect index="0" value="TaldarimMothership_Blink@Teleport"/>
+        <Arc value="360"/>
+        <Range value="10"/>
+        <PrepTime value="0.375"/>
+        <Cost>
+            <Cooldown TimeUse="8"/>
+        </Cost>
     </CAbilEffectTarget>
 
+    <CEffectTeleport id="TaldarimMothership_Blink@Teleport">
+        <EditorCategories value="Race:Taldarim"/>
+        <TargetLocation Value="TargetPoint"/>
+        <WhichUnit Value="Source"/>
+        <ClearQueuedOrders value="0"/>
+    </CEffectTeleport>
+
+    <CActorModel id="TaldarimMothership_Blink@ImpactModel" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.TaldarimMothership_Blink@Teleport.Stop" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimSetTimeScale BSD 2.000000"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOrigin"/>
+    </CActorModel>
+    <CActorModel id="TaldarimMothership_Blink@LaunchModel" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.TaldarimMothership_Blink@Teleport.Start; At Caster" Send="Create"/>
+        <On Terms="ActorCreation" Send="AnimSetTimeScale BSD 2.000000"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOrigin" HoldPosition="1" HoldRotation="1"/>
+    </CActorModel>
+    <CActorSound id="TaldarimMothership_Blink@ImpactSound" parent="SoundOneShot">
+        <On Terms="Effect.TaldarimMothership_Blink@Teleport.Stop" Send="Create"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachCenter"/>
+    </CActorSound>
+    <CActorSound id="TaldarimMothership_Blink@LaunchSound" parent="SoundOneShot">
+        <On Terms="Effect.TaldarimMothership_Blink@Teleport.Start: At Source" Send="Create"/>
+        <Host Subject="_Unit"/>
+        <HostSiteOps Ops="SOpAttachOriginStationary"/>
+    </CActorSound>
+    <CActorRange id="TaldarimMothership_Blink@Range" parent="RangeAbil" abil="TaldarimMothership_Blink"/>
+
+    <CModel id="TaldarimMothership_Blink@ImpactModel" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Mothership_Taldarim_TeleportIn\Mothership_Taldarim_TeleportIn.m3"/>
+        <EditorCategories value="Race:Taldarim"/>
+        <ScaleMax value="0.700000,0.700000,0.700000"/>
+        <ScaleMin value="0.700000,0.700000,0.700000"/>
+    </CModel>
+    <CModel id="TaldarimMothership_Blink@LaunchModel" parent="OneShotSpellFX">
+        <Model value="Assets\Effects\Protoss\Mothership_Taldarim_TeleportOut\Mothership_Taldarim_TeleportOut.m3"/>
+        <EditorCategories value="Race:Taldarim"/>
+        <ScaleMax value="0.700000,0.700000,0.700000"/>
+        <ScaleMin value="0.700000,0.700000,0.700000"/>
+    </CModel>
+    
+    <CSound id="TaldarimMothership_Blink@ImpactSound" parent="Spell">
+        <EditorCategories value="Race:Taldarim"/>
+        <AssetArray File="Assets\Sounds\Mothership_BlinkDown01.wav" FacialGroup=""/>
+        <Pitch value="0.000000,0.300000"/>
+        <Spread value="30.000000"/>
+        <Volume value="-1.000000,-1.000000"/>
+    </CSound>
+    <CSound id="TaldarimMothership_Blink@LaunchSound" parent="Spell">
+        <EditorCategories value="Race:Taldarim"/>
+        <AssetArray File="Assets\Sounds\Mothership_BlinkUp01.wav" FacialGroup=""/>
+        <Pitch value="0.000000,0.300000"/>
+        <Spread value="10.000000"/>
+    </CSound>
+
+    <CDataCollectionUnit id="TaldarimMothership_Blink" parent="AbilityBase">
+        <DataRecord Entry="Button,TaldarimMothership_Blink"/>
+        <DataRecord Entry="Abil,TaldarimMothership_Blink"/>
+        <DataRecord Entry="Effect,TaldarimMothership_Blink@Teleport"/>
+        <DataRecord Entry="Actor,TaldarimMothership_Blink@ImpactModel"/>
+        <DataRecord Entry="Actor,TaldarimMothership_Blink@LaunchModel"/>
+        <DataRecord Entry="Actor,TaldarimMothership_Blink@ImpactSound"/>
+        <DataRecord Entry="Actor,TaldarimMothership_Blink@LaunchSound"/>
+        <DataRecord Entry="Actor,TaldarimMothership_Blink@Range"/>
+        <DataRecord Entry="Model,TaldarimMothership_Blink@ImpactModel"/>
+        <DataRecord Entry="Model,TaldarimMothership_Blink@LaunchModel"/>
+        <DataRecord Entry="Sound,TaldarimMothership_Blink@ImpactSound"/>
+        <DataRecord Entry="Sound,TaldarimMothership_Blink@LaunchSound"/>
+    </CDataCollectionUnit>
+
+    <!-- Thermal Lance -->
+    <CButton id="TaldarimMothership_ThermalLance">
+        <Icon value="Assets\Textures\btn-ability-protoss-thermallance.dds"/>
+        <EditorCategories value="Race:Taldarim"/>
+        <AlertIcon value="Assets\Textures\btn-ability-protoss-thermallance.dds"/>
+    </CButton>
+
+    <CAbilEffectTarget id="TaldarimMothership_ThermalLance">
+        <EditorCategories value="Race:Taldarim,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="TaldarimMothership_ThermalLance"/>
+        <Effect index="0" value="TaldarimMothership_ThermalLance@CP"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Arc value="360"/>
+        <Range value="500"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+        </Cost>
+    </CAbilEffectTarget>
+
+    <CEffectCreatePersistent id="TaldarimMothership_ThermalLance@CP">
+        <WhichLocation Value="CasterPoint"/>
+        <PeriodCount value="1"/>
+        <PeriodicEffectArray value="TaldarimMothership_ThermalLance@LM"/>
+        <PeriodicOffsetArray value="0,-10,0"/>
+        <PeriodicPeriodArray value="0"/>
+    </CEffectCreatePersistent>
+    <CEffectLaunchMissile id="TaldarimMothership_ThermalLance@LM">
+        <ValidatorArray index="0" value="CasterNotDead"/>
+        <ImpactLocation Value="TargetPoint"/>
+        <Flags index="2D" value="1"/>
+        <LaunchEffect value="TaldarimMothership_ThermalLance@CP_Scan"/>
+        <ImpactEffect value="TaldarimMothership_ThermalLance@Set"/>
+        <AmmoUnit value="TaldarimMothership_ThermalLance@AttackMissile"/>
+    </CEffectLaunchMissile>
+    <CEffectCreatePersistent id="TaldarimMothership_ThermalLance@CP_Scan">
+        <EditorCategories value="Race:Taldarim"/>
+        <Marker>
+            <MatchFlags index="Id" value="1"/>
+        </Marker>
+        <WhichLocation Value="SourceUnit"/>
+        <TimeScaleSource Value="Caster"/>
+        <PeriodCount value="10"/>
+        <PeriodicEffectArray value="TaldarimMothership_ThermalLance@Search"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="TaldarimMothership_ThermalLance@Set"/>
+    <CEffectEnumArea id="TaldarimMothership_ThermalLance@Search">
+        <EditorCategories value="Race:Taldarim"/>
+        <SearchFilters value="-;Self,Player,Ally,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="1" Effect="TaldarimMothership_ThermalLance@Damage"/>
+        <RevealerParams Duration="1" ShapeExpansion="0.5">
+            <RevealFlags index="Unfog" value="1"/>
+        </RevealerParams>
+    </CEffectEnumArea>
+    <CEffectDamage id="TaldarimMothership_ThermalLance@Damage">
+        <EditorCategories value="Race:Taldarim"/>
+        <Amount value="200"/>
+        <Flags index="Notification" value="1"/>
+        <Death value="Fire"/>
+        <ValidatorArray value="noMarkers"/>
+    </CEffectDamage>
+
+    <CActorAction id="TaldarimMothership_ThermalLance@Attack" parent="GenericAttack" effectImpact="TaldarimMothership_ThermalLance@Set" effectLaunch="TaldarimMothership_ThermalLance@LM">
+        <LaunchSiteOps Ops="SOpCasterPoint SOpShadow"/>
+        <ImpactPointSiteOps Ops="SOpTargetPointStationary SOpShadow"/>
+    </CActorAction>
+    <CActorQuad id="TaldarimMothership_ThermalLance@AttackGuide" parent="ZergGuideVisualQuadDown" abil="TaldarimMothership_ThermalLance">
+        <LaunchActor value="ProtossGuideVisualQuadRedLaunch"/>
+        <CenterActor value="ProtossGuideVisualQuadRedCenter"/>
+        <ImpactActor value="ProtossGuideVisualQuadRedImpact"/>
+        <Height value="11.000000"/>
+        <Width value="2.000000"/>
+        <Decoration Actor="ProtossGuideVisualQuadRedDecoration" SpawnInterval="0.500000" TravelSpeed="10.000000">
+            <Flags index="UseLaunchActorScale" value="1"/>
+        </Decoration>
+    </CActorQuad>
+    <CActorMissile id="TaldarimMothership_ThermalLance@AttackMissile" parent="GenericAttackMissile" unitName="TaldarimMothership_ThermalLance@AttackMissile">
+        <On Terms="ActorCreation" Send="Create TaldarimMothership_ThermalLance@Beam"/>
+        <On Terms="ActorDestruction" Target="TaldarimMothership_ThermalLance@Beam" Send="Destroy"/>
+    </CActorMissile>
+    <CActorModel id="TaldarimMothership_ThermalLance@AttackGroundFire" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.TaldarimMothership_ThermalLance@Search.Start" Send="Create"/>
+        <HostSiteOps Ops="SOpShadow"/>
+    </CActorModel>
+    <CActorModel id="TaldarimMothership_ThermalLance@AttackImpact" parent="ModelAnimationStyleOneShot">
+        <On Terms="Effect.TaldarimMothership_ThermalLance@Damage.Start; At Target" Send="Create"/>
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOverhead"/>
+        <AutoScaleFactor value="1.000000"/>
+        <ModelFlags index="AllowHitTest" value="0"/>
+    </CActorModel>
+    <CActorBeamSimple id="TaldarimMothership_ThermalLance@Beam" parent="BeamSimpleAnimationStyleContinuous">
+        <HostLaunch Subject="_Unit" Scope="Caster" Actor="Find"/>
+        <HostLaunchSiteOps Ops="SOpAttachCenter"/>
+        <HostImpact Subject="_Missile"/>
+        <HostImpactSiteOps Ops="SOpAttachCenter"/>
+    </CActorBeamSimple>
+    
+    <CActorSound id="TaldarimMothership_ThermalLance@LaunchSound" parent="SoundOneShot">
+        <On Terms="Effect.TaldarimMothership_ThermalLance@CP_Scan.Start" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="TaldarimMothership_ThermalLance@ImpactSound" parent="SoundOneShot">
+        <On Terms="Effect.TaldarimMothership_ThermalLance@CP_Scan.Stop" Send="Create"/>
+    </CActorSound>
+
+    <CModel id="TaldarimMothership_ThermalLance@AttackMissile" parent="MissileFX">
+        <Model value="Assets\Effects\Protoss\Mothership_Taldarim_Thermal_Lance_Beam_Impact\Mothership_Taldarim_Thermal_Lance_Beam_Impact.m3"/>
+        <EditorCategories value="Race:Taldarim"/>
+    </CModel>
+    <CModel id="TaldarimMothership_ThermalLance@AttackGroundFire" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\Mothership_Taldarim_Thermal_Lance_Beam_GroundFire\Mothership_Taldarim_Thermal_Lance_Beam_GroundFire.m3"/>
+        <EditorCategories value="Race:Taldarim"/>
+    </CModel>
+    <CModel id="TaldarimMothership_ThermalLance@AttackImpact" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\Mothership_Taldarim_Thermal_Lance_Beam_Unit_Impact\Mothership_Taldarim_Thermal_Lance_Beam_Unit_Impact.m3"/>
+        <EditorCategories value="Race:Taldarim"/>
+    </CModel>
+    <CModel id="TaldarimMothership_ThermalLance@Beam" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\Mothership_Taldarim_Thermal_Lance_Beam\Mothership_Taldarim_Thermal_Lance_Beam.m3"/>
+        <EditorCategories value="Race:Taldarim"/>
+    </CModel>
+    
+    <CSound id="TaldarimMothership_ThermalLance@LaunchSound" parent="Spell">
+        <EditorCategories value="Race:Taldarim"/>
+        <AssetArray File="Assets\Sounds\VoidMothership_ThermalLance_AttackLaunch01.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidMothership_ThermalLance_AttackLaunch02.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidMothership_ThermalLance_AttackLaunch03.wav" FacialGroup=""/>
+        <Pitch value="7.000000,7.000000"/>
+        <Spread value="5.000000"/>
+        <Volume value="2.000000,2.000000"/>
+    </CSound>
+    <CSound id="TaldarimMothership_ThermalLance@ImpactSound" parent="Spell">
+        <EditorCategories value="Race:Taldarim"/>
+        <AssetArray File="Assets\Sounds\SOA_SolarLance_Launch01_1ch.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\SOA_SolarLance_Launch02_1ch.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\SOA_SolarLance_Launch03_1ch.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\SOA_SolarLance_Launch04_1ch.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\SOA_SolarLance_Launch05_1ch.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\SOA_SolarLance_Launch06_1ch.wav" FacialGroup=""/>
+        <DupeMaximumMethod value="Replace"/>
+        <Pitch value="1.000000,3.000000"/>
+        <Spread value="30.000000"/>
+    </CSound>
+
+    <CUnit id="TaldarimMothership_ThermalLance@AttackMissile" parent="MISSILE_INVULNERABLE">
+        <Race value="Prot"/>
+        <Mover value="MissileDefault"/>
+        <EditorCategories value="ObjectFamily:Campaign,ObjectType:Projectile"/>
+    </CUnit>
+
+    <CDataCollectionUnit id="TaldarimMothership_ThermalLance" parent="AbilityBase">
+        <DataRecord Entry="Button,TaldarimMothership_ThermalLance"/>
+        <DataRecord Entry="Abil,TaldarimMothership_ThermalLance"/>
+        <DataRecord Entry="Effect,TaldarimMothership_ThermalLance@CP"/>
+        <DataRecord Entry="Effect,TaldarimMothership_ThermalLance@LM"/>
+        <DataRecord Entry="Effect,TaldarimMothership_ThermalLance@CP_Scan"/>
+        <DataRecord Entry="Effect,TaldarimMothership_ThermalLance@Set"/>
+        <DataRecord Entry="Effect,TaldarimMothership_ThermalLance@Search"/>
+        <DataRecord Entry="Effect,TaldarimMothership_ThermalLance@Damage"/>
+        <DataRecord Entry="Actor,TaldarimMothership_ThermalLance@Attack"/>
+        <DataRecord Entry="Actor,TaldarimMothership_ThermalLance@AttackGuide"/>
+        <DataRecord Entry="Actor,TaldarimMothership_ThermalLance@AttackMissile"/>
+        <DataRecord Entry="Actor,TaldarimMothership_ThermalLance@AttackGroundFire"/>
+        <DataRecord Entry="Actor,TaldarimMothership_ThermalLance@AttackImpact"/>
+        <DataRecord Entry="Actor,TaldarimMothership_ThermalLance@Beam"/>
+        <DataRecord Entry="Model,TaldarimMothership_ThermalLance@AttackMissile"/>
+        <DataRecord Entry="Model,TaldarimMothership_ThermalLance@AttackGroundFire"/>
+        <DataRecord Entry="Model,TaldarimMothership_ThermalLance@AttackImpact"/>
+        <DataRecord Entry="Model,TaldarimMothership_ThermalLance@Beam"/>
+        <DataRecord Entry="Sound,TaldarimMothership_ThermalLance@LaunchSound"/>
+        <DataRecord Entry="Sound,TaldarimMothership_ThermalLance@ImpactSound"/>
+        <DataRecord Entry="Unit,TaldarimMothership_ThermalLance@AttackMissile"/>
+    </CDataCollectionUnit>
+
+    <!-- Black Hole -->
+    <CButton id="TaldarimMothership_BlackHole">
+        <Icon value="Assets\Textures\btn-ability-protoss-blackhole-redcolor.dds"/>
+    </CButton>
+
+    <CAbilEffectTarget id="TaldarimMothership_BlackHole">
+        <EditorCategories value="Race:Taldarim,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="TaldarimMothership_BlackHole"/>
+        <Effect index="0" value="TaldarimMothership_BlackHole@CP"/>
+        <CursorEffect value="TaldarimMothership_BlackHole@Search"/>
+        <Flags index="AllowMovement" value="1"/>
+        <Range value="10"/>
+        <Arc value="360"/>
+        <Cost>
+            <Vital index="Energy" value="50"/>
+        </Cost>
+    </CAbilEffectTarget>
+
+    <CEffectCreatePersistent id="TaldarimMothership_BlackHole@CP">
+        <EditorCategories value="Race:Taldarim"/>
+        <PeriodCount value="128"/>
+        <PeriodicEffectArray value="TaldarimMothership_BlackHole@Search"/>
+        <PeriodicPeriodArray value="0.0625"/>
+    </CEffectCreatePersistent>
+    <CEffectSet id="TaldarimMothership_BlackHole@Set">
+        <EditorCategories value=""/>
+        <EffectArray value="TaldarimMothership_BlackHole@AB"/>
+        <EffectArray value="TaldarimMothership_BlackHole@CP_Offset"/>
+    </CEffectSet>
+    <CEffectApplyBehavior id="TaldarimMothership_BlackHole@AB">
+        <EditorCategories value="Race:Taldarim"/>
+        <Behavior value="TaldarimMothership_BlackHole"/>
+    </CEffectApplyBehavior>
+    <CEffectCreatePersistent id="TaldarimMothership_BlackHole@CP_Offset">
+        <EditorCategories value="Race:Taldarim"/>
+        <OffsetVectorStartLocation Effect="TaldarimMothership_BlackHole@Search" Value="TargetPoint"/>
+        <InitialEffect value="TaldarimMothership_BlackHole@AF"/>
+        <InitialOffset value="0.5,0.15,0"/>
+    </CEffectCreatePersistent>
+    <CEffectEnumArea id="TaldarimMothership_BlackHole@Search">
+        <EditorCategories value="Race:Taldarim"/>
+        <SearchFilters value="-;Player,Ally,Neutral,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray Radius="4" Effect="TaldarimMothership_BlackHole@Set"/>
+        <LaunchLocation Value="TargetPoint"/>
+    </CEffectEnumArea>
+    <CEffectApplyForce id="TaldarimMothership_BlackHole@AF">
+        <EditorCategories value="Race:Taldarim"/>
+        <Amount value="-1"/>
+        <WhichLocation Value="TargetPoint"/>
+        <WhichUnit Effect="TaldarimMothership_BlackHole@Set"/>
+    </CEffectApplyForce>
+    
+    <CBehaviorBuff id="TaldarimMothership_BlackHole">
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-blackhole.dds"/>
+        <EditorCategories value="Race:Taldarim,AbilityorEffectType:Units"/>
+        <Duration value="0.125"/>
+        <Modification Height="0.5" MoveSpeedMultiplier="3">
+            <StateFlags index="Stun" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+            <HeightTime index="Start" value="0.25"/>
+            <HeightTime index="Stop" value="0.25"/>
+        </Modification>
+    </CBehaviorBuff>
+    
+    <CActorModel id="TaldarimMothership_BlackHole@Model" parent="ModelAnimationStyleContinuous">
+        <On Terms="Effect.TaldarimMothership_BlackHole@CP.Start" Send="Create"/>
+        <On Terms="Effect.TaldarimMothership_BlackHole@CP.Stop" Send="AnimBracketStop BSD"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.500000"/>
+    </CActorModel>
+    <CActorSplat id="TaldarimMothership_BlackHole@Cursor" parent="ProtossCursorSplat" abil="TaldarimMothership_BlackHole"/>
+    <CActorSimple id="TaldarimMothership_BlackHole@Flail">
+        <EditorCategories value=""/>
+        <Supporter Subject="_Selectable"/>
+        <On Terms="Behavior.TaldarimMothership_BlackHole.On" Send="Create"/>
+        <On Terms="ActorCreation" Target="_Unit" Send="AnimPlay Flail Flail PlayForever"/>
+        <On Terms="Behavior.TaldarimMothership_BlackHole.Off" Target="_Unit" Send="AnimClear Flail"/>
+    </CActorSimple>
+    <CActorRange id="TaldarimMothership_BlackHole@Range" parent="RangeAbil" abil="TaldarimMothership_BlackHole">
+        <Icon value="Assets\Textures\RadarIcon2.dds"/>
+    </CActorRange>
+    <CActorSound id="TaldarimMothership_BlackHole@LaunchSound" parent="SoundOneShot">
+        <On Terms="Effect.TaldarimMothership_BlackHole@CP.Start" Send="Create"/>
+        <Layers>
+            <Sound value="TaldarimMothership_BlackHole@LaunchSound2"/>
+            <PitchSource value="Actor"/>
+            <PlayDelaySource value="Actor"/>
+            <VolumeSource value="Actor"/>
+            <Chance value="100"/>
+            <Pitch value="-6.000000,-6.000000"/>
+            <PlayDelay value="25,75"/>
+            <Volume value="0.000000,0.000000"/>
+        </Layers>
+        <Layers>
+            <Sound value="TaldarimMothership_BlackHole@LaunchSound3"/>
+            <PitchSource value="Actor"/>
+            <PlayDelaySource value="Actor"/>
+            <VolumeSource value="Actor"/>
+            <Chance value="100"/>
+            <Pitch value="-6.000000,-6.000000"/>
+            <PlayDelay value="75,125"/>
+            <Volume value="0.000000,0.000000"/>
+        </Layers>
+    </CActorSound>
+    <CActorSound id="TaldarimMothership_BlackHole@ImpactSound" parent="SoundOneShot">
+        <On Terms="Effect.TaldarimMothership_BlackHole@CP.Stop" Send="Create"/>
+    </CActorSound>
+    <CActorSound id="TaldarimMothership_BlackHole@LoopSound" parent="SoundContinuous">
+        <On Terms="Effect.TaldarimMothership_BlackHole@CP.Start" Send="Create"/>
+        <On Terms="Effect.TaldarimMothership_BlackHole@CP.Stop" Send="Destroy"/>
+        <Layers>
+            <Sound value="TaldarimMothership_BlackHole@LoopSound2"/>
+            <PitchSource value="Sound"/>
+            <PlayDelaySource value="Sound"/>
+            <VolumeSource value="Actor"/>
+            <Chance value="100"/>
+            <Pitch value="0.000000,0.000000"/>
+            <PlayDelay value="0,0"/>
+            <Volume value="-2.000000,-2.000000"/>
+        </Layers>
+        <Layers>
+            <Sound value="TaldarimMothership_BlackHole@LoopSound3"/>
+            <PitchSource value="Sound"/>
+            <PlayDelaySource value="Sound"/>
+            <VolumeSource value="Actor"/>
+            <Chance value="100"/>
+            <Pitch value="0.000000,0.000000"/>
+            <PlayDelay value="0,0"/>
+            <Volume value="-5.000000,-5.000000"/>
+        </Layers>
+        <Layers>
+            <Sound value="TaldarimMothership_BlackHole@LoopSound4"/>
+            <PitchSource value="Sound"/>
+            <PlayDelaySource value="Sound"/>
+            <VolumeSource value="Actor"/>
+            <Chance value="100"/>
+            <Pitch value="0.000000,0.000000"/>
+            <PlayDelay value="0,0"/>
+            <Volume value="-1.000000,-1.000000"/>
+        </Layers>
+        <Layers>
+            <Sound value="TaldarimMothership_BlackHole@LoopSound5"/>
+            <PitchSource value="Sound"/>
+            <PlayDelaySource value="Sound"/>
+            <VolumeSource value="Actor"/>
+            <Chance value="100"/>
+            <Pitch value="0.000000,0.000000"/>
+            <PlayDelay value="0,0"/>
+            <Volume value="-6.000000,-6.000000"/>
+        </Layers>
+    </CActorSound>
+    
+    <CModel id="TaldarimMothership_BlackHole@Model" parent="PersistentSpellFX">
+        <Model value="Assets\Effects\Protoss\Taldarim_Mothership_Black_Hole\Taldarim_Mothership_Black_Hole.m3"/>
+        <ScaleMax value="1.150000,1.150000,1.150000"/>
+        <ScaleMin value="1.150000,1.150000,1.150000"/>
+    </CModel>
+    <CModel id="TaldarimMothership_BlackHole@Cursor" parent="UI">
+        <Model value="Assets\UI\Cursors\Taldarim_Mothership_Black_Hole_Cursor\Taldarim_Mothership_Black_Hole_Cursor.m3"/>
+        <ScaleMax value="0.220000,0.220000,0.220000"/>
+        <ScaleMin value="0.220000,0.220000,0.220000"/>
+        <SelectionRadius value="2.500000"/>
+        <ShadowRadius value="2.500000"/>
+        <EditorCategories value="Race:Taldarim"/>
+    </CModel>
+
+    <CSound id="TaldarimMothership_BlackHole@LaunchSound" parent="Spell">
+        <EditorCategories value="Race:Taldarim"/>
+        <AssetArray File="Assets\Sounds\Protoss\Mothership\Mothership_VortexStart0.wav" FacialGroup=""/>
+        <Flags index="Purgable" value="0"/>
+        <Spread value="10.000000"/>
+        <DupeMuteCount value="6"/>
+        <Pitch value="-1.000000,1.000000"/>
+    </CSound>
+    <CSound id="TaldarimMothership_BlackHole@LaunchSound2" parent="Spell">
+        <EditorCategories value="Race:Taldarim"/>
+        <AssetArray File="Assets\Sounds\VoidVortex_Sweetener_fire_02.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_Sweetener_fire_04.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_Sweetener_fire_05.wav" FacialGroup=""/>
+        <Flags index="Purgable" value="0"/>
+        <Pitch value="-4.000000,-3.000000"/>
+        <Spread value="10.000000"/>
+        <Volume value="2.000000,2.000000"/>
+        <DupeMuteCount value="3"/>
+    </CSound>
+    <CSound id="TaldarimMothership_BlackHole@LaunchSound3" parent="Spell">
+        <EditorCategories value="Race:Taldarim"/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_11.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_12.wav" FacialGroup=""/>
+        <Flags index="Purgable" value="0"/>
+        <Pitch value="-1.000000,1.000000"/>
+        <Spread value="10.000000"/>
+        <Volume value="2.000000,2.000000"/>
+        <DupeMuteCount value="3"/>
+    </CSound>
+    <CSound id="TaldarimMothership_BlackHole@ImpactSound" parent="Spell">
+        <EditorCategories value="Race:Taldarim"/>
+        <AssetArray File="Assets\Sounds\Protoss\Mothership\Mothership_VortexEnd0.wav" FacialGroup=""/>
+        <OffsetFadeIn Volume="-96.000000"/>
+        <OffsetFadeIn Time="250" Volume="-12.000000"/>
+        <OffsetFadeIn Time="400"/>
+        <Spread value="10.000000"/>
+        <DupeMuteCount value="6"/>
+        <Pitch value="-1.000000,1.000000"/>
+    </CSound>
+    <CSound id="TaldarimMothership_BlackHole@LoopSound" parent="Spell">
+        <EditorCategories value="Race:Taldarim"/>
+        <AssetArray File="Assets\Sounds\Mothership_BlackHole_Loop.wav" FacialGroup=""/>
+        <Flags index="Purgable" value="0"/>
+        <LoopCount value="-1"/>
+        <OffsetFadeIn Volume="-96.000000"/>
+        <OffsetFadeIn Time="250"/>
+        <Pitch value="-4.000000,-3.000000"/>
+        <Spread value="20.000000"/>
+        <SustainFade index="1" Time="750"/>
+        <Volume value="1.000000,1.000000"/>
+    </CSound>
+    <CSound id="TaldarimMothership_BlackHole@LoopSound2" parent="Spell">
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerB_01.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerB_02.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerB_03.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerB_04.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerB_05.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerB_06.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerB_07.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerB_08.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerB_09.wav" FacialGroup=""/>
+        <DupeMuteCount value="2"/>
+        <LoopCount value="-1"/>
+        <Pitch value="-12.000000,0.000000"/>
+        <PositionRandomOffset value="3.000000,3.000000,0.000000"/>
+        <PositionRandomOffsetPower value="2.000000"/>
+    </CSound>
+    <CSound id="TaldarimMothership_BlackHole@LoopSound3" parent="Spell">
+        <AssetArray File="Assets\Sounds\VoidVortex_Sweetener_fire_01.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_Sweetener_fire_02.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_Sweetener_fire_03.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_Sweetener_fire_04.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_Sweetener_fire_05.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_Sweetener_fire_06.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_Sweetener_fire_07.wav" FacialGroup=""/>
+        <DupeMuteCount value="2"/>
+        <LoopCount value="-1"/>
+        <Pitch value="-12.000000,-9.000000"/>
+        <PositionRandomOffset value="3.000000,3.000000,0.000000"/>
+        <PositionRandomOffsetPower value="2.000000"/>
+    </CSound>
+    <CSound id="TaldarimMothership_BlackHole@LoopSound4" parent="Spell">
+        <AssetArray File="Assets\Sounds\VoidVortex_sweetener_mantra_01.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_sweetener_mantra_02.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_sweetener_mantra_03.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_sweetener_mantra_04.wav" FacialGroup=""/>
+        <DupeMuteCount value="2"/>
+        <LoopCount value="-1"/>
+        <Pitch value="-12.000000,-3.000000"/>
+        <PositionRandomOffset value="3.000000,3.000000,0.000000"/>
+        <PositionRandomOffsetPower value="2.000000"/>
+    </CSound>
+    <CSound id="TaldarimMothership_BlackHole@LoopSound5" parent="Spell">
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_01.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_02.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_03.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_04.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_05.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_06.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_07.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_08.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_09.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_10.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_11.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_12.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_13.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_14.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_15.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_16.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\VoidVortex_SweetenerA_17.wav" FacialGroup=""/>
+        <DupeMuteCount value="2"/>
+        <LoopCount value="-1"/>
+        <Pitch value="-6.000000,0.000000"/>
+        <PositionRandomOffset value="3.000000,3.000000,0.000000"/>
+        <PositionRandomOffsetPower value="2.000000"/>
+    </CSound>
+
+    <CDataCollectionUnit id="TaldarimMothership_BlackHole" parent="AbilityBase">
+        <DataRecord Entry="Button,TaldarimMothership_BlackHole"/>
+        <DataRecord Entry="Abil,TaldarimMothership_BlackHole"/>
+        <DataRecord Entry="Effect,TaldarimMothership_BlackHole@CP"/>
+        <DataRecord Entry="Effect,TaldarimMothership_BlackHole@Set"/>
+        <DataRecord Entry="Effect,TaldarimMothership_BlackHole@AB"/>
+        <DataRecord Entry="Effect,TaldarimMothership_BlackHole@CP_Offset"/>
+        <DataRecord Entry="Effect,TaldarimMothership_BlackHole@Search"/>
+        <DataRecord Entry="Effect,TaldarimMothership_BlackHole@AF"/>
+        <DataRecord Entry="Behavior,TaldarimMothership_BlackHole"/>
+        <DataRecord Entry="Actor,TaldarimMothership_BlackHole@Model"/>
+        <DataRecord Entry="Actor,TaldarimMothership_BlackHole@Cursor"/>
+        <DataRecord Entry="Actor,TaldarimMothership_BlackHole@Flail"/>
+        <DataRecord Entry="Actor,TaldarimMothership_BlackHole@Range"/>
+        <DataRecord Entry="Actor,TaldarimMothership_BlackHole@LaunchSound"/>
+        <DataRecord Entry="Actor,TaldarimMothership_BlackHole@ImpactSound"/>
+        <DataRecord Entry="Actor,TaldarimMothership_BlackHole@LoopSound"/>
+        <DataRecord Entry="Model,TaldarimMothership_BlackHole@Model"/>
+        <DataRecord Entry="Model,TaldarimMothership_BlackHole@Cursor"/>
+        <DataRecord Entry="Sound,TaldarimMothership_BlackHole@LaunchSound"/>
+        <DataRecord Entry="Sound,TaldarimMothership_BlackHole@LaunchSound2"/>
+        <DataRecord Entry="Sound,TaldarimMothership_BlackHole@LaunchSound3"/>
+        <DataRecord Entry="Sound,TaldarimMothership_BlackHole@ImpactSound"/>
+        <DataRecord Entry="Sound,TaldarimMothership_BlackHole@LoopSound"/>
+        <DataRecord Entry="Sound,TaldarimMothership_BlackHole@LoopSound2"/>
+        <DataRecord Entry="Sound,TaldarimMothership_BlackHole@LoopSound3"/>
+        <DataRecord Entry="Sound,TaldarimMothership_BlackHole@LoopSound4"/>
+        <DataRecord Entry="Sound,TaldarimMothership_BlackHole@LoopSound5"/>
+    </CDataCollectionUnit>
     
 </Catalog>
