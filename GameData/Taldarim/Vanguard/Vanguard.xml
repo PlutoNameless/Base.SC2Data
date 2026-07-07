@@ -10,20 +10,50 @@
     </CButton>
 
     <CUnit id="Vanguard" parent="Generic_Protoss_Unit_Ground" race="Tald">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
         <WeaponArray index="0" Turret="Immortal"/>
+        <FlagArray index="Turnable" value="0"/>
         <LifeMax value="200"/>
         <LifeStart value="200"/>
+        <LifeArmor value="1"/>
         <ShieldsMax value="100"/>
         <ShieldsStart value="100"/>
+        <CostResource index="Minerals" value="250"/>
+        <CostResource index="Vespene" value="100"/>
+        <CostCategory value="Army"/>
+        <Mob value="Campaign"/>
         <Sight value="9"/>
         <Food value="-4"/>
+        <Speed value="2.25"/>
+        <Acceleration value="1000"/>
+        <KillXP value="35"/>
+        <Radius value="0.75"/>
+        <SeparationRadius value="0.625"/>
+        <InnerRadius value="0.5"/>
+        <CargoSize value="4"/>
+        <MinimapRadius value="0.625"/>
         <RepairTime value="55"/>
         <CardLayouts index="0">
             <LayoutButtons Face="Vanguard_Weapon" Type="Passive" Row="1" Column="0"/>
         </CardLayouts>
-        <CostResource index="Minerals" value="250"/>
-        <CostResource index="Vespene" value="100"/>
+        <ScoreMake value="350"/>
+        <ScoreKill value="350"/>
+        <ScoreResult value="BuildOrder"/>
+        <SubgroupPriority value="7"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
         <GlossaryPriority value="50"/>
+        <GlossaryStrongArray value="SiegeTankSieged"/>
+        <GlossaryStrongArray value="Stalker"/>
+        <GlossaryStrongArray value="Roach"/>
+        <GlossaryWeakArray value="Marine"/>
+        <GlossaryWeakArray value="Zealot"/>
+        <GlossaryWeakArray value="Zergling"/>
+        <Fidget>
+            <ChanceArray index="Anim" value="5"/>
+            <ChanceArray index="Idle" value="90"/>
+        </Fidget>
+        <TauntDuration index="Dance" value="5"/>
     </CUnit>
 
     <CActorUnit id="Vanguard" parent="GenericUnitStandard" unitName="Vanguard">
@@ -339,9 +369,12 @@
         <DataRecord Entry="Validator,Vanguard@Target"/>
         <DataRecord Entry="Validator,Vanguard@Not"/>
         <DataRecord Entry="Validator,Vanguard@NotTarget"/>
-        <TechInfoUpgradeUsed value="ProtossAirArmorsLevel@1"/>
-        <TechInfoUpgradeUsed value="ProtossAirArmorsLevel@2"/>
-        <TechInfoUpgradeUsed value="ProtossAirArmorsLevel@3"/>
+        <TechInfoUpgradeUsed value="ProtossGroundArmors@1"/>
+        <TechInfoUpgradeUsed value="ProtossGroundArmors@2"/>
+        <TechInfoUpgradeUsed value="ProtossGroundArmors@3"/>
+        <TechInfoUpgradeUsed value="ProtossShields@1"/>
+        <TechInfoUpgradeUsed value="ProtossShields@2"/>
+        <TechInfoUpgradeUsed value="ProtossShields@3"/>
     </CDataCollectionUnit>
 
     <!-- ========== Weapons ========== -->
@@ -365,8 +398,9 @@
         <DisplayEffect value="Vanguard_Weapon@Damage"/>
     </CWeaponLegacy>
 
-    <CEffectDamage id="Vanguard_Weapon@Damage">
+    <CEffectDamage id="Vanguard_Weapon@Damage" parent="DU_WEAP">
         <Amount value="8"/>
+        <AttributeBonus index="Armored" value="7"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="Vanguard_Weapon@LM">
         <AmmoUnit value="Vanguard_Weapon@AttackMissile"/>
@@ -378,19 +412,19 @@
         <EditorCategories value="Race:Protoss"/>
 
         <PeriodicOffsetArray value="-0.75,0,0"/>
+        <PeriodicOffsetArray value="-0.85,0,0"/>
         <PeriodicOffsetArray value="0.75,0,0"/>
+        <PeriodicOffsetArray value="0.85,0,0"/>
         <PeriodicOffsetArray value="0,-0.75,0"/>
+        <PeriodicOffsetArray value="0,-0.85,0"/>
         <PeriodicOffsetArray value="0,0.75,0"/>
+        <PeriodicOffsetArray value="0,0.85,0"/>
         
         <PeriodicEffectArray value="Vanguard_Weapon@LM"/>
 
         <PeriodicPeriodArray value="0"/>
         <PeriodicPeriodArray value="0.0625"/>
-        <PeriodicPeriodArray value="0.0625"/>
-        <PeriodicPeriodArray value="0.0625"/>
-        <!--Flags index="RandomOffset" value="1"/-->
-        <PeriodCount value="4"/>
-        <!--OffsetRandMode value="RandomNoRepeat"/-->
+        <PeriodCount value="8"/>
         <WhichLocation Value="TargetUnit"/>
         <ExpireEffect value="Vanguard_Weapon@RB"/>
         <FinalEffect value="Vanguard_Weapon@RB"/>
@@ -499,6 +533,10 @@
         <DataRecord Entry="Model,Vanguard_Weapon@AttackMissile"/>
         <DataRecord Entry="Mover,Vanguard_Weapon@AttackMissile"/>
         <DataRecord Entry="AttachMethod,Vanguard_Weapon@AMPattern"/>
+        <UpgradeInfoWeapon index="1" DamagePerDice="1"/>
+        <TechInfoUpgradeUsed value="ProtossGroundWeapons@1"/>
+        <TechInfoUpgradeUsed value="ProtossGroundWeapons@2"/>
+        <TechInfoUpgradeUsed value="ProtossGroundWeapons@3"/>
     </CDataCollectionUnit>
 
 </Catalog>
