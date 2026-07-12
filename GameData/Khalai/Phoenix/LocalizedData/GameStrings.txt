@@ -1,0 +1,32 @@
+Button/Name/PhoenixAiur=Обучить Феникса Айура
+Button/Tooltip/PhoenixAiur=Боевой летающий юнит. Может использовать гравитационный луч, чтобы захватывать и поднимать врагов. Протосс (Aiur)
+Unit/Name/PhoenixAiur=Феникс Айура
+
+Button/Name/PhoenixAiur_GravitonBeamVoid=Гравитационный луч
+Button/Tooltip/PhoenixAiur_GravitonBeamVoid=Поднимает выбранного вражеского юнита в воздух, оглушая его на 10 секунд. Позволяет захватить до двух целей. Требует 50 ед. энергии.
+Abil/Name/PhoenixAiur_GravitonBeamVoid=Гравитационный луч
+Behavior/Name/PhoenixAiur_GravitonBeamVoid@Stun=Гравитационный луч
+Behavior/Name/PhoenixAiur_GravitonBeamVoid@Height=Высота гравитационного луча
+
+Weapon/Name/PhoenixAiur_Weapon=Ионные пушки
+Effect/Name/PhoenixAiur_Weapon@Damage=Урон (Ионные пушки)
+Effect/Name/PhoenixAiur_Weapon@DamageLeft=Урон (левая пушка)
+Effect/Name/PhoenixAiur_Weapon@DamageRight=Урон (правая пушка)
+
+Effect/Name/PhoenixAiur_GravitonBeamVoid@CP=Гравитационный луч (персистент)
+Effect/Name/PhoenixAiur_GravitonBeamVoid@InitialSet=Начальный набор эффектов
+Effect/Name/PhoenixAiur_GravitonBeamVoid@PeriodicSet=Периодический набор эффектов
+Effect/Name/PhoenixAiur_GravitonBeamVoid@StunAB=Применить оглушение
+Effect/Name/PhoenixAiur_GravitonBeamVoid@HeightAB=Применить высоту
+Effect/Name/PhoenixAiur_GravitonBeamVoid@DoubleSwitch=Переключатель двойного гравитона
+Effect/Name/PhoenixAiur_GravitonBeamVoid@DoubleSearch=Поиск второй цели рядом с первой
+Effect/Name/PhoenixAiur_GravitonBeamVoid@SecondSearch=Поиск второй цели рядом с фениксом
+Effect/Name/PhoenixAiur_GravitonBeamVoid@SecondApply=Набор эффектов для второй цели
+Effect/Name/PhoenixAiur_GravitonBeamVoid@SecondPeriodicSet=Периодический набор для второй цели
+
+Validator/Name/PhoenixAiur@Is=Это Феникс Айура
+Validator/Name/PhoenixAiur@Target=Цель – Феникс Айура
+Validator/Name/PhoenixAiur@Not=Это не Феникс Айура
+Validator/Name/PhoenixAiur@NotTarget=Цель – не Феникс Айура
+
+Requirement/Name/PhoenixAiur=Феникс Айура

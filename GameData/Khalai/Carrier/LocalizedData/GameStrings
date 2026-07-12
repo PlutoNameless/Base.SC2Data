@@ -1,0 +1,42 @@
+Button/Name/CarrierAiur=Обучить Авианосец Айура
+Button/Tooltip/CarrierAiur=Тяжёлый летающий юнит. Строит перехватчиков и ремонтных дронов. Протосс (Aiur)
+Unit/Name/CarrierAiur=Авианосец Айура
+
+Button/Name/Interceptor=Перехватчик
+Button/Tooltip/Interceptor=Строит перехватчиков, автоматически атакующих врагов.
+Abil/Name/CarrierAiur_InterceptorHangar=Ангар перехватчиков
+
+Button/Name/RepairDrones=Ремонтные дроны
+Button/Tooltip/RepairDrones=Автоматически создаёт до двух ремонтных дронов.
+Abil/Name/CarrierAiur_RepairDroneHangar=Ангар ремонтных дронов
+
+Button/Name/CarrierRepairDroneHeal=Ремонтный луч
+Button/Tooltip/CarrierRepairDroneHeal=Восстанавливает здоровье механического союзника (8 ед./сек). Прерывается при выходе цели за радиус.
+Abil/Name/CarrierRepairDroneHeal=Ремонтный луч
+Effect/Name/CarrierRepairDroneHealHealer=Ремонтный луч (Healer)
+Effect/Name/CarrierRepairDroneHealPeriodicSet=Периодический набор ремонта
+
+Unit/Name/CarrierAiurInterceptor=Перехватчик (Авианосец Айура)
+Unit/Name/CarrierAiurRepairDrone=Ремонтный дрон (Авианосец Айура)
+
+Weapon/Name/CarrierAiur_InterceptorLaunch=Запуск перехватчиков
+Weapon/Name/InterceptorBeam=Пушка перехватчика
+Effect/Name/CarrierAiur_InterceptorLaunchPersistent=Запуск перехватчиков (персистент)
+Effect/Name/CarrierAiur_InterceptorUseMagazine=Использовать магазин перехватчиков
+Effect/Name/CarrierAiur_InterceptorLaunchSet=Набор эффектов запуска
+Effect/Name/InterceptorBeamPersistent=Пушка перехватчика (персистент)
+Effect/Name/InterceptorBeamDamage=Урон (пушка перехватчика)
+
+Validator/Name/CarrierAiur@Is=Это Авианосец Айура
+Validator/Name/CarrierAiur@Target=Цель – Авианосец Айура
+Validator/Name/CarrierAiur@Not=Это не Авианосец Айура
+Validator/Name/CarrierAiur@NotTarget=Цель – не Авианосец Айура
+Validator/Name/CasterisGreaterThan5=Расстояние больше 5
+Validator/Name/NotFullLife=Здоровье не полное
+Validator/Name/TargetIsWithinHealRange=Цель в радиусе ремонта
+
+TargetSort/Name/TSAlliancePassive=Сначала пассивные союзники
+TargetSort/Name/TSLifeFraction=По проценту здоровья
+TargetSort/Name/TSDistance=По расстоянию
+
+Requirement/Name/CarrierAiur=Авианосец Айура
