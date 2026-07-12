@@ -1,0 +1,13 @@
+Button/Name/Wrathwalker=Warp in Wrathwalker
+Button/Name/Wrathwalker_Weapon=Charged Blast
+
+Button/Tooltip/Wrathwalker=Tal'darim Faction<n/>Battle strider with a powerful single target attack. Can walk up and down cliffs.
+Button/Tooltip/Wrathwalker_Weapon=Attacks a single unit or structure for heavy damage. Can attack while moving. Deals bonus damage to structures.
+
+Unit/Name/Wrathwalker=Wrathwalker
+Unit/Name/Wrathwalker_Weapon@AttackMissile=Missile
+
+Weapon/Name/Wrathwalker_Weapon=Charged Blast
+
+DataCollection/Name/Wrathwalker=Wrathwalker
+DataCollection/Name/Wrathwalker_Weapon=Charged Blast

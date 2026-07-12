@@ -1,0 +1,36 @@
+Actor/Name/Wrathwalker=Wrathwalker
+Actor/Name/Wrathwalker_Weapon@Attack=Attack
+Actor/Name/Wrathwalker_Weapon@AttackMissile=Missile
+Actor/Name/Wrathwalker_Weapon@Charge=Charge Model
+Actor/Name/Wrathwalker_Weapon@PhysicsForce=Physics
+
+Effect/Name/Wrathwalker_Weapon@Damage=Damage
+Effect/Name/Wrathwalker_Weapon@LM=LM
+
+Model/Name/Wrathwalker_Weapon@AttackImpact=Impact
+Model/Name/Wrathwalker_Weapon@AttackMissile=Missile
+Model/Name/Wrathwalker_Weapon@Charge=Charge Model
+Model/Name/Wrathwalker=Unit
+Model/Name/Wrathwalker@Death=Death
+Model/Name/Wrathwalker@Placement=Placement
+Model/Name/Wrathwalker@Portrait=Portrait
+Model/Name/Wrathwalker@WarpIn=WarpIn
+
+Mover/Name/Wrathwalker_Weapon@AttackMissile=Missile
+
+Requirement/Name/Wrathwalker@Use=Use
+RequirementNode/Name/Wrathwalker@Use@AllowUnit=Use @ Allow Unit
+
+Validator/Name/Wrathwalker@Is=Caster Is Unit
+Validator/Name/Wrathwalker@Target=Target Is Unit
+Validator/Name/Wrathwalker@Not=Caster Not Unit
+Validator/Name/Wrathwalker@NotTarget=Target Not Unit
+
+Sound/Name/Wrathwalker_Weapon@AttackImpact=Impact
+Sound/Name/Wrathwalker_Weapon@AttackLaunch=Launch
+Sound/Name/Wrathwalker_Weapon@Charge=Charge Sound
+Sound/Name/Wrathwalker@Help=Help
+Sound/Name/Wrathwalker@Pissed=Pissed
+Sound/Name/Wrathwalker@Ready=Ready
+Sound/Name/Wrathwalker@What=What
+Sound/Name/Wrathwalker@Yes=Yes
