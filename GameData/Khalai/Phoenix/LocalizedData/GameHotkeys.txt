@@ -1,2 +1,1 @@
-Button/Hotkey/GravitonBeam=G
-Button/Hotkey/PhoenixAiurGravitonBeam=G
+Button/Hotkey/PhoenixAiur_GravitonBeamVoid=G
