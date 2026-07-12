@@ -49,6 +49,7 @@
     <CActorUnit id="Ascendant" parent="AdvancedUnitStandard" unitName="Ascendant">
         <On Terms="WeaponStart.Ascendant_Weapon" Send="AnimPlay Attack Spell PlayForever,ForceLooping"/>
         <On Terms="WeaponStop.Ascendant_Weapon" Send="AnimClear Attack"/>
+        <Macros value="Ascendant@ShadowMacro"/>
         <Aliases value="_UnitSmall"/>
         <AnimBlendTime value="0.450000"/>
         <WalkAnimMoveSpeed value="2.25"/>
@@ -72,6 +73,24 @@
         <AbilSoundArray AbilCmd="Ascendant_PsiOrb,Execute" Sound="Ascendant@AbilSound"/>
         <AbilSoundArray AbilCmd="Ascendant_MindBlast,Execute" Sound="Ascendant@AbilSound"/>
     </CActorUnit>
+    <CActorModel id="Ascendant@Shadow" parent="ModelAnimationStyleOneShotNoOrphan">
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOriginStationary SOp2DRotation"/>
+        <On Terms="ActorCreation" Send="TimerSet 0.400000 ShadowFade"/>
+        <On Terms="ActorCreation" Send="SetTintColor 0,0,128 0.800000"/>
+        <On Terms="ActorCreation" Send="SetOpacity"/>
+        <On Terms="ActorCreation" Send="SetOpacity 0.500000 0.400000"/>
+        <On Terms="TimerExpired; TimerName ShadowFade" Send="SetOpacity 0.000000 0.400000"/>
+        <Inherits index="CloakEffect" value="1"/>
+    </CActorModel>
+    <CActorEventMacro id="Ascendant@ShadowMacro">
+        <On Terms="ActorCreation" Send="TimerSet 0.200000 Shadow"/>
+        <On Terms="TimerExpired; TimerName Shadow; IsStatus ShadowCreate 1; !ModelIsLowQuality" Send="Create Ascendant@Shadow"/>
+        <On Terms="TimerExpired; TimerName Shadow" Send="TimerSet 0.200000 Shadow"/>
+        <On Terms="UnitMovementUpdate.*.Stand" Send="StatusSet ShadowCreate 0"/>
+        <On Terms="UnitMovementUpdate.*.Walk" Send="StatusSet ShadowCreate 1"/>
+        <On Terms="ActorCreation" Send="StatusSet ShadowCreate 0"/>
+    </CActorEventMacro>
     
     <CModel id="Ascendant" parent="Unit">
         <EditorCategories value="Race:Taldarim"/>
@@ -92,6 +111,9 @@
     <CModel id="Ascendant@WarpIn" parent="OneShotSpellFX">
         <EditorCategories value="Race:Taldarim"/>
         <Model value="Assets\Units\Protoss\HighTemplarTaldarim_WarpIn\HighTemplarTaldarim_WarpIn.m3"/>
+    </CModel>
+    <CModel id="Ascendant@Shadow" parent="HighTemplarShadowBase">
+        <Model value="Assets\Units\Protoss\HighTemplarShadowTrail\HighTemplarShadowTrail.m3"/>
     </CModel>
 
     <CSound id="Ascendant@Death" parent="Protoss_DeathFX">
@@ -632,9 +654,11 @@
     </CEffectDamage>
 
     <CActorAction id="Ascendant_MindBlast@Attack" parent="GenericAttack" effectAttack="Ascendant_MindBlast@Damage">
+        <HostImpactSource Scope="Target"/>
+        <ShieldFlashType value="None"/>
         <ImpactSiteOps Ops="SOpAttachCenter"/>
     </CActorAction>
-    <CActorRange id="Ascendant_MindBlast@Range" parent="RangeAbil" abil="Ascendant_MindBlast"></CActorRange>
+    <CActorRange id="Ascendant_MindBlast@Range" parent="RangeAbil" abil="Ascendant_MindBlast"/>
     <CActorSimple id="Ascendant_MindBlast@Animation">
         <On Terms="Abil.Ascendant_MindBlast.SourceCastStart" Send="Create"/>
         <On Terms="ActorCreation" Target="_Unit" Send="AnimPlay Spell Spell,A"/>
