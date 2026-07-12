@@ -126,7 +126,9 @@
     
     <CDataCollectionUnit default="1" id="WeaponBase">
         <Name value="Weapon/Name/##id##"/>
-        <UpgradeInfoWeapon index="0" DamagePerDice="1"/>
+        <UpgradeInfoWeapon DamagePerDice="1"/> <!-- Main Damage -->
+        <UpgradeInfoWeapon DamagePerDice="0"/> <!-- vs Armored -->
+        <UpgradeInfoWeapon DamagePerDice="0"/> <!-- vs Light -->
         <Pattern value="WeaponPattern_Base"/>
         <EditorIconSource value="Weapon"/>
     </CDataCollectionUnit>
@@ -439,7 +441,9 @@
         <?token id="icon" type="CImagePath" value="Bogus"?>
         <Icon value="##icon##"/>
         <EffectArrayTemplate Operation="Set" Reference="Weapon,^ParamId^,Icon" Value="{Upgrade,##id##,Icon}"/>
-        <EffectArrayTemplate Reference="Effect,^ParamId^@Damage,Amount" Value="{DataColecction,^ParamId^,UpgradeInfoWeapon[0].DamagePerDice}"/>
+        <EffectArrayTemplate Reference="Effect,^ParamId^@Damage,Amount" Value="{DataCollection,^ParamId^,UpgradeInfoWeapon[0].DamagePerDice}"/>
+        <EffectArrayTemplate Reference="Effect,^ParamId^@Damage,AttributeBonus[Armored]" Value="{DataCollection,^ParamId^,UpgradeInfoWeapon[1].DamagePerDice}"/>
+        <EffectArrayTemplate Reference="Effect,^ParamId^@Damage,AttributeBonus[Light]" Value="{DataCollection,^ParamId^,UpgradeInfoWeapon[2].DamagePerDice}"/>
         <EffectArrayTemplate Reference="Weapon,^ParamId^,Level" Value="1"/>
     </CUpgrade>
 
