@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog>
+    <CButton id="Primalisk"></CButton>
+    
+    <CUnit id="Primalisk"></CUnit>
+    
+    <CActorUnit id="Primalisk" parent="AdvancedStandard_Ground" unitName="Primalisk"/>
+    
+    <CModel id="Primalisk" parent="Unit">
+        <Model value=""/>
+    </CModel>
+    <CModel id="Primalisk@Death" parent="UnitDeath">
+        <Model value=""/>
+    </CModel>
+    <CModel id="Primalisk@Portrait" parent="Portrait">
+        <Model value=""/>
+    </CModel>
+
+    <CDataCollectionUnit id="Primalisk" parent="UnitGround">
+        <EditorCategories value="DataGroup:Unit,DataFamily:Campaign,Race:Zerg,ObjectType:Unit"/>
+        <DataRecord Entry="Button,Primalisk"/>
+        <DataRecord Entry="Unit,Primalisk"/>
+        <DataRecord Entry="Actor,Primalisk"/>
+        <DataRecord Entry="Model,Primalisk"/>
+        <DataRecord Entry="Model,Primalisk@Death"/>
+        <DataRecord Entry="Model,Primalisk@Portrait"/>
+        <DataRecord Entry="Sound,Primalisk@Attack"/>
+        <DataRecord Entry="Sound,Primalisk@Help"/>
+        <DataRecord Entry="Sound,Primalisk@Pissed"/>
+        <DataRecord Entry="Sound,Primalisk@Yes"/>
+        <DataRecord Entry="Sound,Primalisk@What"/>
+        <DataRecord Entry="Sound,Primalisk@Ready"/>
+        <DataRecord Entry="Requirement,Primalisk@Use"/>
+        <DataRecord Entry="Light,Primalisk@Portrait"/>
+        <DataRecord Entry="Validator,Primalisk@Is"/>
+        <DataRecord Entry="Validator,Primalisk@Target"/>
+        <DataRecord Entry="Validator,Primalisk@Not"/>
+        <DataRecord Entry="Validator,Primalisk@NotTarget"/>
+    </CDataCollectionUnit>
+    
+</Catalog>
