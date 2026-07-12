@@ -1,38 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Catalog>
     <!-- ========== Unit ========== -->
-    <CButton id="SentryAiur" parent="UnitButton_OnlyGround">
+    <CButton id="SentryAiur" parent="UnitButton_GroundAir">
         <Icon value="Assets\Textures\btn-unit-protoss-sentry.dds"/>
     </CButton>
 
-    <CUnit id="SentryAiur" parent="Generic_Unit_Ground" race="Prot">
+    <CUnit id="SentryAiur" parent="Generic_Protoss_Unit_Ground" race="Prot">
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
-        <Mover value="Ground"/>
-        <AbilArray Link="attack"/>
-        <AbilArray Link="stop"/>
-        <AbilArray Link="move"/>
-        <AbilArray Link="Warpable"/>
-        <AbilArray Link="ProgressRally"/>
-        <AbilArray Link="BuildInProgress"/>
-        <AbilArray Link="GuardianShieldVoid"/>
-        <AbilArray Link="VoidSentryShieldRepairDouble"/>
-        <WeaponArray Link="DisruptionBeam"/>
+        <AbilArray Link="SentryAiur_GuardianShield"/>
+        <AbilArray Link="SentryAiur_ShieldRepair"/>
         <CardLayouts index="0">
-            <LayoutButtons Face="Move" Type="AbilCmd" AbilCmd="move,Move" Row="0" Column="0"/>
-            <LayoutButtons Face="Stop" Type="AbilCmd" AbilCmd="stop,Stop" Row="0" Column="1"/>
-            <LayoutButtons Face="MoveHoldPosition" Type="AbilCmd" AbilCmd="move,HoldPos" Row="0" Column="2"/>
-            <LayoutButtons Face="MovePatrol" Type="AbilCmd" AbilCmd="move,Patrol" Row="0" Column="3"/>
-            <LayoutButtons Face="Attack" Type="AbilCmd" AbilCmd="attack,Execute" Row="0" Column="4"/>
-            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,SetRallyPoint" Row="2" Column="4"/>
-            <LayoutButtons Face="GuardianShield" Type="AbilCmd" AbilCmd="GuardianShieldVoid,Execute" Row="2" Column="1"/>
-            <LayoutButtons Face="VoidSentryShieldRepairDouble" Type="AbilCmd" AbilCmd="VoidSentryShieldRepairDouble,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="SentryAiur_GuardianShield" Type="AbilCmd" AbilCmd="SentryAiur_GuardianShield,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="SentryAiur_ShieldRepair" Type="AbilCmd" AbilCmd="SentryAiur_ShieldRepair,Execute" Row="2" Column="1"/>
         </CardLayouts>
         <Attributes index="Light" value="1"/>
         <Attributes index="Mechanical" value="1"/>
         <LifeStart value="40"/>
         <LifeMax value="40"/>
         <LifeArmor value="1"/>
-        <LifeArmorName value="Unit/LifeArmorName/ProtossPlating"/>
         <ShieldsStart value="40"/>
         <ShieldsMax value="40"/>
         <ShieldArmor value="0"/>
@@ -49,7 +34,6 @@
         <Radius value="0.375"/>
         <SeparationRadius value="0.375"/>
         <MinimapRadius value="0.375"/>
-        <Height value="0"/>
         <CostResource index="Minerals" value="50"/>
         <CostResource index="Vespene" value="100"/>
         <CostResource index="Supply" value="2"/>
@@ -57,32 +41,30 @@
         <GlossaryPriority value="30"/>
         <GlossaryStrongArray value="Marine"/>
         <GlossaryWeakArray value="Roach"/>
-        <GlossaryCategory value="Unit/Category/ProtossUnits"/>
-        <HotkeyCategory value="Unit/Category/ProtossStory"/>
     </CUnit>
 
     <CActorUnit id="SentryAiur" parent="AdvancedUnitStandard" unitName="SentryAiur">
         <Macros value="TerrainSquibAnimations"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create Sentry_Land"/>
         <On Terms="Abil.ForceField.SourceCastStart" Send="$Spell"/>
-        <On Terms="Effect.GuardianShieldPersistent.Start" Send="AnimBracketStart Guardian Stand,Work,Start Stand,Work Stand,Work,End"/>
-        <On Terms="Effect.GuardianShieldPersistent.Stop" Send="AnimBracketStop Guardian"/>
+        <On Terms="Effect.SentryAiur_GuardianShield@Persistent.Start" Send="AnimBracketStart Guardian Stand,Work,Start Stand,Work Stand,Work,End"/>
+        <On Terms="Effect.SentryAiur_GuardianShield@Persistent.Stop" Send="AnimBracketStop Guardian"/>
         <On Terms="Signal.*.CampaignBeamCreated" Send="RefSetFromMsg ::actor.MyAttackBeam ::Sender"/>
         <On Terms="Signal.*.UnitRemoved" Target="::actor.MyAttackBeam" Send="Destroy Immediate"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <AnimBlendTime value="0.650000"/>
         <ModelFlags index="OutlineEmitter" value="1"/>
         <Baselines index="Walk" BlendIn="1.500000" BlendOut="2.000000"/>
-        <BuildModel value="SentryAiurWarpIn"/>
-        <DeathArray index="Normal" ModelLink="SentryAiurDeath" SoundLink="Sentry_Explode"/>
+        <BuildModel value="SentryAiur@WarpIn"/>
+        <DeathArray index="Normal" ModelLink="SentryAiur@Death" SoundLink="Sentry_Explode"/>
         <DeathCustoms index="0" ModelLink="ZergSmallUnitDeathLow" Name="AntiGravGeneric"/>
         <DeathCustoms index="1" ModelLink="ProtossSmallUnitDeathLow" Name="AntiGravProtoss"/>
         <DeathCustoms index="2" ModelLink="TerranSmallUnitDeathLow" Name="AntiGravTerran"/>
         <DeathCustoms index="3" ModelLink="ZergSmallUnitDeathLow" Name="AntiGravZerg"/>
         <DeathCustoms index="4" ModelLink="Invisible" Name="Vortex"/>
-        <PlacementModel value="SentryAiurPlacement"/>
+        <PlacementModel value="SentryAiur@Placement"/>
         <PlacementSound value="Protoss_BuildingPlacementSmall"/>
-        <PortraitModel value="SentryPortrait"/>
+        <PortraitModel value="SentryAiur@Portrait"/>
         <TerrainSquibs>
             <MovementDistance value="0.150000,0.150000"/>
             <IdlePeriod value="0.100000,0.250000"/>
@@ -129,7 +111,7 @@
         <UnitGlossaryCamera value="Star2CameraMid06"/>
         <PlanetPanelCamera value="Star2CameraMid06"/>
     </CModel>
-    <CModel id="SentryAiurDeath" parent="UnitDeath" Race="Protoss">
+    <CModel id="SentryAiur@Death" parent="UnitDeath" Race="Protoss">
         <Model value="Assets\Units\Protoss\SentryDeathEx1\SentryDeathEx1.m3"/>
         <LowQualityModel value="ProtossMediumUnitDeathLow"/>
         <Events>
@@ -148,7 +130,7 @@
         </Events>
         <Occlusion value="Show"/>
     </CModel>
-    <CModel id="SentryAiurPlacement" parent="Placement" Race="Protoss">
+    <CModel id="SentryAiur@Placement" parent="Placement" Race="Protoss">
         <Model value="Assets\Units\Protoss\SentryPlacement\SentryPlacement.m3"/>
         <Occlusion value="Show"/>
         <Radius value="-1.000000"/>
@@ -157,7 +139,7 @@
         <SelectionRadius value="0.499700"/>
         <ShadowRadius value="0.499700"/>
     </CModel>
-    <CModel id="SentryAiurWarpIn" parent="OneShotSpellFX">
+    <CModel id="SentryAiur@WarpIn" parent="OneShotSpellFX">
         <Model value="Assets\Units\Protoss\SentryWarpIn\SentryWarpIn.m3"/>
         <LowQualityModel value="ProtossUnitBirth"/>
         <EditorCategories value="Race:Protoss"/>
@@ -167,7 +149,7 @@
         <SelectionRadius value="0.666500"/>
         <ShadowRadius value="0.666500"/>
     </CModel>
-    <CModel id="SentryPortrait" parent="SentryPortraitBase">
+    <CModel id="SentryAiur@Portrait" parent="SentryPortraitBase">
         <Model value="Assets\Portraits\Protoss\SentryPortrait\SentryPortrait.m3"/>
         <Image value="Assets\Textures\SentryPortrait_Static.dds"/>
         <Lighting value="SentryPortrait"/>
@@ -272,12 +254,6 @@
         <Volume value="-12.500000,-12.500000"/>
     </CSound>
 
-    <CMoverAvoid id="Ground">
-        <PlacementArray index="Prevent">
-            <Bits index="GroundNoSpawn" value="1"/>
-        </PlacementArray>
-    </CMoverAvoid>
-
     <CLight id="SentryAiur@Portrait" parent="default">
         <ToDInfoArray index="0" Id="PsionicWaveUp" AmbientColor="0.235294,0.309804,0.392157" Colorize="1">
             <Param index="HDRExposure" value="1.500000"/>
@@ -318,10 +294,10 @@
         <DataRecord Entry="Unit,SentryAiur"/>
         <DataRecord Entry="Actor,SentryAiur"/>
         <DataRecord Entry="Model,SentryAiur"/>
-        <DataRecord Entry="Model,SentryAiurDeath"/>
-        <DataRecord Entry="Model,SentryAiurPlacement"/>
-        <DataRecord Entry="Model,SentryAiurWarpIn"/>
-        <DataRecord Entry="Model,SentryPortrait"/>
+        <DataRecord Entry="Model,SentryAiur@Death"/>
+        <DataRecord Entry="Model,SentryAiur@Placement"/>
+        <DataRecord Entry="Model,SentryAiur@WarpIn"/>
+        <DataRecord Entry="Model,SentryAiur@Portrait"/>
         <DataRecord Entry="Model,ProtossSmallUnitDeathLow"/>
         <DataRecord Entry="Model,TerranSmallUnitDeathLow"/>
         <DataRecord Entry="Model,ZergSmallUnitDeathLow"/>
@@ -333,7 +309,6 @@
         <DataRecord Entry="Sound,Sentry_Ready"/>
         <DataRecord Entry="Sound,Sentry_What"/>
         <DataRecord Entry="Sound,Sentry_Yes"/>
-        <DataRecord Entry="Mover,Ground"/>
         <DataRecord Entry="Light,SentryAiur@Portrait"/>
         <DataRecord Entry="Requirement,SentryAiur"/>
         <DataRecord Entry="Validator,SentryAiur@Is"/>
@@ -352,38 +327,39 @@
     </CDataCollectionUnit>
 
     <!-- ========== Weapons ========== -->
-    <CWeaponLegacy id="DisruptionBeam">
+    <CWeaponLegacy id="SentryAiur_Weapon">
         <EditorCategories value="Race:Protoss"/>
         <Icon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel0.dds"/>
-        <DisplayEffect value="DisruptionBeamDamage"/>
+        <DisplayEffect value="SentryAiur_Weapon@Damage"/>
         <TargetFilters value="Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
         <Range value="6"/>
         <TeleportResetRange value="0"/>
         <Period value="1"/>
         <LegacyOptions index="CanRetargetWhileChanneling" value="1"/>
+         <Effect value="SentryAiur_Weapon@Beam"/>
     </CWeaponLegacy>
 
-    <CEffectCreatePersistent id="DisruptionBeam">
+    <CEffectCreatePersistent id="SentryAiur_Weapon@Beam">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="TargetUnit"/>
         <TimeScaleSource Value="Caster"/>
         <Flags index="Channeled" value="1"/>
         <Flags index="PersistUntilDestroyed" value="1"/>
-        <InitialEffect value="DisruptionBeamDamage"/>
-        <PeriodicEffectArray value="DisruptionBeamDamage"/>
+        <InitialEffect value="SentryAiur_Weapon@Damage"/>
+        <PeriodicEffectArray value="SentryAiur_Weapon@Damage"/>
         <PeriodicPeriodArray value="1"/>
     </CEffectCreatePersistent>
-    <CEffectDamage id="DisruptionBeamDamage" parent="DU_WEAP">
+    <CEffectDamage id="SentryAiur_Weapon@Damage" parent="DU_WEAP">
         <EditorCategories value="Race:Protoss"/>
         <Kind value="Ranged"/>
         <Amount value="6"/>
     </CEffectDamage>
 
-    <CActorAction id="SentryAttack" parent="GenericAttackBase">
-        <On Terms="Effect.DisruptionBeam.Start" Send="Create"/>
-        <On Terms="Effect.DisruptionBeamDamage.Start; FromEffectTreeDescendant" Send="ActionDamage"/>
-        <On Terms="Effect.DisruptionBeam.Stop" Send="Destroy WhenReady"/>
-        <Beam value="SentryAttackBeam"/>
+    <CActorAction id="SentryAiur_Weapon@Attack" parent="GenericAttackBase">
+        <On Terms="Effect.SentryAiur_Weapon@Beam.Start" Send="Create"/>
+        <On Terms="Effect.SentryAiur_Weapon@Damage.Start; FromEffectTreeDescendant" Send="ActionDamage"/>
+        <On Terms="Effect.SentryAiur_Weapon@Beam.Stop" Send="Destroy WhenReady"/>
+        <Beam value="SentryAiur_Weapon@AttackBeam"/>
         <ImpactSiteOps Ops="SOpAttachHarness SOpAttachVolumeNoVizEnhance SOpForwardLaunchGuide"/>
         <AcquisitionYawHalfArc value="10.000000"/>
         <ActionFlags index="AlignedImpactsAndDamages" value="1"/>
@@ -391,41 +367,41 @@
         <ActionFlags index="LaunchForceSite" value="1"/>
         <Lifetime value="-1.000000"/>
     </CActorAction>
-    <CActorBeamSimple id="SentryAttackBeam" parent="BeamSimpleAnimationStyleContinuous">
+    <CActorBeamSimple id="SentryAiur_Weapon@AttackBeam" parent="BeamSimpleAnimationStyleContinuous">
         <Macros value="ActionTargetTeleportDestroy"/>
-        <On Terms="Effect.DisruptionBeam.Stop; At Effect" Send="AnimBracketStop BSD"/>
+        <On Terms="Effect.SentryAiur_Weapon@Beam.Stop; At Effect" Send="AnimBracketStop BSD"/>
         <On Terms="ActorCreation" Send="RefSetFromRequest ::actor.CasterUnit _Unit Caster Find"/>
         <On Terms="ActorCreation" Target="::actor.CasterUnit" Send="Signal CampaignBeamCreated"/>
     </CActorBeamSimple>
-    <CActorSound id="SentryAttackStart" parent="SoundOneShot">
-        <On Terms="Effect.DisruptionBeam.Start" Send="Create"/>
-        <Sound value="Sentry_WeaponStart"/>
+    <CActorSound id="SentryAiur_Weapon@AttackStart" parent="SoundOneShot">
+        <On Terms="Effect.SentryAiur_Weapon@Beam.Start" Send="Create"/>
+        <Sound value="SentryAiur_Weapon@StartSound"/>
     </CActorSound>
-    <CActorSound id="SentryAttackLoop" parent="SoundContinuous">
-        <On Terms="Effect.DisruptionBeam.Start" Send="Create"/>
-        <On Terms="Effect.DisruptionBeam.Stop" Send="Destroy"/>
-        <Sound value="Sentry_WeaponLoop"/>
+    <CActorSound id="SentryAiur_Weapon@AttackLoop" parent="SoundContinuous">
+        <On Terms="Effect.SentryAiur_Weapon@Beam.Start" Send="Create"/>
+        <On Terms="Effect.SentryAiur_Weapon@Beam.Stop" Send="Destroy"/>
+        <Sound value="SentryAiur_Weapon@LoopSound"/>
     </CActorSound>
-    <CActorSound id="SentryAttackStop" parent="SoundOneShot">
-        <On Terms="Effect.DisruptionBeam.Stop" Send="Create"/>
-        <Sound value="Sentry_WeaponEnd"/>
+    <CActorSound id="SentryAiur_Weapon@AttackStop" parent="SoundOneShot">
+        <On Terms="Effect.SentryAiur_Weapon@Beam.Stop" Send="Create"/>
+        <Sound value="SentryAiur_Weapon@EndSound"/>
     </CActorSound>
 
-    <CModel id="SentryAttackBeam" parent="PersistentSpellFX">
+    <CModel id="SentryAiur_Weapon@AttackBeam" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Protoss\NullifierBeam\NullifierBeam.m3"/>
         <LowQualityModel value="SentryAttackBeamLow"/>
         <EditorCategories value="Race:Protoss"/>
         <RadiusLoose value="1.000000"/>
     </CModel>
 
-    <CSound id="Sentry_WeaponStart" parent="Combat">
+    <CSound id="SentryAiur_Weapon@StartSound" parent="Combat">
         <EditorCategories value="Race:Protoss"/>
         <AssetArray File="Assets\Sounds\Protoss\Sentry\Sentry_WeaponStart.wav"/>
         <DupeDestroyCount value="4"/>
         <Pitch value="-1.000000,1.640000"/>
         <Volume value="-3.000000,-3.000000"/>
     </CSound>
-    <CSound id="Sentry_WeaponLoop" parent="Combat">
+    <CSound id="SentryAiur_Weapon@LoopSound" parent="Combat">
         <EditorCategories value="Race:Protoss"/>
         <AssetArray File="Assets\Sounds\Protoss\Sentry\Sentry_WeaponLoop.wav"/>
         <DupeMuteCount value="4"/>
@@ -439,7 +415,7 @@
         <SustainFade index="1" Time="100"/>
         <Volume value="-3.000000,-3.000000"/>
     </CSound>
-    <CSound id="Sentry_WeaponEnd" parent="Combat">
+    <CSound id="SentryAiur_Weapon@EndSound" parent="Combat">
         <EditorCategories value="Race:Protoss"/>
         <AssetArray File="Assets\Sounds\Protoss\Sentry\Sentry_WeaponEnd.wav"/>
         <DupeDestroyCount value="4"/>
@@ -447,35 +423,35 @@
         <Volume value="-3.000000,-3.000000"/>
     </CSound>
 
-    <CDataCollectionUnit id="DisruptionBeam" parent="Weapon_Instant">
+    <CDataCollectionUnit id="SentryAiur_Weapon" parent="Weapon_Instant">
         <EditorCategories value="DataGroup:Weapon,DataFamily:Campaign,Race:Protoss,ObjectType:Spell"/>
-        <DataRecord Entry="Weapon,DisruptionBeam"/>
-        <DataRecord Entry="Effect,DisruptionBeam"/>
-        <DataRecord Entry="Effect,DisruptionBeamDamage"/>
-        <DataRecord Entry="Actor,SentryAttack"/>
-        <DataRecord Entry="Actor,SentryAttackBeam"/>
-        <DataRecord Entry="Actor,SentryAttackStart"/>
-        <DataRecord Entry="Actor,SentryAttackLoop"/>
-        <DataRecord Entry="Actor,SentryAttackStop"/>
-        <DataRecord Entry="Model,SentryAttackBeam"/>
-        <DataRecord Entry="Sound,Sentry_WeaponStart"/>
-        <DataRecord Entry="Sound,Sentry_WeaponLoop"/>
-        <DataRecord Entry="Sound,Sentry_WeaponEnd"/>
+        <DataRecord Entry="Weapon,SentryAiur_Weapon"/>
+        <DataRecord Entry="Effect,SentryAiur_Weapon@Beam"/>
+        <DataRecord Entry="Effect,SentryAiur_Weapon@Damage"/>
+        <DataRecord Entry="Actor,SentryAiur_Weapon@Attack"/>
+        <DataRecord Entry="Actor,SentryAiur_Weapon@AttackBeam"/>
+        <DataRecord Entry="Actor,SentryAiur_Weapon@AttackStart"/>
+        <DataRecord Entry="Actor,SentryAiur_Weapon@AttackLoop"/>
+        <DataRecord Entry="Actor,SentryAiur_Weapon@AttackStop"/>
+        <DataRecord Entry="Model,SentryAiur_Weapon@AttackBeam"/>
+        <DataRecord Entry="Sound,SentryAiur_Weapon@StartSound"/>
+        <DataRecord Entry="Sound,SentryAiur_Weapon@LoopSound"/>
+        <DataRecord Entry="Sound,SentryAiur_Weapon@EndSound"/>
         <TechInfoUpgradeUsed value="ProtossGroundWeapons@1"/>
         <TechInfoUpgradeUsed value="ProtossGroundWeapons@2"/>
         <TechInfoUpgradeUsed value="ProtossGroundWeapons@3"/>
     </CDataCollectionUnit>
 
     <!-- ========== Abilities ========== -->
-    <!-- GuardianShieldVoid -->
-    <CButton id="GuardianShield">
+    <!-- SentryAiur_GuardianShield -->
+    <CButton id="SentryAiur_GuardianShield">
         <Icon value="Assets\Textures\btn-ability-protoss-shieldbattery-color.dds"/>
         <AlertIcon value="Assets\Textures\btn-ability-protoss-shieldbattery-color.dds"/>
     </CButton>
 
-    <CAbilEffectInstant id="GuardianShieldVoid">
+    <CAbilEffectInstant id="SentryAiur_GuardianShield">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <Effect index="0" value="GuardianShieldPersistent"/>
+        <Effect index="0" value="SentryAiur_GuardianShield@Persistent"/>
         <Flags index="AllowMovement" value="1"/>
         <Flags index="AutoCast" value="1"/>
         <Flags index="BestUnit" value="1"/>
@@ -488,10 +464,10 @@
         <AutoCastFilters value="Visible;Neutral,Enemy"/>
         <AutoCastValidatorArray value="VoidSentryNearbyFriendlyUnitInCombat"/>
         <AINotifyEffect value=""/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="GuardianShield"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="SentryAiur_GuardianShield"/>
     </CAbilEffectInstant>
 
-    <CBehaviorBuff id="GuardianShield">
+    <CBehaviorBuff id="SentryAiur_GuardianShield@Buff">
         <Alignment value="Positive"/>
         <InfoIcon value="Assets\Textures\btn-ability-protoss-shieldbattery.dds"/>
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
@@ -503,34 +479,34 @@
         </DamageResponse>
     </CBehaviorBuff>
 
-    <CEffectCreatePersistent id="GuardianShieldPersistent">
+    <CEffectCreatePersistent id="SentryAiur_GuardianShield@Persistent">
         <EditorCategories value="Race:Protoss"/>
         <WhichLocation Value="SourceUnit"/>
-        <InitialEffect value="GuardianShieldSearch"/>
+        <InitialEffect value="SentryAiur_GuardianShield@Search"/>
         <PeriodCount value="30"/>
         <PeriodicValidator value="NotVortexd"/>
-        <PeriodicEffectArray value="GuardianShieldSearch"/>
+        <PeriodicEffectArray value="SentryAiur_GuardianShield@Search"/>
         <PeriodicPeriodArray value="0.5"/>
     </CEffectCreatePersistent>
-    <CEffectEnumArea id="GuardianShieldSearch">
+    <CEffectEnumArea id="SentryAiur_GuardianShield@Search">
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="TargetUnit"/>
         <SearchFilters value="-;Neutral,Enemy,Structure,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray Radius="4" Effect="GuardianShieldApplyBehavior"/>
+        <AreaArray Radius="4" Effect="SentryAiur_GuardianShield@ApplyBuff"/>
         <SearchFlags index="ExtendByUnitRadius" value="1"/>
         <SearchFlags index="SameCliff" value="1"/>
     </CEffectEnumArea>
-    <CEffectApplyBehavior id="GuardianShieldApplyBehavior">
+    <CEffectApplyBehavior id="SentryAiur_GuardianShield@ApplyBuff">
         <ValidatorArray value="SourceNotHidden"/>
         <EditorCategories value="Race:Protoss"/>
-        <Behavior value="GuardianShield"/>
+        <Behavior value="SentryAiur_GuardianShield@Buff"/>
     </CEffectApplyBehavior>
 
-    <CActorModel id="GuardianShield" parent="ModelAnimationStyleContinuous">
+    <CActorModel id="SentryAiur_GuardianShield@Model" parent="ModelAnimationStyleContinuous">
         <Inherits index="CloakEffect" value="1"/>
         <Inherits index="Visibility" value="1"/>
-        <On Terms="Effect.GuardianShieldPersistent.Start; At Caster" Send="Create"/>
-        <On Terms="Effect.GuardianShieldPersistent.Stop; At Caster" Send="AnimBracketStop BSD"/>
+        <On Terms="Effect.SentryAiur_GuardianShield@Persistent.Start; At Caster" Send="Create"/>
+        <On Terms="Effect.SentryAiur_GuardianShield@Persistent.Stop; At Caster" Send="AnimBracketStop BSD"/>
         <On Terms="ModelEvent; ModelEventName SoundStart" Send="Create GuardianShieldSoundBirth"/>
         <On Terms="ModelEvent; ModelEventName SoundLoopStart" Send="Create GuardianShieldSoundLoop"/>
         <On Terms="ModelEvent; ModelEventName SoundLoopEnd" Target="GuardianShieldSoundLoop" Send="Destroy"/>
@@ -539,16 +515,16 @@
         <HostSiteOps Ops="SOpAttachCenter"/>
         <ModelFlags index="AllowHitTest" value="0"/>
     </CActorModel>
-    <CActorModel id="GuardianShieldImpact" parent="ModelAnimationStyleOneShot">
+    <CActorModel id="SentryAiur_GuardianShield@Impact" parent="ModelAnimationStyleOneShot">
         <Terms value="Cap 1"/>
         <Inherits index="CloakEffect" value="1"/>
-        <On Terms="Behavior.GuardianShield.On" Send="Create"/>
+        <On Terms="Behavior.SentryAiur_GuardianShield@Buff.On" Send="Create"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenterSoft"/>
         <ModelFlags index="AllowHitTest" value="0"/>
     </CActorModel>
 
-    <CModel id="GuardianShield" parent="PersistentSpellFX">
+    <CModel id="SentryAiur_GuardianShield@Model" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Protoss\SentryShieldBubble_Ex2\SentryShieldBubble_Ex2.m3"/>
         <EditorCategories value="Race:Protoss"/>
         <Events>
@@ -572,31 +548,31 @@
         <ScaleMax value="0.850000,0.850000,0.850000"/>
         <ScaleMin value="0.850000,0.850000,0.850000"/>
     </CModel>
-    <CModel id="GuardianShieldImpact" parent="PersistentSpellFX">
+    <CModel id="SentryAiur_GuardianShield@ImpactModel" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Protoss\SentryShieldImpact\SentryShieldImpact.m3"/>
         <EditorCategories value="Race:Protoss"/>
     </CModel>
 
-    <CDataCollectionUnit id="GuardianShieldVoid" parent="AbilityBase">
+    <CDataCollectionUnit id="SentryAiur_GuardianShield" parent="AbilityBase">
         <EditorCategories value="DataGroup:Ability,DataFamily:Campaign,Race:Protoss,ObjectType:Spell"/>
-        <DataRecord Entry="Button,GuardianShield"/>
-        <DataRecord Entry="Abil,GuardianShieldVoid"/>
-        <DataRecord Entry="Behavior,GuardianShield"/>
-        <DataRecord Entry="Effect,GuardianShieldPersistent"/>
-        <DataRecord Entry="Effect,GuardianShieldSearch"/>
-        <DataRecord Entry="Effect,GuardianShieldApplyBehavior"/>
-        <DataRecord Entry="Actor,GuardianShield"/>
-        <DataRecord Entry="Actor,GuardianShieldImpact"/>
-        <DataRecord Entry="Model,GuardianShield"/>
-        <DataRecord Entry="Model,GuardianShieldImpact"/>
+        <DataRecord Entry="Button,SentryAiur_GuardianShield"/>
+        <DataRecord Entry="Abil,SentryAiur_GuardianShield"/>
+        <DataRecord Entry="Behavior,SentryAiur_GuardianShield@Buff"/>
+        <DataRecord Entry="Effect,SentryAiur_GuardianShield@Persistent"/>
+        <DataRecord Entry="Effect,SentryAiur_GuardianShield@Search"/>
+        <DataRecord Entry="Effect,SentryAiur_GuardianShield@ApplyBuff"/>
+        <DataRecord Entry="Actor,SentryAiur_GuardianShield@Model"/>
+        <DataRecord Entry="Actor,SentryAiur_GuardianShield@Impact"/>
+        <DataRecord Entry="Model,SentryAiur_GuardianShield@Model"/>
+        <DataRecord Entry="Model,SentryAiur_GuardianShield@ImpactModel"/>
     </CDataCollectionUnit>
 
-    <!-- VoidSentryShieldRepairDouble -->
-    <CButton id="VoidSentryShieldRepairDouble">
+    <!-- SentryAiur_ShieldRepair -->
+    <CButton id="SentryAiur_ShieldRepair">
         <Icon value="Assets\Textures\btn-ability-protoss-doubleshieldrecharge.dds"/>
     </CButton>
 
-    <CAbilEffectTarget id="VoidSentryShieldRepairDouble">
+    <CAbilEffectTarget id="SentryAiur_ShieldRepair">
         <EditorCategories value="Race:Terran,AbilityorEffectType:Units"/>
         <Flags index="AutoCast" value="1"/>
         <Flags index="AutoCastOn" value="1"/>
@@ -620,81 +596,74 @@
         <AutoCastValidatorArray value="CasterHas10Energy"/>
         <UseMarkerArray index="Approach" value="0"/>
         <UseMarkerArray index="Prep" value="0"/>
+        <Effect index="0" value="SentryAiur_ShieldRepair@Healer"/>
         <DefaultError value="RequiresHealTarget"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="VoidSentryShieldRepairDouble"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="SentryAiur_ShieldRepair"/>
     </CAbilEffectTarget>
 
-    <CEffectCreateHealer id="VoidSentryShieldRepairDouble">
+    <CEffectCreateHealer id="SentryAiur_ShieldRepair@Healer">
         <ValidatorArray value="ShieldsNotFull"/>
         <ValidatorArray value="noMarkers"/>
         <ValidatorArray value="NotWarpingIn"/>
         <ValidatorArray value="HiddenCompareAB"/>
         <ValidatorArray value="HiddenCompareBA"/>
         <ValidatorArray value="NotVortexd"/>
-        <PeriodicEffect value="VoidSentryShieldRepairDoublePeriodicSet"/>
+        <PeriodicEffect value="SentryAiur_ShieldRepair@PeriodicSet"/>
         <PeriodicPeriod value="0.33"/>
         <DrainVital value="Energy"/>
         <DrainVitalCostFactor value="0.33"/>
         <RechargeVital value="Shields"/>
         <RechargeVitalRate value="9"/>
-        <InitialEffect value="VoidSentryShieldRepairDoubleInitialSet"/>
-        <FinalEffect value="SentryShieldRepairDoubleRemoveBehavior"/>
+        <InitialEffect value="SentryAiur_ShieldRepair@InitialSet"/>
+        <FinalEffect value="SentryAiur_ShieldRepair@RemoveBehavior"/>
     </CEffectCreateHealer>
-    <CEffectSet id="VoidSentryShieldRepairDoublePeriodicSet"/>
-    <CEffectSet id="VoidSentryShieldRepairDoubleInitialSet"/>
-    <CEffectRemoveBehavior id="SentryShieldRepairDoubleRemoveBehavior"/>
+    <CEffectSet id="SentryAiur_ShieldRepair@PeriodicSet"/>
+    <CEffectSet id="SentryAiur_ShieldRepair@InitialSet"/>
+    <CEffectRemoveBehavior id="SentryAiur_ShieldRepair@RemoveBehavior"/>
 
-    <CActorBeamSimple id="SentryShieldRepairBeam" parent="BeamSimpleAnimationStyleContinuous">
+    <CActorBeamSimple id="SentryAiur_ShieldRepair@Beam" parent="BeamSimpleAnimationStyleContinuous">
         <Inherits index="Visibility" value="1"/>
-        <On Terms="Effect.VoidSentryShieldRepair.TargetStart" Send="Create"/>
-        <On Terms="Effect.VoidSentryShieldRepair.TargetStop" Send="AnimBracketStop BSD"/>
-        <On Terms="Effect.VoidSentryShieldRepairDouble.TargetStart" Send="Create"/>
-        <On Terms="Effect.VoidSentryShieldRepairDouble.TargetStop" Send="AnimBracketStop BSD"/>
+        <On Terms="Effect.SentryAiur_ShieldRepair@Healer.TargetStart" Send="Create"/>
+        <On Terms="Effect.SentryAiur_ShieldRepair@Healer.TargetStop" Send="AnimBracketStop BSD"/>
         <HostForProps Subject="_Unit" Scope="Caster" Actor="Find"/>
-        <Model value="Sentry_HealingBeam"/>
+        <Model value="SentryAiur_ShieldRepair@BeamModel"/>
         <ModelFlags index="AutomateGlobalLoops" value="1"/>
         <HostLaunch Subject="_Unit" Scope="Caster" Actor="Find"/>
         <HostLaunchSiteOps Ops="SOpAttachWeapon"/>
         <HostImpact Subject="_Unit" Scope="Target" Actor="Find"/>
         <HostImpactSiteOps Ops="SOpAttachCenter"/>
     </CActorBeamSimple>
-    <CActorModel id="SentryShieldRepairModel" parent="ModelAnimationStyleContinuous">
+    <CActorModel id="SentryAiur_ShieldRepair@ImpactModel" parent="ModelAnimationStyleContinuous">
         <On Terms="ActorCreation" Send="$Birth PlayForever"/>
-        <On Terms="Effect.VoidSentryShieldRepair.TargetStart; At Target" Send="Create"/>
-        <On Terms="Effect.VoidSentryShieldRepair.TargetStop; At Target" Send="AnimBracketStop BSD"/>
-        <On Terms="Effect.VoidSentryShieldRepairDouble.TargetStart; At Target" Send="Create"/>
-        <On Terms="Effect.VoidSentryShieldRepairDouble.TargetStop; At Target" Send="AnimBracketStop BSD"/>
+        <On Terms="Effect.SentryAiur_ShieldRepair@Healer.TargetStart; At Target" Send="Create"/>
+        <On Terms="Effect.SentryAiur_ShieldRepair@Healer.TargetStop; At Target" Send="AnimBracketStop BSD"/>
         <On Terms="ActorOrphan" Send="Destroy"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
-        <Model value="Sentry_HealingBeam_Impact"/>
+        <Model value="SentryAiur_ShieldRepair@ImpactModel"/>
         <ModelFlags index="AutomateGlobalLoops" value="1"/>
     </CActorModel>
-    <CActorSound id="SentryShieldRepairSoundLoop" parent="SoundContinuous">
-        <On Terms="Effect.VoidSentryShieldRepair.TargetStart; At Target" Send="Create"/>
-        <On Terms="Effect.VoidSentryShieldRepair.TargetStop; At Target" Send="Destroy"/>
-        <On Terms="Effect.VoidSentryShieldRepairDouble.TargetStart; At Target" Send="Create"/>
-        <On Terms="Effect.VoidSentryShieldRepairDouble.TargetStop; At Target" Send="Destroy"/>
-        <On Terms="Effect.SentryRepairTargetPersistent.Start; At Target" Send="Create"/>
-        <On Terms="Effect.SentryRepairTargetPersistent.Stop; At Target" Send="Destroy"/>
+    <CActorSound id="SentryAiur_ShieldRepair@LoopSound" parent="SoundContinuous">
+        <On Terms="Effect.SentryAiur_ShieldRepair@Healer.TargetStart; At Target" Send="Create"/>
+        <On Terms="Effect.SentryAiur_ShieldRepair@Healer.TargetStop; At Target" Send="Destroy"/>
         <On Terms="ActorOrphan" Send="Destroy"/>
         <On Terms="ActorCreation" Send="Create SentryShieldRepairSoundStart"/>
         <On Terms="ActorDestruction" Send="Create SentryShieldRepairSoundStop"/>
         <Host Subject="_Selectable"/>
         <HostSiteOps Ops="SOpAttachOverhead"/>
-        <Sound value="SentryShieldRepair_Loop"/>
+        <Sound value="SentryAiur_ShieldRepair@LoopSound"/>
     </CActorSound>
 
-    <CModel id="Sentry_HealingBeam" parent="PersistentSpellFX">
+    <CModel id="SentryAiur_ShieldRepair@BeamModel" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Protoss\Sentry_HealingBeam\Sentry_HealingBeam.m3"/>
         <EditorCategories value="Race:Protoss"/>
     </CModel>
-    <CModel id="Sentry_HealingBeam_Impact" parent="PersistentSpellFX">
+    <CModel id="SentryAiur_ShieldRepair@ImpactModel" parent="PersistentSpellFX">
         <Model value="Assets\Effects\Protoss\Sentry_HealingBeam_Impact\Sentry_HealingBeam_Impact.m3"/>
         <EditorCategories value="Race:Protoss"/>
     </CModel>
 
-    <CSound id="SentryShieldRepair_Loop" parent="Spell">
+    <CSound id="SentryAiur_ShieldRepair@LoopSound" parent="Spell">
         <EditorCategories value="Race:Protoss"/>
         <AssetArray File="Assets\Sounds\ShieldBattery_ReCharge2_Loop.wav" FacialGroup=""/>
         <LoopCount value="-1"/>
@@ -729,126 +698,25 @@
         <CombineArray value="HasSOARadar"/>
     </CValidatorCombine>
 
-    <CDataCollectionUnit id="VoidSentryShieldRepairDouble" parent="AbilityBase">
+    <CDataCollectionUnit id="SentryAiur_ShieldRepair" parent="AbilityBase">
         <EditorCategories value="DataGroup:Ability,DataFamily:Campaign,Race:Protoss,ObjectType:Spell"/>
-        <DataRecord Entry="Button,VoidSentryShieldRepairDouble"/>
-        <DataRecord Entry="Abil,VoidSentryShieldRepairDouble"/>
-        <DataRecord Entry="Effect,VoidSentryShieldRepairDouble"/>
-        <DataRecord Entry="Effect,VoidSentryShieldRepairDoublePeriodicSet"/>
-        <DataRecord Entry="Effect,VoidSentryShieldRepairDoubleInitialSet"/>
-        <DataRecord Entry="Effect,SentryShieldRepairDoubleRemoveBehavior"/>
-        <DataRecord Entry="Actor,SentryShieldRepairBeam"/>
-        <DataRecord Entry="Actor,SentryShieldRepairModel"/>
-        <DataRecord Entry="Actor,SentryShieldRepairSoundLoop"/>
-        <DataRecord Entry="Model,Sentry_HealingBeam"/>
-        <DataRecord Entry="Model,Sentry_HealingBeam_Impact"/>
-        <DataRecord Entry="Sound,SentryShieldRepair_Loop"/>
+        <DataRecord Entry="Button,SentryAiur_ShieldRepair"/>
+        <DataRecord Entry="Abil,SentryAiur_ShieldRepair"/>
+        <DataRecord Entry="Effect,SentryAiur_ShieldRepair@Healer"/>
+        <DataRecord Entry="Effect,SentryAiur_ShieldRepair@PeriodicSet"/>
+        <DataRecord Entry="Effect,SentryAiur_ShieldRepair@InitialSet"/>
+        <DataRecord Entry="Effect,SentryAiur_ShieldRepair@RemoveBehavior"/>
+        <DataRecord Entry="Actor,SentryAiur_ShieldRepair@Beam"/>
+        <DataRecord Entry="Actor,SentryAiur_ShieldRepair@ImpactModel"/>
+        <DataRecord Entry="Actor,SentryAiur_ShieldRepair@LoopSound"/>
+        <DataRecord Entry="Model,SentryAiur_ShieldRepair@BeamModel"/>
+        <DataRecord Entry="Model,SentryAiur_ShieldRepair@ImpactModel"/>
+        <DataRecord Entry="Sound,SentryAiur_ShieldRepair@LoopSound"/>
         <DataRecord Entry="TargetSort,TSAlliancePassive"/>
         <DataRecord Entry="TargetSort,TSDistance"/>
         <DataRecord Entry="TargetSort,TSShieldsFraction"/>
         <DataRecord Entry="Validator,CasterHas10Energy"/>
         <DataRecord Entry="Validator,NotWarpingIn"/>
         <DataRecord Entry="Validator,UnitOrAttackingStructure"/>
-    </CDataCollectionUnit>
-
-    <!-- Warpable -->
-    <CAbilWarpable id="Warpable">
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <PowerUserBehavior value="PowerUserWarpable"/>
-    </CAbilWarpable>
-    <CBehaviorPowerUser id="PowerUserWarpable">
-        <Alignment value="Positive"/>
-        <InfoIcon value="Assets\Textures\btn-building-protoss-pylon.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <PowerLink value="PowerSource"/>
-        <PlacementMinPowerLevel value="1"/>
-        <Flags index="KillIfUnpowered" value="1"/>
-        <PoweredWhileUnderConstruction value="1"/>
-        <PowerStageArray/>
-    </CBehaviorPowerUser>
-    <CActorModel id="ProtossFastWarpinMarker" parent="ModelAnimationStyleContinuous">
-        <Inherits index="CloakEffect" value="1"/>
-        <Inherits index="Visibility" value="1"/>
-        <On Terms="Behavior.PowerUserWarpable.Create; ValidateEffect SuperPower" Send="Create"/>
-        <On Terms="Behavior.PowerUserWarpable.Destroy" Send="Destroy"/>
-        <Host Subject="_Selectable"/>
-        <HostSiteOps Ops="SOpAttachOrigin"/>
-    </CActorModel>
-    <CModel id="ProtossFastWarpinMarker" parent="PersistentSpellFX">
-        <Model value="Assets\Effects\Protoss\ProtossFastWarpinMarker\ProtossFastWarpinMarker.m3"/>
-        <EditorCategories value="Race:Protoss"/>
-    </CModel>
-    <CDataCollectionUnit id="Warpable" parent="AbilityBase">
-        <EditorCategories value="DataGroup:Ability,DataFamily:Campaign,Race:Protoss,ObjectType:Spell"/>
-        <DataRecord Entry="Abil,Warpable"/>
-        <DataRecord Entry="Behavior,PowerUserWarpable"/>
-        <DataRecord Entry="Actor,ProtossFastWarpinMarker"/>
-        <DataRecord Entry="Model,ProtossFastWarpinMarker"/>
-    </CDataCollectionUnit>
-
-    <!-- Attack, Move, Stop, ProgressRally, BuildInProgress -->
-    <CButton id="Attack">
-        <Icon value="Assets\Textures\btn-command-attack.dds"/>
-    </CButton>
-    <CAbilAttack id="attack">
-        <TargetMessage value="Abil/TargetMessage/attack"/>
-        <MinAttackSpeedMultiplier value="0.25"/>
-        <MaxAttackSpeedMultiplier value="128"/>
-    </CAbilAttack>
-    <CDataCollectionUnit id="Attack" parent="AbilityBase">
-        <DataRecord Entry="Button,Attack"/>
-        <DataRecord Entry="Abil,attack"/>
-    </CDataCollectionUnit>
-
-    <CButton id="Move">
-        <Icon value="Assets\Textures\btn-command-move.dds"/>
-    </CButton>
-    <CButton id="MoveHoldPosition">
-        <Icon value="Assets\Textures\btn-command-holdposition.dds"/>
-    </CButton>
-    <CButton id="MovePatrol">
-        <Icon value="Assets\Textures\btn-command-patrol.dds"/>
-    </CButton>
-    <CAbilMove id="move">
-        <FleeRange value="5"/>
-        <FleeTime value="5"/>
-        <FollowRangeSlop value="1"/>
-        <FollowAcquireRange value="6"/>
-        <MinPatrolDistance value="1"/>
-    </CAbilMove>
-    <CDataCollectionUnit id="Move" parent="AbilityBase">
-        <DataRecord Entry="Button,Move"/>
-        <DataRecord Entry="Button,MoveHoldPosition"/>
-        <DataRecord Entry="Button,MovePatrol"/>
-        <DataRecord Entry="Abil,move"/>
-    </CDataCollectionUnit>
-
-    <CButton id="Stop">
-        <Icon value="Assets\Textures\btn-command-stop.dds"/>
-    </CButton>
-    <CAbilStop id="stop">
-        <CmdButtonArray index="HoldFire" DefaultButtonFace="HoldFireSpecial"/>
-    </CAbilStop>
-    <CDataCollectionUnit id="Stop" parent="AbilityBase">
-        <DataRecord Entry="Button,Stop"/>
-        <DataRecord Entry="Abil,stop"/>
-    </CDataCollectionUnit>
-
-    <CButton id="Rally">
-        <Icon value="Assets\Textures\btn-ability-terran-setrallypoint.dds"/>
-    </CButton>
-    <CAbilRally id="ProgressRally">
-        <EditorCategories value="Race:Neutral,AbilityorEffectType:Structures"/>
-        <Flags index="ShowWhileMerging" value="1"/>
-        <Flags index="ShowWhileWarping" value="1"/>
-    </CAbilRally>
-    <CDataCollectionUnit id="ProgressRally" parent="AbilityBase">
-        <DataRecord Entry="Button,Rally"/>
-        <DataRecord Entry="Abil,ProgressRally"/>
-    </CDataCollectionUnit>
-
-    <CAbilBuildable id="BuildInProgress"/>
-    <CDataCollectionUnit id="BuildInProgress" parent="AbilityBase">
-        <DataRecord Entry="Abil,BuildInProgress"/>
     </CDataCollectionUnit>
 </Catalog>

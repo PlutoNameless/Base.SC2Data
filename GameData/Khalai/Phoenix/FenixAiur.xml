@@ -32,12 +32,6 @@
         <CardLayouts index="0">
             <LayoutButtons Face="PhoenixAiur_GravitonBeamVoid" Type="AbilCmd" AbilCmd="PhoenixAiur_GravitonBeamVoid,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="PhoenixAiur_GravitonBeamVoidPassive" Type="Passive" Row="2" Column="1"/>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="PhoenixAiur_GravitonBeamVoid,Cancel" Row="2" Column="4"/>
-        </CardLayouts>
-        <CardLayouts>
-            <LayoutButtons Face="PhoenixAiur_GravitonBeamVoid" Type="AbilCmd" AbilCmd="PhoenixAiur_GravitonBeamVoid,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="PhoenixAiur_GravitonBeamVoidPassive" Type="Passive" Row="2" Column="1"/>
-            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="PhoenixAiur_GravitonBeamVoid,Cancel" Row="2" Column="4"/>
         </CardLayouts>
         <Radius value="0.75"/>
         <SeparationRadius value="0.75"/>
