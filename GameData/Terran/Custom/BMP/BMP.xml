@@ -41,8 +41,8 @@
     <CSound id="BMP@What" parent="SiegeTank_What"/>
     <CSound id="BMP@Ready" parent="SiegeTank_Ready"/>
 
-    <!-- Weapon -->
-
+    <!-- ========= Weapons ========== -->
+    
     <!-- Main Weapon -->
     <CWeaponLegacy id="BMP_Weapon">
         <Range value="7"/>
