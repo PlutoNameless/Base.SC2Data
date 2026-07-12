@@ -518,6 +518,7 @@
     </CUnit>
     <CActorMissile id="Alarak_DestructionWave@Wave" parent="GenericAttackMissile" unitName="Alarak_DestructionWave@Wave">
         <On index="1" Terms="ActorCreation" Send="AnimBracketStart Lifetime Birth Stand Death"/>
+        <Macros value="GlobalLoopMacro"/>
     </CActorMissile>
     <CActorSimple id="Alarak_DestructionWave@Animation">
         <On Terms="ActorOrphan" Send="Destroy"/>
