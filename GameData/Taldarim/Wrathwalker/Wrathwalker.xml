@@ -13,6 +13,7 @@
         </CardLayouts>
         <WeaponArray index="0" Turret="Colossus"/>
 
+        <!-- Обнуляем коллайды из родителя -->
         <Collide index="Small" value="0"/>
         <Collide index="Ground" value="0"/>
         <Collide index="ForceField" value="0"/>
@@ -49,17 +50,18 @@
         <GlossaryWeakArray value="VikingFighter"/>
     </CUnit>
     
-    <CActorUnit id="Wrathwalker" parent="AdvancedUnitStandard" unitName="Wrathwalker">
+    <CActorUnit id="Wrathwalker" parent="AdvancedStandard_Ground" unitName="Wrathwalker">
+        <Aliases value="_UnitHuge"/>
         <UnitIcon value="Assets\Textures\btn-unit-protoss-colossus-taldarimex3.dds"/>
         <HeroIcon value="Assets\Textures\btn-unit-protoss-colossus-taldarimex3.dds"/>
         <ModelFlags index="OutlineEmitter" value="1"/>
-        <Macros value="TerrainSquibAnimations"/>
         <BuildModel value="Wrathwalker@WarpIn"/>
         <DeathCustoms ModelLink="ProtossLargeUnitDeathLow" Name="AntiGravProtoss"/>
         <DeathCustoms ModelLink="HallucinationColossusDeath" SoundLink="Sentry_HallucinationDeathLarge" Name="Hallucination"/>
         <WalkAnimMoveSpeed value="2.1445"/>
         <BarWidth value="140"/>
         <BarOffset value="250"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
         <WireframeShield>
             <Image value="Assets\Textures\wireframe-protoss-colossus-taldarim-shield01.dds"/>
             <Image value="Assets\Textures\wireframe-protoss-colossus-taldarim-shield02.dds"/>
@@ -71,7 +73,6 @@
         <Wireframe>
             <Image value="Assets\Textures\wireframe-protoss-colossus-taldarim.dds"/>
         </Wireframe>
-        <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
         <TerrainSquibs>
             <MovementDistance value="0.150000,0.150000"/>
             <IdlePeriod value="0.250000,0.500000"/>
@@ -88,7 +89,6 @@
             <AttachQuery Methods="AMFilterCenter"/>
             <Visuals TerrainPhysicsMaterial="Water" ActorModel="TerrainSquibHarnessContinuous" ModelLink="WaterRippleLargeVehicle"/>
         </TerrainSquibs>
-        <Aliases value="_UnitHuge"/>
     </CActorUnit>
     
     <CModel id="Wrathwalker">
@@ -506,7 +506,7 @@
     <CMoverMissile id="Wrathwalker_Weapon@AttackMissile" parent="MissileDefault"/>
 
     <CUnit id="Wrathwalker_Weapon@AttackMissile" parent="MISSILE_INVULNERABLE">
-        <Race value="Prot"/>
+        <Race value="Tald"/>
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:Campaign"/>
     </CUnit>
 
