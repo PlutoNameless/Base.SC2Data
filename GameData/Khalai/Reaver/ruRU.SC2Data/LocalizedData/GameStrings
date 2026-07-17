@@ -1,0 +1,35 @@
+Button/Name/ReaverAiur=Обучить Опустошителя Айура
+Button/Tooltip/ReaverAiur=Тяжёлая артиллерия. Стреляет самонаводящимися скарабами, наносящими огромный урон по площади. Протосс (Aiur)
+Unit/Name/ReaverAiur=Опустошитель Айура
+
+Button/Name/ReaverScarabs=Скарабеи
+Button/Tooltip/ReaverScarabs=Строит скарабеев (до 5 шт.). Скарабеи автоматически запускаются при атаке и взрываются при контакте с целью.
+Abil/Name/ReaverAiur_Hangar=Ангар скарабеев
+
+Weapon/Name/ReaverAiur_Weapon=Скарабей (запуск)
+Effect/Name/ReaverAiur_Weapon@PersistentInitial=Начальный персистент скарабея
+Effect/Name/ReaverAiur_Weapon@Persistent=Персистент скарабея
+Effect/Name/ReaverAiur_Weapon@Set=Набор эффектов скарабея
+Effect/Name/ReaverAiur_Weapon@ApplyReveal=Применить раскрытие
+Effect/Name/ReaverAiur_Weapon@UseMagazine=Использовать магазин скарабеев
+Effect/Name/ReaverAiur_Weapon@LaunchSet=Набор запуска скарабея
+Effect/Name/ReaverAiur_Weapon@TimedLife=Время жизни скарабея
+Effect/Name/ReaverAiur_Weapon@LM=Запуск скарабея
+Effect/Name/ReaverAiurScarab@Explode=Взрыв скарабея
+Effect/Name/ReaverAiurScarab@Damage=Урон (скарабей)
+Effect/Name/ReaverAiurScarab@Suicide=Самоуничтожение скарабея
+Effect/Name/ReaverAiur_Weapon@Damage=Урон (Опустошитель Айура)
+
+Behavior/Name/ReaverAiurScarab@Reveal=Раскрытие скарабея
+Behavior/Name/ReaverAiurScarab@TimedLife=Время жизни скарабея
+
+Unit/Name/ReaverAiurScarab=Скарабей (Айур)
+
+Weapon/Name/ReaverAiurScarabExplode=Взрывчатка скарабея
+
+Validator/Name/ReaverAiur@Is=Это Опустошитель Айура
+Validator/Name/ReaverAiur@Target=Цель – Опустошитель Айура
+Validator/Name/ReaverAiur@Not=Это не Опустошитель Айура
+Validator/Name/ReaverAiur@NotTarget=Цель – не Опустошитель Айура
+
+Requirement/Name/ReaverAiur=Опустошитель Айура
