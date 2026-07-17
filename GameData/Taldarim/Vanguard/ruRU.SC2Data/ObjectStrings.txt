@@ -25,7 +25,6 @@ Effect/Name/Vanguard_Weapon@Damage=Damage
 Effect/Name/Vanguard_Weapon@LM=LM
 Effect/Name/Vanguard_Weapon@CP=CP
 Effect/Name/Vanguard_Weapon@Search=Search
-Effect/Name/Vanguard_Weapon@RB=RB
 Effect/Name/Vanguard_Weapon@Set=Set
 
 Actor/Name/Vanguard_Weapon@Attack=Attack

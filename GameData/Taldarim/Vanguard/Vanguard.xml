@@ -398,9 +398,10 @@
         <DisplayEffect value="Vanguard_Weapon@Damage"/>
     </CWeaponLegacy>
 
-    <CEffectDamage id="Vanguard_Weapon@Damage" parent="DU_WEAP">
-        <Amount value="8"/>
-        <AttributeBonus index="Armored" value="7"/>
+    <CEffectDamage id="Vanguard_Weapon@Damage" parent="DU_WEAP_MISSILE">
+        <Amount value="16"/>
+        <AttributeBonus index="Armored" value="14"/>
+        <ArmorReduction value="2"/>
     </CEffectDamage>
     <CEffectLaunchMissile id="Vanguard_Weapon@LM">
         <AmmoUnit value="Vanguard_Weapon@AttackMissile"/>
@@ -426,22 +427,15 @@
         <PeriodicPeriodArray value="0.0625"/>
         <PeriodCount value="8"/>
         <WhichLocation Value="TargetUnit"/>
-        <ExpireEffect value="Vanguard_Weapon@RB"/>
-        <FinalEffect value="Vanguard_Weapon@RB"/>
-        <InitialEffect value="Vanguard_Weapon@LM"/>
     </CEffectCreatePersistent>
     <CEffectEnumArea id="Vanguard_Weapon@Search">
-        <AreaArray>
-            <Effect value="Vanguard_Weapon@Set"/>
-            <Radius value="1.2"/>
-        </AreaArray>
+        <AreaArray Effect="Vanguard_Weapon@Damage" Radius="1.2"/>
         <IncludeArray Effect="Vanguard_Weapon@CP" Value="Target"/>
         <SearchFilters value="Ground;Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectEnumArea>
-    <CEffectRemoveBehavior id="Vanguard_Weapon@RB"/>
     <CEffectSet id="Vanguard_Weapon@Set">
         <EffectArray value="Vanguard_Weapon@Damage"/>
-        <EffectArray value="Vanguard_Weapon@Damage"/>
+        <!-- <EffectArray value="Vanguard_Weapon@Damage"/> -->
     </CEffectSet>
 
     <CActorAction id="Vanguard_Weapon@Attack" parent="GenericAttack" effectImpact="Vanguard_Weapon@Search" effectLaunch="Vanguard_Weapon@LM">
