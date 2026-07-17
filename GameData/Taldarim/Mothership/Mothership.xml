@@ -45,8 +45,6 @@
         <SubgroupPriority value="50"/>
         <MinimapRadius value="1.375"/>
         <GlossaryPriority value="190"/>
-        <BehaviorArray Link="MothershipTaldarimTurretDisabler"/>
-        <BehaviorArray Link="SOAHeroicShieldProcBuff"/>
         <GlossaryStrongArray value="Marauder"/>
         <GlossaryStrongArray value="Roach"/>
         <GlossaryStrongArray value="Zealot"/>
