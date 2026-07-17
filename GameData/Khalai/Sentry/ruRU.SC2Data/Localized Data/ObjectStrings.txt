@@ -1,0 +1,40 @@
+Actor/Name/SentryAiur=Sentry Aiur
+Actor/Name/SentryAiur_Weapon@Attack=Attack
+Actor/Name/SentryAiur_Weapon@AttackBeam=Attack Beam
+Actor/Name/SentryAiur_Weapon@AttackStart=Attack Start Sound
+Actor/Name/SentryAiur_Weapon@AttackLoop=Attack Loop Sound
+Actor/Name/SentryAiur_Weapon@AttackStop=Attack Stop Sound
+Actor/Name/SentryAiur_GuardianShield@Model=Guardian Shield Bubble
+Actor/Name/SentryAiur_GuardianShield@Impact=Guardian Shield Impact
+Actor/Name/SentryAiur_ShieldRepair@Beam=Shield Repair Beam
+Actor/Name/SentryAiur_ShieldRepair@ImpactModel=Shield Repair Impact Model
+Actor/Name/SentryAiur_ShieldRepair@LoopSound=Shield Repair Loop Sound
+
+Model/Name/SentryAiur=Sentry Aiur
+Model/Name/SentryAiur@Death=Death
+Model/Name/SentryAiur@Placement=Placement
+Model/Name/SentryAiur@WarpIn=Warp In
+Model/Name/SentryAiur@Portrait=Portrait
+Model/Name/ProtossSmallUnitDeathLow=Protoss Small Unit Death Low
+Model/Name/TerranSmallUnitDeathLow=Terran Small Unit Death Low
+Model/Name/ZergSmallUnitDeathLow=Zerg Small Unit Death Low
+Model/Name/Invisible=Invisible
+Model/Name/SentryAiur_Weapon@AttackBeam=Attack Beam
+Model/Name/SentryAiur_GuardianShield@Model=Guardian Shield Model
+Model/Name/SentryAiur_GuardianShield@ImpactModel=Guardian Shield Impact Model
+Model/Name/SentryAiur_ShieldRepair@BeamModel=Shield Repair Beam Model
+Model/Name/SentryAiur_ShieldRepair@ImpactModel=Shield Repair Impact Model
+
+Sound/Name/Protoss_BuildingPlacementSmall=Building Placement Small
+Sound/Name/Sentry_Attack=Attack
+Sound/Name/Sentry_Explode=Explode
+Sound/Name/Sentry_Pissed=Pissed
+Sound/Name/Sentry_Ready=Ready
+Sound/Name/Sentry_What=What
+Sound/Name/Sentry_Yes=Yes
+Sound/Name/SentryAiur_Weapon@StartSound=Weapon Start
+Sound/Name/SentryAiur_Weapon@LoopSound=Weapon Loop
+Sound/Name/SentryAiur_Weapon@EndSound=Weapon End
+Sound/Name/SentryAiur_ShieldRepair@LoopSound=Shield Repair Loop
+
+Light/Name/SentryAiur@Portrait=Portrait Light

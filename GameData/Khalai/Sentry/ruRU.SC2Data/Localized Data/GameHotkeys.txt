@@ -1,0 +1,2 @@
+﻿Button/Hotkey/SentryAiur_GuardianShield=G
+Button/Hotkey/SentryAiur_ShieldRepair=R

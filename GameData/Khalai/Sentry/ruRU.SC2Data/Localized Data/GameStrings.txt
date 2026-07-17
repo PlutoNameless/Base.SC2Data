@@ -1,0 +1,33 @@
+Button/Name/SentryAiur=Обучить Часового Айура
+Button/Tooltip/SentryAiur=Боевой юнит поддержки. Может использовать Защитное поле и Двойной ремонт щитов. Протосс (Aiur)
+Unit/Name/SentryAiur=Часовой Айура
+
+Button/Name/SentryAiur_GuardianShield=Защитное поле
+Button/Tooltip/SentryAiur_GuardianShield=Создаёт временное поле, уменьшающее получаемый урон на 2 ед. для всех союзных юнитов в радиусе 4. Длится 15 секунд. Требует 75 ед. энергии.
+Abil/Name/SentryAiur_GuardianShield=Защитное поле
+Behavior/Name/SentryAiur_GuardianShield@Buff=Защитное поле
+Effect/Name/SentryAiur_GuardianShield@Persistent=Защитное поле (персистент)
+Effect/Name/SentryAiur_GuardianShield@Search=Поиск союзников
+Effect/Name/SentryAiur_GuardianShield@ApplyBuff=Применить Защитное поле
+
+Button/Name/SentryAiur_ShieldRepair=Двойной ремонт щитов
+Button/Tooltip/SentryAiur_ShieldRepair=Восстанавливает щиты выбранному союзному юниту со скоростью 9 ед. в секунду. Расходует 0.33 ед. энергии за цикл. Требует 10 ед. энергии для активации.
+Abil/Name/SentryAiur_ShieldRepair=Двойной ремонт щитов
+Effect/Name/SentryAiur_ShieldRepair@Healer=Двойной ремонт щитов (эффект)
+Effect/Name/SentryAiur_ShieldRepair@PeriodicSet=Периодический ремонт щитов
+Effect/Name/SentryAiur_ShieldRepair@InitialSet=Начальный ремонт щитов
+Effect/Name/SentryAiur_ShieldRepair@RemoveBehavior=Снять поведение ремонта щитов
+
+Weapon/Name/SentryAiur_Weapon=Луч разрушения
+Effect/Name/SentryAiur_Weapon@Beam=Луч разрушения (персистент)
+Effect/Name/SentryAiur_Weapon@Damage=Урон (Луч разрушения)
+
+Validator/Name/SentryAiur@Is=Это Часовой Айура
+Validator/Name/SentryAiur@Target=Цель — Часовой Айура
+Validator/Name/SentryAiur@Not=Это не Часовой Айура
+Validator/Name/SentryAiur@NotTarget=Цель — не Часовой Айура
+Validator/Name/CasterHas10Energy=Маг имеет 10 энергии
+Validator/Name/NotWarpingIn=Не перемещается варпом
+Validator/Name/UnitOrAttackingStructure=Юнит или атакующая структура
+
+Requirement/Name/SentryAiur=Часовой Айура
