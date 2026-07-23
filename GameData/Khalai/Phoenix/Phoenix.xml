@@ -6,6 +6,8 @@
     </CButton>
 
     <CUnit id="PhoenixAiur" parent="Generic_Protoss_Unit_Air" race="Prot">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
+        <TurretArray value="PhoenixAiur"/>
         <DeathRevealRadius value="3"/>
         <Attributes index="Light" value="1"/>
         <Attributes index="Mechanical" value="1"/>
@@ -13,8 +15,6 @@
         <LifeMax value="120"/>
         <ShieldsStart value="60"/>
         <ShieldsMax value="60"/>
-        <ShieldRegenDelay value="10"/>
-        <ShieldRegenRate value="2"/>
         <EnergyStart value="50"/>
         <EnergyMax value="200"/>
         <EnergyRegenRate value="0.5625"/>
@@ -27,11 +27,11 @@
         <CostResource index="Vespene" value="100"/>
         <RepairTime value="45"/>
         <KillXP value="50"/>
-        <AbilArray Link="PhoenixAiur_GravitonBeamVoid"/>
+        <AbilArray Link="PhoenixAiur_GravitonBeam"/>
         <WeaponArray index="0" Turret="Phoenix"/>
         <CardLayouts index="0">
-            <LayoutButtons Face="PhoenixAiur_GravitonBeamVoid" Type="AbilCmd" AbilCmd="PhoenixAiur_GravitonBeamVoid,Execute" Row="2" Column="0"/>
-            <LayoutButtons Face="PhoenixAiur_GravitonBeamVoidPassive" Type="Passive" Row="2" Column="1"/>
+            <LayoutButtons Face="PhoenixAiur_GravitonBeam" Type="AbilCmd" AbilCmd="PhoenixAiur_GravitonBeam,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="PhoenixAiur_GravitonBeamPassive" Type="Passive" Row="2" Column="1"/>
         </CardLayouts>
         <Radius value="0.75"/>
         <SeparationRadius value="0.75"/>
@@ -39,13 +39,7 @@
         <ScoreKill value="250"/>
         <SubgroupPriority value="12"/>
         <MinimapRadius value="0.75"/>
-        <EditorCategories value="ObjectType:Unit,ObjectFamily:Melee"/>
-        <TacticalAI value="Phoenix"/>
         <AIEvalFactor value="0.7"/>
-        <LeaderAlias value="Phoenix"/>
-        <HotkeyAlias value="Phoenix"/>
-        <SelectAlias value="Phoenix"/>
-        <SubgroupAlias value="Phoenix"/>
         <GlossaryPriority value="140"/>
         <GlossaryStrongArray value="Banshee"/>
         <GlossaryStrongArray value="Mutalisk"/>
@@ -58,32 +52,20 @@
 
     <CActorUnit id="PhoenixAiur" parent="AdvancedUnitStandard" unitName="PhoenixAiur">
         <Aliases value="_UnitLarge"/>
-        <Turret Value="Phoenix"/>
-        <On Terms="Effect.PhoenixAiur_GravitonBeamVoid@CP.Start; At Source" Send="$Spell PlayForever"/>
-        <On Terms="Effect.PhoenixAiur_GravitonBeamVoid@CP.Stop; At Source" Send="AnimClear Spell"/>
+        <On Terms="Effect.PhoenixAiur_GravitonBeam@CP.Start; At Source" Send="$Spell PlayForever"/>
+        <On Terms="Effect.PhoenixAiur_GravitonBeam@CP.Stop; At Source" Send="AnimClear Spell"/>
         <On Terms="UnitHeightUpdate.*.Land" Send="Create Phoenix_Land"/>
         <HostSiteOps Ops="SOpBankerPhoenix"/>
         <AnimBlendTime value="0.450000"/>
-        <Baselines index="Walk" BlendIn="1.500000" BlendOut="2.000000"/>
-        <BuildModel value="PhoenixAiurWarpIn"/>
-        <DeathArray index="Normal" ModelLink="PhoenixAiurDeath" SoundLink="Phoenix_Explode"/>
-        <PlacementModel value="PhoenixPlacement"/>
-        <PortraitModel value="PhoenixPortrait"/>
         <BarOffset value="50"/>
+        <NameOffset value="50"/>
+        <Baselines index="Walk" BlendIn="1.500000" BlendOut="2.000000"/>
+        <HeroIcon value="Assets\Textures\btn-unit-protoss-phoenix.dds"/>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-airarmorlevel0.dds"/>
+        <UnitIcon value="Assets\Textures\btn-unit-protoss-phoenix.dds"/>
         <GroupIcon>
             <Image value="Assets\Textures\Wireframe-Protoss-Phoenix.dds"/>
         </GroupIcon>
-        <HeroIcon value="Assets\Textures\btn-unit-protoss-phoenix.dds"/>
-        <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-airarmorlevel0.dds"/>
-        <NameOffset value="50"/>
-        <SoundArray index="Birth" value="Phoenix_Birth"/>
-        <SoundArray index="Ready" value="Phoenix_Ready"/>
-        <SoundArray index="Help" value="Phoenix_Help"/>
-        <SoundArray index="What" value="Phoenix_What"/>
-        <SoundArray index="Yes" value="Phoenix_Yes"/>
-        <SoundArray index="Attack" value="Phoenix_Attack"/>
-        <SoundArray index="Pissed" value="Phoenix_Pissed"/>
-        <UnitIcon value="Assets\Textures\btn-unit-protoss-phoenix.dds"/>
         <Wireframe>
             <Image value="Assets\Textures\Wireframe-Protoss-Phoenix.dds"/>
         </Wireframe>
@@ -110,12 +92,12 @@
         <TechPurchaseCamera value="Star2CameraLow05"/>
         <UnitGlossaryCamera value="Star2CameraLow05"/>
     </CModel>
-    <CModel id="PhoenixAiurDeath" parent="UnitDeath" Race="Protoss">
+    <CModel id="PhoenixAiur@Death" parent="UnitDeath" Race="Protoss">
         <Model value="Assets\Units\Protoss\PhoenixDeathEx1\PhoenixDeathEx1.m3"/>
         <LowQualityModel value="ProtossMediumUnitDeathLow"/>
         <Occlusion value="Show"/>
     </CModel>
-    <CModel id="PhoenixAiurWarpIn" parent="OneShotSpellFX">
+    <CModel id="PhoenixAiur@WarpIn" parent="OneShotSpellFX">
         <Model value="Assets\Units\Protoss\PhoenixWarpIn\PhoenixWarpIn.m3"/>
         <LowQualityModel value="ProtossUnitBirth"/>
         <EditorCategories value="Race:Protoss"/>
@@ -123,83 +105,26 @@
         <ScaleMax value="0.850000,0.850000,0.850000"/>
         <ScaleMin value="0.850000,0.850000,0.850000"/>
     </CModel>
-    <CModel id="PhoenixPlacement" parent="Placement" Race="Protoss">
+    <CModel id="PhoenixAiur@Placement" parent="Placement" Race="Protoss">
         <Model value="Assets\Units\Protoss\Phoenix_Purifier_Placement\Phoenix_Purifier_Placement.m3"/>
         <Occlusion value="Show"/>
         <ScaleMax value="0.850000,0.850000,0.850000"/>
         <ScaleMin value="0.850000,0.850000,0.850000"/>
     </CModel>
-    <CModel id="PhoenixPortrait" parent="PhoenixPortraitBase">
+    <CModel id="PhoenixAiur@Portrait" parent="PhoenixPortraitBase">
         <Model value="Assets\Portraits\Protoss\PhoenixPortrait\PhoenixPortrait.m3"/>
         <Image value="Assets\Textures\PhoenixPortrait_Static.dds"/>
-        <Lighting value="PhoenixPortrait"/>
+        <Lighting value="PhoenixAiur@Portrait"/>
     </CModel>
 
-    <CSound id="Phoenix_Birth" parent="Protoss_Birth"/>
-    <CSound id="Phoenix_Ready" parent="Ready">
-        <EditorCategories value="Race:Protoss"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Ready00.ogg"/>
-    </CSound>
-    <CSound id="Phoenix_Help" parent="Alert">
-        <EditorCategories value="Race:Protoss"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\PhoenixVoid_Help00.ogg"/>
-    </CSound>
-    <CSound id="Phoenix_What" parent="ProtossAck">
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_What00.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_What01.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_What02.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_What03.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_What04.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_What05.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_What06.ogg"/>
-    </CSound>
-    <CSound id="Phoenix_Yes" parent="ProtossAck">
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Yes00.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Yes01.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Yes02.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Yes03.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Yes04.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Yes05.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Yes06.ogg"/>
-    </CSound>
-    <CSound id="Phoenix_Attack" parent="ProtossAck">
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Attack00.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Attack01.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Attack02.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Attack03.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Attack04.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Attack05.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Attack06.ogg"/>
-    </CSound>
-    <CSound id="Phoenix_Pissed" parent="ProtossPissed">
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Pissed00.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Pissed01.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Pissed02.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Pissed03.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\VO\Protoss\PhoenixVoid_Pissed04.ogg" Volume="2.000000,2.000000"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Pissed05.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Pissed06.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Pissed07.ogg"/>
-        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\Phoenix\Phoenix_Pissed08.ogg"/>
-        <Flags index="NeedsUpdate" value="1"/>
-        <Flags index="NeedsTTS" value="1"/>
-    </CSound>
-    <CSound id="Phoenix_Explode" parent="Combat">
-        <EditorCategories value="Race:Protoss"/>
-        <AssetArray File="Assets\Sounds\Protoss\SharedEffects\Explosions\Protoss_ExplosionLarge0.wav" Pitch="-3.000000,3.000000"/>
-        <AssetArray File="Assets\Sounds\Protoss\SharedEffects\Explosions\Protoss_ExplosionLarge1.wav" Pitch="-3.000000,3.000000"/>
-        <AssetArray File="Assets\Sounds\Protoss\SharedEffects\Explosions\Protoss_ExplosionLarge2.wav" Pitch="-3.000000,3.000000"/>
-        <AssetArray File="Assets\Sounds\Protoss\SharedEffects\Explosions\Protoss_ExplosionLarge3.wav" Pitch="-3.000000,3.000000"/>
-        <AssetArray File="Assets\Sounds\Protoss\SharedEffects\Explosions\Protoss_ExplosionLarge4.wav" Pitch="-3.000000,3.000000"/>
-        <AssetArray File="Assets\Sounds\Protoss\SharedEffects\Explosions\Protoss_ExplosionLarge5.wav" Pitch="-3.000000,3.000000"/>
-        <AssetArray File="Assets\Sounds\Protoss\SharedEffects\Explosions\Protoss_ExplosionLarge6.wav" Pitch="-3.000000,3.000000"/>
-        <AssetArray File="Assets\Sounds\Protoss\SharedEffects\Explosions\Protoss_ExplosionLarge7.wav" Pitch="-3.000000,3.000000"/>
-        <AssetArray File="Assets\Sounds\Protoss\SharedEffects\Explosions\Protoss_ExplosionLarge8.wav" Pitch="-3.000000,3.000000"/>
-        <AssetArray File="Assets\Sounds\Protoss\SharedEffects\Explosions\Protoss_ExplosionLarge9.wav" Pitch="-3.000000,3.000000"/>
-        <DupeDestroyCount value="5"/>
-        <Pitch value="5.000000,7.000000"/>
-        <Volume value="-4.000000,-2.000000"/>
-    </CSound>
+    <CSound id="Phoenix@Birth" parent="Protoss_Birth"/>
+    <CSound id="Phoenix@Ready" parent="Phoenix_Ready"/>
+    <CSound id="Phoenix@Help" parent="Phoenix_Help"/>
+    <CSound id="Phoenix@What" parent="Phoenix_What"/>
+    <CSound id="Phoenix@Yes" parent="Phoenix_Yes"/>
+    <CSound id="Phoenix@Attack" parent="Phoenix_Attack"/>
+    <CSound id="Phoenix@Pissed" parent="Phoenix_Pissed"/>
+    <CSound id="Phoenix@Explode" parent="Phoenix_Explode"/>
 
     <CLight id="PhoenixAiur@Portrait" parent="default">
         <ToDInfoArray index="0" Id="PsionicWaveUp" AmbientColor="0.235294,0.309804,0.392157" Colorize="1">
@@ -228,6 +153,17 @@
         <EditorCategories value="LightGroup:PortraitsUnitsProtoss"/>
     </CLight>
 
+    <CTurret id="PhoenixAiur" parent="FreeRotate">
+        <Idle value="ResetIfMoving"/>
+        <YawArc value="360"/>
+        <YawRate value="539.2968"/>
+        <Fidget DelayMax="30" DelayMin="10" TurnAngle="0">
+            <ChanceArray index="Anim" value="50"/>
+            <ChanceArray index="Idle" value="50"/>
+            <ChanceArray index="Turn" value="0"/>
+        </Fidget>
+    </CTurret>
+
     <CRequirement id="PhoenixAiur"/>
 
     <CValidatorUnitType id="PhoenixAiur@Is" parent="IsUnit_Default" unit="PhoenixAiur"/>
@@ -241,19 +177,20 @@
         <DataRecord Entry="Unit,PhoenixAiur"/>
         <DataRecord Entry="Actor,PhoenixAiur"/>
         <DataRecord Entry="Model,PhoenixAiur"/>
-        <DataRecord Entry="Model,PhoenixAiurDeath"/>
-        <DataRecord Entry="Model,PhoenixAiurWarpIn"/>
-        <DataRecord Entry="Model,PhoenixPlacement"/>
-        <DataRecord Entry="Model,PhoenixPortrait"/>
-        <DataRecord Entry="Sound,Phoenix_Birth"/>
-        <DataRecord Entry="Sound,Phoenix_Ready"/>
-        <DataRecord Entry="Sound,Phoenix_Help"/>
-        <DataRecord Entry="Sound,Phoenix_What"/>
-        <DataRecord Entry="Sound,Phoenix_Yes"/>
-        <DataRecord Entry="Sound,Phoenix_Attack"/>
-        <DataRecord Entry="Sound,Phoenix_Pissed"/>
-        <DataRecord Entry="Sound,Phoenix_Explode"/>
+        <DataRecord Entry="Model,PhoenixAiur@Death"/>
+        <DataRecord Entry="Model,PhoenixAiur@WarpIn"/>
+        <DataRecord Entry="Model,PhoenixAiur@Placement"/>
+        <DataRecord Entry="Model,PhoenixAiur@Portrait"/>
+        <DataRecord Entry="Sound,PhoenixAiur@Birth"/>
+        <DataRecord Entry="Sound,PhoenixAiur@Ready"/>
+        <DataRecord Entry="Sound,PhoenixAiur@Help"/>
+        <DataRecord Entry="Sound,PhoenixAiur@What"/>
+        <DataRecord Entry="Sound,PhoenixAiur@Yes"/>
+        <DataRecord Entry="Sound,PhoenixAiur@Attack"/>
+        <DataRecord Entry="Sound,PhoenixAiur@Pissed"/>
+        <DataRecord Entry="Sound,PhoenixAiur@Explode"/>
         <DataRecord Entry="Light,PhoenixAiur@Portrait"/>
+        <DataRecord Entry="Turret,PhoenixAiur"/>
         <DataRecord Entry="Requirement,PhoenixAiur"/>
         <DataRecord Entry="Validator,PhoenixAiur@Is"/>
         <DataRecord Entry="Validator,PhoenixAiur@Target"/>
@@ -275,15 +212,15 @@
         <EditorCategories value="Race:Protoss"/>
         <Options index="OnlyFireWhileInAttackOrder" value="0"/>
         <Options index="OnlyFireAtAttackOrderTarget" value="0"/>
-        <Icon value="Assets\Textures\btn-upgrade-protoss-airweaponslevel0.dds"/>
+        <Effect value="PhoenixAiur_Weapon@CP"/>
         <DisplayEffect value="PhoenixAiur_Weapon@Damage"/>
         <DisplayAttackCount value="2"/>
-        <TargetFilters value="Air,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
-        <MinScanRange value="4"/>
-        <Arc value="4.9987"/>
-        <Period value="1.1"/>
         <AllowedMovement value="Moving"/>
-        <Effect value="PhoenixAiur_Weapon@CP"/>
+        <MinScanRange value="4"/>
+        <Period value="1.1"/>
+        <Arc value="4.9987"/>
+        <Icon value="Assets\Textures\btn-upgrade-protoss-airweaponslevel0.dds"/>
+        <TargetFilters value="Air,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CWeaponLegacy>
 
     <CEffectCreatePersistent id="PhoenixAiur_Weapon@CP">
@@ -297,34 +234,17 @@
     </CEffectCreatePersistent>
     <CEffectLaunchMissile id="PhoenixAiur_Weapon@LMLeft">
         <EditorCategories value="Race:Protoss"/>
-        <ImpactEffect value="PhoenixAiur_Weapon@DamageLeft"/>
+        <ImpactEffect value="PhoenixAiur_Weapon@Damage"/>
         <AmmoUnit value="PhoenixAiur_Weapon@AttackMissile"/>
-        <Movers Link="MissileDefault" IfRangeLTE="1"/>
         <Movers Link="PhoenixAiur_Weapon@AttackLeft" IfRangeLTE="6"/>
     </CEffectLaunchMissile>
     <CEffectLaunchMissile id="PhoenixAiur_Weapon@LMRight">
         <EditorCategories value="Race:Protoss"/>
-        <ImpactEffect value="PhoenixAiur_Weapon@DamageRight"/>
+        <ImpactEffect value="PhoenixAiur_Weapon@Damage"/>
         <AmmoUnit value="PhoenixAiur_Weapon@AttackMissile"/>
-        <Movers Link="MissileDefault" IfRangeLTE="1"/>
         <Movers Link="PhoenixAiur_Weapon@AttackRight" IfRangeLTE="6"/>
     </CEffectLaunchMissile>
     <CEffectDamage id="PhoenixAiur_Weapon@Damage" parent="DU_WEAP_MISSILE">
-        <EditorCategories value="Race:Protoss"/>
-        <AttributeBonus index="Light" value="5"/>
-        <Visibility value="Visible"/>
-        <Amount value="5"/>
-    </CEffectDamage>
-    <CEffectDamage id="PhoenixAiur_Weapon@DamageLeft" parent="DU_WEAP_MISSILE">
-        <EditorCategories value="Race:Protoss"/>
-        <AttributeBonus index="Light" value="5"/>
-        <Visibility value="Visible"/>
-        <Amount value="5"/>
-        <Death value="Blast"/>
-        <ExcludeArray Value="Target"/>
-        <SearchFilters value="Air;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
-    </CEffectDamage>
-    <CEffectDamage id="PhoenixAiur_Weapon@DamageRight" parent="DU_WEAP_MISSILE">
         <EditorCategories value="Race:Protoss"/>
         <AttributeBonus index="Light" value="5"/>
         <Visibility value="Visible"/>
@@ -334,21 +254,17 @@
         <SearchFilters value="Air;Self,Player,Ally,Neutral,Missile,Stasis,Dead,Hidden,Invulnerable"/>
     </CEffectDamage>
 
-    <CActorAction id="PhoenixAiur_Weapon@AttackLeft" parent="GenericAttackNoCreateBase" effectImpact="PhoenixAiur_Weapon@DamageLeft" effectLaunch="PhoenixAiur_Weapon@LMLeft">
-        <On Terms="Effect.PhoenixAiur_Weapon@LMLeft.Start; At Caster" Send="Create"/>
+    <CActorAction id="PhoenixAiur_Weapon@AttackLeft" parent="GenericAttack" effectImpact="PhoenixAiur_Weapon@Damage" effectLaunch="PhoenixAiur_Weapon@LMLeft">
         <LaunchAttachQuery Methods="Weapon 1"/>
         <LaunchAssets Sound="PhoenixAiur_Weapon@LaunchSound"/>
         <Missile value="PhoenixAiur_Weapon@AttackMissile"/>
         <ImpactMap index="None" Model="PhoenixAiur_Weapon@ImpactModel"/>
-        <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
     </CActorAction>
-    <CActorAction id="PhoenixAiur_Weapon@AttackRight" parent="GenericAttackNoCreateBase" effectImpact="PhoenixAiur_Weapon@DamageRight" effectLaunch="PhoenixAiur_Weapon@LMRight">
-        <On Terms="Effect.PhoenixAiur_Weapon@LMRight.Start; At Caster" Send="Create"/>
+    <CActorAction id="PhoenixAiur_Weapon@AttackRight" parent="GenericAttack" effectImpact="PhoenixAiur_Weapon@Damage" effectLaunch="PhoenixAiur_Weapon@LMRight">
         <LaunchAttachQuery Methods="Weapon 3"/>
         <LaunchAssets Sound="PhoenixAiur_Weapon@LaunchSound"/>
         <Missile value="PhoenixAiur_Weapon@AttackMissile"/>
         <ImpactMap index="None" Model="PhoenixAiur_Weapon@ImpactModel"/>
-        <ImpactMap index="Flesh" ModelReaction="BloodTargetImpact"/>
     </CActorAction>
     <CActorMissile id="PhoenixAiur_Weapon@AttackMissile" parent="GenericAttackMissile" unitName="PhoenixAiur_Weapon@AttackMissile"/>
 
@@ -359,11 +275,6 @@
     <CModel id="PhoenixAiur_Weapon@ImpactModel" parent="ImpactFX">
         <Model value="Assets\Effects\Protoss\PhoenixMissileImpact\PhoenixMissileImpact.m3"/>
         <EditorCategories value="Race:Protoss"/>
-    </CModel>
-    <CModel id="BloodTargetImpact" parent="ImpactFX">
-        <Model value="Assets\Effects\Other\BloodTargetImpact\BloodTargetImpact.m3"/>
-        <EditorCategories value="Race:Neutral"/>
-        <Flags index="Ignorable" value="1"/>
     </CModel>
 
     <CSound id="PhoenixAiur_Weapon@LaunchSound" parent="Combat">
@@ -393,23 +304,6 @@
         <EditorCategories value="ObjectType:Projectile,ObjectFamily:Melee"/>
     </CUnit>
 
-    <CMoverMissile id="PhoenixAiur_Weapon@AttackMissile">
-        <MotionPhases>
-            <Driver value="Throw"/>
-            <Speed value="6"/>
-            <MaxSpeed value="6"/>
-            <Outro value="0.4,0.85"/>
-            <ThrowRotationType value="ThrowForward"/>
-            <ThrowVector value="0,-1,0"/>
-        </MotionPhases>
-        <MotionPhases Outro="1,1.5" ThrowVector="0,-1,0"/>
-        <MotionPhases>
-            <Driver value="Guidance"/>
-            <Acceleration value="60"/>
-            <MaxSpeed value="40"/>
-            <YawPitchRoll value="MAX"/>
-        </MotionPhases>
-    </CMoverMissile>
     <CMoverMissile id="PhoenixAiur_Weapon@AttackLeft">
         <MotionPhases>
             <Driver value="Throw"/>
@@ -445,17 +339,6 @@
         </MotionPhases>
     </CMoverMissile>
 
-    <CTurret id="Phoenix" parent="FreeRotate">
-        <Idle value="ResetIfMoving"/>
-        <YawArc value="360"/>
-        <YawRate value="539.2968"/>
-        <Fidget DelayMax="30" DelayMin="10" TurnAngle="0">
-            <ChanceArray index="Anim" value="50"/>
-            <ChanceArray index="Idle" value="50"/>
-            <ChanceArray index="Turn" value="0"/>
-        </Fidget>
-    </CTurret>
-
     <CDataCollectionUnit id="PhoenixAiur_Weapon" parent="Weapon_Missile">
         <EditorCategories value="DataGroup:Weapon,DataFamily:Campaign,Race:Protoss,ObjectType:Projectile"/>
         <DataRecord Entry="Weapon,PhoenixAiur_Weapon"/>
@@ -470,67 +353,28 @@
         <DataRecord Entry="Actor,PhoenixAiur_Weapon@AttackMissile"/>
         <DataRecord Entry="Model,PhoenixAiur_Weapon@AttackMissile"/>
         <DataRecord Entry="Model,PhoenixAiur_Weapon@ImpactModel"/>
-        <DataRecord Entry="Model,BloodTargetImpact"/>
         <DataRecord Entry="Sound,PhoenixAiur_Weapon@LaunchSound"/>
         <DataRecord Entry="Sound,PhoenixAiur_Weapon@ImpactSound"/>
         <DataRecord Entry="Unit,PhoenixAiur_Weapon@AttackMissile"/>
         <DataRecord Entry="Mover,PhoenixAiur_Weapon@AttackMissile"/>
         <DataRecord Entry="Mover,PhoenixAiur_Weapon@AttackLeft"/>
         <DataRecord Entry="Mover,PhoenixAiur_Weapon@AttackRight"/>
-        <DataRecord Entry="Turret,Phoenix"/>
         <TechInfoUpgradeUsed value="ProtossAirWeapons@1"/>
         <TechInfoUpgradeUsed value="ProtossAirWeapons@2"/>
         <TechInfoUpgradeUsed value="ProtossAirWeapons@3"/>
     </CDataCollectionUnit>
 
-    <!-- ========== Behaviors ========== -->
-    <CBehaviorBuff id="PhoenixAiur_GravitonBeamVoid@Stun">
-        <Alignment value="Negative"/>
-        <InfoIcon value="Assets\Textures\btn-ability-protoss-gravitonbeam.dds"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <TimeScaleSource Value="Global"/>
-        <Duration value="10"/>
-        <Modification>
-            <ModifyFlags index="DisableAbils" value="1"/>
-            <ModifyFlags index="SuppressMoving" value="1"/>
-            <ModifyFlags index="SuppressTurning" value="1"/>
-            <StateFlags index="Stun" value="1"/>
-            <StateFlags index="SuppressAttack" value="1"/>
-            <StateFlags index="SuppressCloak" value="1"/>
-            <StateFlags index="SuppressCollision" value="1"/>
-            <StateFlags index="SuppressDetection" value="1"/>
-            <StateFlags index="SuppressPassenger" value="1"/>
-            <StateFlags index="SuppressRadar" value="1"/>
-            <StateFlags index="Uncommandable" value="1"/>
-            <PlaneArray index="Air" value="1"/>
-            <PlaneArray index="Ground" value="0"/>
-        </Modification>
-    </CBehaviorBuff>
-    <CBehaviorBuff id="PhoenixAiur_GravitonBeamVoid@Height">
-        <InfoFlags index="Hidden" value="1"/>
-        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
-        <TimeScaleSource Value="Global"/>
-        <Duration value="10"/>
-        <Modification Height="3.75">
-            <HeightTime index="Start" value="1"/>
-            <HeightTime index="Stop" value="0.25"/>
-            <PlaneDelta index="Ground" value="-1"/>
-            <PlaneDelta index="Air" value="1"/>
-        </Modification>
-    </CBehaviorBuff>
-
     <!-- ========== Abilities ========== -->
-    <CButton id="PhoenixAiur_GravitonBeamVoid">
+    <CButton id="PhoenixAiur_GravitonBeam">
         <Icon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>
         <AlertIcon value="Assets\Textures\btn-ability-protoss-gravitonbeam-color.dds"/>
     </CButton>
-    <CButton id="PhoenixAiur_GravitonBeamVoidPassive">
+    <CButton id="PhoenixAiur_GravitonBeam@Passive">
         <Icon value="Assets\Textures\btn-ability-protoss-dualgravitonbeam.dds"/>
         <AlertIcon value="Assets\Textures\btn-ability-protoss-dualgravitonbeam.dds"/>
     </CButton>
-    <CButton id="Cancel"/>
 
-    <CAbilEffectTarget id="PhoenixAiur_GravitonBeamVoid">
+    <CAbilEffectTarget id="PhoenixAiur_GravitonBeam">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
         <Flags index="AllowMovement" value="1"/>
         <Flags index="AutoCast" value="1"/>
@@ -550,79 +394,87 @@
         <AutoCastValidatorArray value="IsNotLarva"/>
         <CancelableArray index="Channel" value="1"/>
         <UninterruptibleArray index="Channel" value="1"/>
-        <Effect index="0" value="PhoenixAiur_GravitonBeamVoid@CP"/>
-        <CmdButtonArray index="Execute" DefaultButtonFace="PhoenixAiur_GravitonBeamVoid"/>
+        <Effect index="0" value="PhoenixAiur_GravitonBeam@CP"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="PhoenixAiur_GravitonBeam"/>
         <CmdButtonArray index="Cancel" DefaultButtonFace="Cancel"/>
     </CAbilEffectTarget>
 
-    <CEffectCreatePersistent id="PhoenixAiur_GravitonBeamVoid@CP">
-        <ValidatorArray value="NoGravitonBeamInProgress"/>
-        <ValidatorArray value="NotAbducted"/>
-        <ValidatorArray value="NoReaperKD8Knockback"/>
-        <ValidatorArray value="GravitonBeamValidators"/>
-        <ValidatorArray value="NotWarpingIn"/>
+    <CBehaviorBuff id="PhoenixAiur_GravitonBeam">
+        <Alignment value="Negative"/>
+        <InfoIcon value="Assets\Textures\btn-ability-protoss-gravitonbeam.dds"/>
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Units"/>
+        <TimeScaleSource Value="Global"/>
+        <Duration value="10"/>
+        <Modification Height="3.75">
+            <ModifyFlags index="DisableAbils" value="1"/>
+            <ModifyFlags index="SuppressMoving" value="1"/>
+            <ModifyFlags index="SuppressTurning" value="1"/>
+            <StateFlags index="Stun" value="1"/>
+            <StateFlags index="SuppressAttack" value="1"/>
+            <StateFlags index="SuppressCloak" value="1"/>
+            <StateFlags index="SuppressCollision" value="1"/>
+            <StateFlags index="SuppressDetection" value="1"/>
+            <StateFlags index="SuppressPassenger" value="1"/>
+            <StateFlags index="SuppressRadar" value="1"/>
+            <StateFlags index="Uncommandable" value="1"/>
+            <HeightTime index="Start" value="1"/>
+            <HeightTime index="Stop" value="0.25"/>
+            <PlaneDelta index="Ground" value="-1"/>
+            <PlaneDelta index="Air" value="1"/>
+        </Modification>
+    </CBehaviorBuff>
+
+    <CEffectCreatePersistent id="PhoenixAiur_GravitonBeam@CP">
         <EditorCategories value="Race:Protoss"/>
-        <Marker Link="Effect/PhoenixAiur_GravitonBeam@CP"/>
         <WhichLocation Value="TargetUnit"/>
         <TimeScaleSource Value="Caster"/>
-        <InitialEffect value="PhoenixAiur_GravitonBeamVoid@InitialSet"/>
+        <InitialEffect value="PhoenixAiur_GravitonBeam@InitialSet"/>
         <PeriodCount value="1"/>
-        <PeriodicValidator value="GravitonBeamValidators"/>
-        <PeriodicEffectArray value="PhoenixAiur_GravitonBeamVoid@PeriodicSet"/>
+        <PeriodicEffectArray value="PhoenixAiur_GravitonBeam@PeriodicSet"/>
+        <PeriodicEffectArray value="PhoenixAiur_GravitonBeam@PeriodicSet"/>
+        <PeriodicPeriodArray value="0"/>
         <PeriodicPeriodArray value="0.125"/>
     </CEffectCreatePersistent>
-
-    <CEffectSet id="PhoenixAiur_GravitonBeamVoid@InitialSet">
+    <CEffectSet id="PhoenixAiur_GravitonBeam@InitialSet">
         <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="PhoenixAiur_GravitonBeamVoid@StunAB"/>
-        <EffectArray value="PhoenixAiur_GravitonBeamVoid@HeightAB"/>
+        <EffectArray value="PhoenixAiur_GravitonBeam@AB"/>
     </CEffectSet>
-    <CEffectSet id="PhoenixAiur_GravitonBeamVoid@PeriodicSet">
+    <CEffectSet id="PhoenixAiur_GravitonBeam@PeriodicSet">
         <EditorCategories value="Race:Protoss"/>
-        <EffectArray value="PhoenixAiur_GravitonBeam@DummyDamage"/>
-        <EffectArray value="PhoenixAiur_GravitonBeamVoid@StunAB"/>
-        <EffectArray value="PhoenixAiur_GravitonBeamVoid@DoubleSwitch"/>
+        <EffectArray value="PhoenixAiur_GravitonBeam@AB"/>
+        <EffectArray value="PhoenixAiur_GravitonBeam@DoubleSwitch"/>
     </CEffectSet>
-
-    <CEffectApplyBehavior id="PhoenixAiur_GravitonBeamVoid@StunAB">
-        <Behavior value="PhoenixAiur_GravitonBeamVoid@Stun"/>
+    <CEffectApplyBehavior id="PhoenixAiur_GravitonBeam@AB">
+        <Behavior value="PhoenixAiur_GravitonBeam"/>
     </CEffectApplyBehavior>
-    <CEffectApplyBehavior id="PhoenixAiur_GravitonBeamVoid@HeightAB">
-        <Behavior value="PhoenixAiur_GravitonBeamVoid@Height"/>
-    </CEffectApplyBehavior>
-
-    <CEffectSwitch id="PhoenixAiur_GravitonBeamVoid@DoubleSwitch">
+    <CEffectSwitch id="PhoenixAiur_GravitonBeam@DoubleSwitch">
         <EditorCategories value="Race:Protoss"/>
-        <CaseArray Validator="AlwaysTrue" Effect="PhoenixAiur_GravitonBeamVoid@DoubleSearch"/>
-        <CaseDefault value="PhoenixAiur_GravitonBeamVoid@SecondSearch"/>
+        <CaseArray Validator="AlwaysTrue" Effect="PhoenixAiur_GravitonBeam@DoubleSearch"/>
+        <CaseDefault value="PhoenixAiur_GravitonBeam@SecondSearch"/>
     </CEffectSwitch>
-
-    <CEffectEnumArea id="PhoenixAiur_GravitonBeamVoid@DoubleSearch">
+    <CEffectEnumArea id="PhoenixAiur_GravitonBeam@DoubleSearch">
         <EditorCategories value="Race:Protoss"/>
         <LaunchLocation Value="TargetUnit"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Massive,Structure,Heroic,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray MaxCount="1" Radius="2.5" Effect="PhoenixAiur_GravitonBeamVoid@SecondApply"/>
+        <AreaArray MaxCount="1" Radius="2.5" Effect="PhoenixAiur_GravitonBeam@SecondApply"/>
     </CEffectEnumArea>
-
-    <CEffectEnumArea id="PhoenixAiur_GravitonBeamVoid@SecondSearch">
+    <CEffectEnumArea id="PhoenixAiur_GravitonBeam@SecondSearch">
         <EditorCategories value="Race:Protoss"/>
         <ImpactLocation Value="SourceUnit"/>
         <ExcludeArray Value="Target"/>
         <SearchFilters value="Ground,Visible;Player,Ally,Neutral,Massive,Structure,Heroic,Missile,Destructible,Stasis,Dead,Hidden,Invulnerable"/>
-        <AreaArray MaxCount="1" Radius="4" Effect="PhoenixAiur_GravitonBeamVoid@SecondApply"/>
+        <AreaArray MaxCount="1" Radius="4" Effect="PhoenixAiur_GravitonBeam@SecondApply"/>
     </CEffectEnumArea>
-
-    <CEffectSet id="PhoenixAiur_GravitonBeamVoid@SecondApply">
-        <EffectArray value="PhoenixAiur_GravitonBeamVoid@StunAB"/>
-        <EffectArray value="PhoenixAiur_GravitonBeamVoid@HeightAB"/>
+    <CEffectSet id="PhoenixAiur_GravitonBeam@SecondApply">
+        <EffectArray value="PhoenixAiur_GravitonBeam@AB"/>
     </CEffectSet>
 
     <!-- Акторы для гравитон-луча -->
     <CActorBeamSimple id="PhoenixAiur_GravitonBeam@Beam" parent="BeamSimpleAnimationStyleContinuous">
         <Macros value="ActionTargetTeleportDestroy"/>
-        <On Terms="Effect.PhoenixAiur_GravitonBeamVoid@CP.Start" Send="Create"/>
-        <On Terms="Effect.PhoenixAiur_GravitonBeamVoid@CP.Stop" Send="Destroy"/>
+        <On Terms="Effect.PhoenixAiur_GravitonBeam@CP.Start" Send="Create"/>
+        <On Terms="Effect.PhoenixAiur_GravitonBeam@CP.Stop" Send="Destroy"/>
         <HostLaunch Subject="_Unit" Scope="Caster" Actor="Find"/>
         <HostLaunchSiteOps Ops="SOpAttachWeapon09"/>
         <HostImpact Subject="_Unit" Scope="Target" Actor="Find"/>
@@ -632,36 +484,36 @@
 
     <CActorModel id="PhoenixAiur_GravitonBeam@Impact" parent="ModelAnimationStyleContinuous">
         <Model value="PhoenixAiur_GravitonBeam@ImpactModel"/>
-        <On Terms="Behavior.PhoenixAiur_GravitonBeamVoid@Stun.On" Send="Create"/>
-        <On Terms="Behavior.PhoenixAiur_GravitonBeamVoid@Stun.Off" Send="Destroy"/>
-        <On Terms="Behavior.PhoenixAiur_GravitonBeamVoid@Stun.Off" Send="Create GravitonBeamImpactDeath"/>
+        <On Terms="Behavior.PhoenixAiur_GravitonBeam@Stun.On" Send="Create"/>
+        <On Terms="Behavior.PhoenixAiur_GravitonBeam@Stun.Off" Send="Destroy"/>
+        <On Terms="Behavior.PhoenixAiur_GravitonBeam@Stun.Off" Send="Create GravitonBeamImpactDeath"/>
         <Host Subject="_Unit"/>
         <HostSiteOps Ops="SOpAttachCenter"/>
         <AutoScaleFactor value="0.700000"/>
     </CActorModel>
 
     <CActorSimple id="PhoenixAiur_GravitonBeam@ImpactAnim">
-        <On Terms="Behavior.PhoenixAiur_GravitonBeamVoid@Stun.On" Send="Create"/>
+        <On Terms="Behavior.PhoenixAiur_GravitonBeam@Stun.On" Send="Create"/>
         <On Terms="ActorCreation" Target="_Unit" Send="AnimClear Attack"/>
         <On Terms="ActorCreation" Target="_Unit" Send="AnimClear AttackReady"/>
         <On Terms="ActorCreation" Target="_Unit" Send="AnimClear AttackLeft"/>
         <On Terms="ActorCreation" Target="_Unit" Send="AnimClear AttackRight"/>
         <On Terms="ActorCreation" Target="_Unit" Send="AnimPlay GravitonFlail Flail PlayForever,RandomStartOffset 0.100000 0.100000"/>
-        <On Terms="Behavior.PhoenixAiur_GravitonBeamVoid@Stun.Off" Target="_Unit" Send="AnimClear GravitonFlail"/>
-        <On Terms="Behavior.PhoenixAiur_GravitonBeamVoid@Stun.Off" Send="Destroy"/>
+        <On Terms="Behavior.PhoenixAiur_GravitonBeam@Stun.Off" Target="_Unit" Send="AnimClear GravitonFlail"/>
+        <On Terms="Behavior.PhoenixAiur_GravitonBeam@Stun.Off" Send="Destroy"/>
     </CActorSimple>
 
     <CActorSound id="PhoenixAiur_GravitonBeam@LoopSound" parent="SoundContinuous">
-        <On Terms="Behavior.PhoenixAiur_GravitonBeamVoid@Stun.On" Send="Create"/>
-        <On Terms="Behavior.PhoenixAiur_GravitonBeamVoid@Stun.Off" Send="Destroy"/>
+        <On Terms="Behavior.PhoenixAiur_GravitonBeam@Stun.On" Send="Create"/>
+        <On Terms="Behavior.PhoenixAiur_GravitonBeam@Stun.Off" Send="Destroy"/>
         <Sound value="PhoenixAiur_GravitonBeam@LoopSound"/>
     </CActorSound>
     <CActorSound id="PhoenixAiur_GravitonBeam@StartSound" parent="SoundOneShot">
-        <On Terms="Behavior.PhoenixAiur_GravitonBeamVoid@Stun.On" Send="Create"/>
+        <On Terms="Behavior.PhoenixAiur_GravitonBeam@Stun.On" Send="Create"/>
         <Sound value="PhoenixAiur_GravitonBeam@StartSound"/>
     </CActorSound>
     <CActorSound id="PhoenixAiur_GravitonBeam@StopSound" parent="SoundOneShot">
-        <On Terms="Behavior.PhoenixAiur_GravitonBeamVoid@Stun.Off" Send="Create"/>
+        <On Terms="Behavior.PhoenixAiur_GravitonBeam@Stun.Off" Send="Create"/>
         <Sound value="PhoenixAiur_GravitonBeam@EndSound"/>
     </CActorSound>
 
@@ -692,23 +544,22 @@
         <Pitch value="-3.000000,-2.000000"/>
     </CSound>
 
-    <CDataCollectionUnit id="PhoenixAiur_GravitonBeamVoid" parent="AbilityBase">
+    <CDataCollectionUnit id="PhoenixAiur_GravitonBeam" parent="AbilityBase">
         <EditorCategories value="DataGroup:Ability,DataFamily:Campaign,Race:Protoss,ObjectType:Spell"/>
-        <DataRecord Entry="Button,PhoenixAiur_GravitonBeamVoid"/>
-        <DataRecord Entry="Button,PhoenixAiur_GravitonBeamVoidPassive"/>
-        <DataRecord Entry="Button,Cancel"/>
-        <DataRecord Entry="Abil,PhoenixAiur_GravitonBeamVoid"/>
-        <DataRecord Entry="Behavior,PhoenixAiur_GravitonBeamVoid@Stun"/>
-        <DataRecord Entry="Behavior,PhoenixAiur_GravitonBeamVoid@Height"/>
-        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeamVoid@CP"/>
-        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeamVoid@InitialSet"/>
-        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeamVoid@PeriodicSet"/>
-        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeamVoid@StunAB"/>
-        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeamVoid@HeightAB"/>
-        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeamVoid@DoubleSwitch"/>
-        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeamVoid@DoubleSearch"/>
-        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeamVoid@SecondSearch"/>
-        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeamVoid@SecondApply"/>
+        <DataRecord Entry="Button,PhoenixAiur_GravitonBeam"/>
+        <DataRecord Entry="Button,PhoenixAiur_GravitonBeam@Passive"/>
+        <DataRecord Entry="Abil,PhoenixAiur_GravitonBeam"/>
+        <DataRecord Entry="Behavior,PhoenixAiur_GravitonBeam@Stun"/>
+        <DataRecord Entry="Behavior,PhoenixAiur_GravitonBeam@Height"/>
+        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeam@CP"/>
+        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeam@InitialSet"/>
+        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeam@PeriodicSet"/>
+        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeam@StunAB"/>
+        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeam@HeightAB"/>
+        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeam@DoubleSwitch"/>
+        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeam@DoubleSearch"/>
+        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeam@SecondSearch"/>
+        <DataRecord Entry="Effect,PhoenixAiur_GravitonBeam@SecondApply"/>
         <DataRecord Entry="Actor,PhoenixAiur_GravitonBeam@Beam"/>
         <DataRecord Entry="Actor,PhoenixAiur_GravitonBeam@Impact"/>
         <DataRecord Entry="Actor,PhoenixAiur_GravitonBeam@ImpactAnim"/>
