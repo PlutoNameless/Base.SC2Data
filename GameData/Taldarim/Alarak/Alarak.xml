@@ -513,12 +513,10 @@
         <PathMode value="Flying"/>
     </CMoverMissile>
 
-    <CUnit id="Alarak_DestructionWave@Wave" parent="MISSILE_INVULNERABLE">
-        <FlagArray index="ArmySelect"/>
-    </CUnit>
-    <CActorMissile id="Alarak_DestructionWave@Wave" parent="GenericAttackMissile" unitName="Alarak_DestructionWave@Wave">
-        <On index="1" Terms="ActorCreation" Send="AnimBracketStart Lifetime Birth Stand Death"/>
-        <Macros value="GlobalLoopMacro"/>
+    <CUnit id="Alarak_DestructionWave@Wave" parent="MISSILE_INVULNERABLE"/>
+    <CActorMissile id="Alarak_DestructionWave@Wave" parent="GenericAttackMissileWithDeathAnim" unitName="Alarak_DestructionWave@Wave">
+        <On Terms="ActorCreation" Send="TimerSet 0.3 flightwave"/>
+        <On Terms="TimerExpired; TimerName flightwave" Send="AnimBracketStop BSD"/>
     </CActorMissile>
     <CActorSimple id="Alarak_DestructionWave@Animation">
         <On Terms="ActorOrphan" Send="Destroy"/>
