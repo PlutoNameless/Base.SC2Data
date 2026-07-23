@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog>
+    <CButton id="DarkArchon" parent="UnitButton_GroundAir">
+        <Icon value=""/>
+    </CButton>
+    
+    <CUnit id="DarkArchon" parent="Generic_Protoss_Unit_Ground" race="Prot">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
+        <Mob value="Campaign"/>
+        <LifeStart value="10"/>
+        <LifeMax value="10"/>
+        <EnergyStart value="50"/>
+        <EnergyMax value="200"/>
+        <EnergyRegenRate value="0.5625"/>
+        <ShieldsStart value="350"/>
+        <ShieldsMax value="350"/>
+        <Speed value="2.8125"/>
+        <Food value="-4"/>
+        <Sight value="9"/>
+        <Radius value="1"/>
+        <KillXP value="80"/>
+        <CargoSize value="4"/>
+        <InnerRadius value="0.75"/>
+        <ScoreKill value="450"/>
+        <SubgroupPriority value="45"/>
+        <LateralAcceleration value="46"/>
+        <SeparationRadius value="0.75"/>
+        <MinimapRadius value="0.75"/>
+        <GlossaryPriority value="90"/>
+        <StationaryTurningRate value="999.8437"/>
+        <CostResource index="Minerals" value="175"/>
+        <CostResource index="Vespene" value="275"/>
+
+        <Attributes index="Psionic" value="1"/>
+        <Attributes index="Massive" value="1"/>
+
+        <AbilArray Link="DarkArchon_MindControl"/>
+        <AbilArray Link="DarkArchon_Confusion"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="DarkArchon_MindControl" Type="AbilCmd" AbilCmd="DarkArchon_MindControl,Execute" Row="2" Column="1"/>
+            <LayoutButtons Face="DarkArchon_Confusion" Type="AbilCmd" AbilCmd="DarkArchon_Confusion,Execute" Row="2" Column="0"/>
+        </CardLayouts>
+        <CostCategory value="Army"/>
+        <GlossaryStrongArray value="Zealot"/>
+        <GlossaryStrongArray value="Mutalisk"/>
+        <GlossaryWeakArray value="Thor"/>
+        <GlossaryWeakArray value="Immortal"/>
+        <GlossaryWeakArray value="Ultralisk"/>
+        <ScoreResult value="BuildOrder"/>
+    </CUnit>
+    
+    <CActorUnit id="DarkArchon" parent="AdvancedStandard_Ground" unitName="DarkArchon">
+        <On Terms="Behavior.Hallucination.On" Send="Create HallucinationBirthSoundLarge"/>
+        <On Terms="Behavior.PowerUserWarpable.Off" Send="ModelSwap Archon"/>
+        <On Terms="Abil.ArchonWarp.Start" Send="AnimBracketStart Merging Stand,Work,Start Stand,Work"/>
+        <On Terms="Abil.ArchonWarp.Stop" Send="AnimBracketStop Merging"/>
+        <On Terms="Abil.ArchonWarp.Start; ValidateUnit NoDarkProtoss" Send="SetTintColor 255,255,64"/>
+        <On Terms="Abil.ArchonWarp.Stop; ValidateUnit NoDarkProtoss" Send="ModelSwap DarkProtossArchon"/>
+        <On Terms="Abil.ArchonWarp.Stop; ValidateUnit NoDarkProtoss" Send="SetTintColor 255,255,255"/>
+        <On Terms="UnitHeightUpdate.*.Land" Send="Create Archon_Land"/>
+        <On Terms="Abil.DarkArchonConfusion.SourceCastStart" Send="AnimPlay Confusion Attack,02"/>
+        <On Terms="Abil.DarkArchonConfusion.SourceCastStart" Send="Create DarkArchonConfusionCastModel"/>
+        <Aliases value="_UnitLarge"/>
+        <AbilSoundArray AbilCmd="DarkArchonMindControl,Execute" Sound="DarkArchon_MindControlVO"/>
+        <BarWidth value="66"/>
+        <BarOffset value="120"/>
+        <UnitIcon value="Assets\Textures\btn-unit-protoss-darkarchon.dds"/>
+        <HeroIcon value="Assets\Textures\btn-unit-protoss-darkarchon.dds"/>
+        <WireframeShield>
+            <Image value="Assets\Textures\wireframe-protoss-darkarchon-shield01.dds"/>
+            <Image value="Assets\Textures\wireframe-protoss-darkarchon-shield02.dds"/>
+            <Image value="Assets\Textures\wireframe-protoss-darkarchon-shield03.dds"/>
+        </WireframeShield>
+        <GroupIcon>
+            <Image value="Assets\Textures\wireframe-protoss-darkarchon.dds"/>
+        </GroupIcon>
+        <Wireframe>
+            <Image value="Assets\Textures\wireframe-protoss-darkarchon.dds"/>
+        </Wireframe>
+        <LifeArmorIcon value="Assets\Textures\btn-upgrade-protoss-groundarmorlevel0.dds"/>
+    </CActorUnit>
+    
+    <CModel id="DarkArchon" parent="Unit">
+        <Model value=""/>
+    </CModel>
+    <CModel id="DarkArchon@Death" parent="UnitDeath">
+        <Model value=""/>
+    </CModel>
+    <CModel id="DarkArchon@Placement" parent="Placement">
+        <Model value=""/>
+    </CModel>
+    <CModel id="DarkArchon@WarpIn" parent="OneShotSpellFX">
+        <Model value=""/>
+    </CModel>
+    <CModel id="DarkArchon@Portrait" parent="Portrait">
+        <Model value=""/>
+    </CModel>
+    
+    <CLight id="DarkArchon@Portrait" parent="default"/>
+    
+    <CRequirement id="DarkArchon"/>
+    
+    <CValidatorUnitType id="DarkArchon@Is" parent="IsUnit_Default" unit="DarkArchon"/>
+    <CValidatorUnitType id="DarkArchon@Target" parent="TargetIsUnit_Default" unit="DarkArchon"/>
+    <CValidatorUnitType id="DarkArchon@Not" parent="NotUnit_Default" unit="DarkArchon"/>
+    <CValidatorUnitType id="DarkArchon@NotTarget" parent="TargetNotUnit_Default" unit="DarkArchon"/>
+    
+    <CDataCollectionUnit id="DarkArchon" parent="UnitGround">
+        <DataRecord Entry="Button,DarkArchon"/>
+        <DataRecord Entry="Unit,DarkArchon"/>
+        <DataRecord Entry="Actor,DarkArchon"/>
+        <DataRecord Entry="Model,DarkArchon"/>
+        <DataRecord Entry="Model,DarkArchon@Death"/>
+        <DataRecord Entry="Model,DarkArchon@Placement"/>
+        <DataRecord Entry="Model,DarkArchon@WarpIn"/>
+        <DataRecord Entry="Model,DarkArchon@Portrait"/>
+        <DataRecord Entry="Light,DarkArchon@Portrait"/>
+        <DataRecord Entry="Requirement,DarkArchon"/>
+        <DataRecord Entry="Validator,DarkArchon@Is"/>
+        <DataRecord Entry="Validator,DarkArchon@Target"/>
+        <DataRecord Entry="Validator,DarkArchon@Not"/>
+        <DataRecord Entry="Validator,DarkArchon@NotTarget"/>
+    </CDataCollectionUnit>
+</Catalog>
