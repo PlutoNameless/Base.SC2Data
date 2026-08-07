@@ -4,12 +4,30 @@
         <Icon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-probe.dds"/>
     </CButton>
     
-    <CUnit id="TaldarimProbe" parent="Generic_Unit_Ground" race="Tald">
+    <CUnit id="TaldarimProbe" parent="Generic_Protoss_Unit_Ground" race="Tald">
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         
         <AbilArray Link="TaldarimProbe_Build"/>
-        <WeaponArray Link="TaldarimProbe_Weapon"/>
         <GlossaryPriority value="10"/>
+        
+        <Attributes index="Light" value="1"/>
+        <Attributes index="Mechanical" value="1"/>
+
+        <ShieldsStart value="20"/>
+        <ShieldsMax value="20"/>
+        <ShieldArmor value="0"/>
+        <LifeStart value="20"/>
+        <LifeMax value="20"/>
+        <Sight value="8"/>
+        <Food value="-1"/>
+        <CargoSize value="1"/>
+        <BuildTime value="12"/>
+        <Speed value="2.8125"/>
+        <Acceleration value="2.5"/>
+        <LateralAcceleration value="46"/>
+        <CostResource index="Minerals" value="50"/>
+        
+        <FlagArray index="Worker" value="1"/>
 
         <CardLayouts index="0">
             <LayoutButtons Face="ProtossBuild" Row="2" Column="0">
@@ -50,26 +68,21 @@
             <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
         </CardLayouts>
         
-        <LifeStart value="20"/>
-        <LifeMax value="20"/>
-        <ShieldsStart value="20"/>
-        <ShieldsMax value="20"/>
-        <ShieldArmor value="0"/>
-        <Speed value="2.8125"/>
-        <Acceleration value="2.5"/>
-        <Sight value="8"/>
-        <Food value="-1"/>
-        <CargoSize value="1"/>
-        <CostResource index="Minerals" value="50"/>
-        <LateralAcceleration value="46"/>
+        <DefaultAcquireLevel value="Defensive"/>
+        <AIOverideTargetPriority value="10"/>
+        <CostCategory value="Economy"/>
+        <SubgroupPriority value="3"/>
+        <Response value="Flee"/>
+        <KillXP value="10"/>
 
         <Radius value="0.375"/>
         <InnerRadius value="0.375"/>
+        <SeparationRadius value="0.375"/>
+        <MinimapRadius value="0.375"/>
         
         <GlossaryWeakArray value="Baneling"/>
     </CUnit>
 
-    <!-- ============ Actor Unit ============ -->
     <CActorUnit id="TaldarimProbe" parent="AdvancedUnitStandard" unitName="TaldarimProbe">
         <Aliases value="_UnitSmall"/>
         <WalkAnimMoveSpeed value="2.25"/>
@@ -95,10 +108,12 @@
 
     </CActorUnit>
 
-    <CModel id="TaldarimProbe" parent="Unit">
+    <CModel id="TaldarimProbe" parent="ProbeBase">
         <Model value="Assets\Units\Protoss\Probe_Taldarim\Probe_Taldarim.m3"/>
+        <SelectionRadius value="0.375"/>
+        <ShadowRadius value="0.375"/>
     </CModel>
-    <CModel id="TaldarimProbe@Death" parent="UnitDeath">
+    <CModel id="TaldarimProbe@Death" parent="ProbeDeathBase">
         <Model value="Assets\Units\Protoss\Probe_Taldarim_Death\Probe_Taldarim_Death.m3"/>
     </CModel>
     <CModel id="TaldarimProbe@DeathRagdoll" parent="UnitDeathRagdoll">
@@ -304,5 +319,65 @@
             <Button DefaultButtonFace="TaldarimDarkShrine"/>
         </InfoArray>
     </CAbilBuild>
+
+    <CActorProgress id="TaldarimProbe_Build@Construction">
+        <On Terms="Abil.TaldarimProbe_Build.BuiltStart" Send="Create"/>
+        <StageArray AnimProps="Stand,Build,Start" BlendTime="0.000000"/>
+        <StageArray AnimProps="Stand,Build"/>
+        <StageArray AnimProps="Stand,Build,End"/>
+    </CActorProgress>
+    <CActorModel id="TaldarimProbe_Build@BuildLarge" parent="ModelConstruction">
+        <Aliases value="_ProtossBuildModel"/>
+        <On Terms="ActorCreation" Send="Create TaldarimProbe_Build@ConstructionAttached"/>
+    </CActorModel>
+    <CActorModel id="TaldarimProbe_Build@BuildMedium" parent="ModelConstruction">
+        <Aliases value="_ProtossBuildModel"/>
+        <On Terms="ActorCreation" Send="Create TaldarimProbe_Build@ConstructionAttached"/>
+    </CActorModel>
+    <CActorModel id="TaldarimProbe_Build@BuildSmall" parent="ModelConstruction">
+        <Aliases value="_ProtossBuildModel"/>
+        <On Terms="ActorCreation" Send="Create TaldarimProbe_Build@ConstructionAttached"/>
+    </CActorModel>
+    <CActorProgress id="TaldarimProbe_Build@ConstructionAttached">
+        <On Terms="ProgressLevel.TaldarimProbe_Build@ConstructionAttached.Start; Level 0" Target="_ProtossBuildModel" Send="SetTransferOverrideAnim Stand,Build"/>
+        <On Terms="ProgressLevel.TaldarimProbe_Build@ConstructionAttached.Stop; Level 0" Target="_ProtossBuildModel" Send="SetTransferOverrideAnim Stand,Build"/>
+        <On Terms="ProgressLevel.TaldarimProbe_Build@ConstructionAttached.Start; Level 2" Target="_ProtossBuildModel" Send="SetTransferOverrideAnim Stand,Build"/>
+        <On Terms="ProgressLevel.TaldarimProbe_Build@ConstructionAttached.Stop; Level 2" Target="_ProtossBuildModel" Send="SetTransferOverrideAnim Stand,Build"/>
+        <StageArray AnimProps="Stand,Build,Start" BlendTime="0.000000"/>
+        <StageArray AnimProps="Stand,Build"/>
+        <StageArray AnimProps="Stand,Build,End"/>
+        <Supporter Subject="_ProtossBuildModel"/>
+    </CActorProgress>
+
+    <CModel id="TaldarimProbe_Build@BuildLarge" parent="ProtossBuildingBuildLargeBase">
+        <Events Anim="Stand,Build,Start" Name="BuildStart" Payload="TaldarimProbe_Build@Build" Type="Sound"/>
+    </CModel>
+    <CModel id="TaldarimProbe_Build@BuildMedium" parent="ProtossBuildingBuildBase">
+        <Events Anim="Stand,Build,Start" Name="BuildStart" Payload="TaldarimProbe_Build@Build" Type="Sound"/>
+    </CModel>
+    <CModel id="TaldarimProbe_Build@BuildSmall" parent="ProtossBuildingBuildSmallBase">
+        <Events Anim="Stand,Build,Start" Name="BuildStart" Payload="TaldarimProbe_Build@Build" Type="Sound"/>
+    </CModel>
+
+    <CSound id="TaldarimProbe_Build@Build" parent="Build">
+        <Volume value="-0.080000,0.000000"/>
+        <AssetArray File="Assets\Sounds\Protoss\SharedEffects\Construction\Protoss_BuildingWarpStart0.wav"/>
+        <EditorCategories value="Race:Protoss"/>
+    </CSound>
+    
+    <CDataCollectionUnit id="TaldarimProbe_Build" parent="AbilityBuild">
+        <EditorCategories value="DataGroup:Ability,DataFamily:Campaign,Race:Taldarim,ObjectType:Build"/>
+        <Button value="TaldarimProbe"/>
+        <DataRecord Entry="Abil,TaldarimProbe_Build"/>
+        <DataRecord Entry="Actor,TaldarimProbe_Build@Construction"/>
+        <DataRecord Entry="Actor,TaldarimProbe_Build@BuildLarge"/>
+        <DataRecord Entry="Actor,TaldarimProbe_Build@BuildMedium"/>
+        <DataRecord Entry="Actor,TaldarimProbe_Build@BuildSmall"/>
+        <DataRecord Entry="Actor,TaldarimProbe_Build@ConstructionAttached"/>
+        <DataRecord Entry="Model,TaldarimProbe_Build@BuildLarge"/>
+        <DataRecord Entry="Model,TaldarimProbe_Build@BuildMedium"/>
+        <DataRecord Entry="Model,TaldarimProbe_Build@BuildSmall"/>
+        <DataRecord Entry="Sound,TaldarimProbe_Build@Build"/>
+    </CDataCollectionUnit>
 
 </Catalog>
