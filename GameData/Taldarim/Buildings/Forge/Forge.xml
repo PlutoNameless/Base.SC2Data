@@ -3,7 +3,7 @@
     <!-- Requires: Upgrades[Protoss.xml] -->
 
     <CButton id="TaldarimForge">
-        <Icon value="Assets\Textures\btn-building-protoss-forge-forged.dds"/>
+        <Icon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-forge.dds"/>
     </CButton>
     
     <CUnit id="TaldarimForge">
@@ -32,7 +32,7 @@
         <ScoreResult value="BuildOrder"/>
         <SubgroupPriority value="2"/>
         <MinimapRadius value="1.5"/>
-        <BuildTime value="20"/>
+        <BuildTime value="45"/>
         <EditorCategories value="ObjectType:Structure,ObjectFamily:Melee"/>
         <FlagArray index="Turnable" value="0"/>
         <FlagArray index="PreventDefeat" value="1"/>
@@ -77,6 +77,7 @@
     </CUnit>
     
     <CActorUnit id="TaldarimForge" parent="ProtossCollection@Building" unitName="TaldarimForge">
+        <On Terms="UnitConstruction.*.Start" Send="Create TaldarimProbe_Build@BuildMedium"/>
         <Aliases value="_UnitHuge"/>
         <ModelFlags index="AutomateGlobalLoops" value="0"/>
         <CreepHeightClass value="Small"/>
@@ -85,6 +86,8 @@
         <UnitIcon value="Assets\Textures\btn-building-protoss-forge-forged.dds"/>
         <HeroIcon value="Assets\Textures\btn-building-protoss-forge-forged.dds"/>
         <LifeArmorIcon value="Assets\Textures\protossbuildingarmor.dds"/>
+        <Macros value="ProtossBuildingPowerUp"/>
+        <Macros value="VoidMPUnpoweredAnim"/>
         <GroupIcon>
             <Image value="Assets\Textures\btn-building-protoss-forge-forged.dds"/>
         </GroupIcon>
@@ -115,7 +118,7 @@
     <CModel id="TaldarimForge@DeathUnderConstruction" parent="ProtossBuildingBuildDeath"/>
     <CModel id="TaldarimForge@Build" parent="ProtossBuildingBuildBase"/>
     <CModel id="TaldarimForge@Birth" parent="ForgeBase">
-        <Model value="Assets\Buildings\Protoss\ForgeWarpIn\ForgeWarpIn.m3"/>
+        <Model value="Assets\Buildings\Protoss\Forge_Taldarim_WarpIn\Forge_Taldarim_WarpIn.m3"/>
         <Events>
             <Anim value="Stand,Build,End"/>
             <Name value="BuildingWarpIn"/>
