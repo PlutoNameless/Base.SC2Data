@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog>
+
+    <CButton id="VoidTemplar" parent="UnitButton_OnlyGround">
+        <Icon value="Assets\Textures\btn-unit-protoss-zeratuldarktemplar.dds"/>
+        <EditorCategories value="Race:Zeratul"/>
+    </CButton>
+    
+    <CUnit id="VoidTemplar" parent="Generic_Protoss_Unit_Ground" race="Zera">
+        <EditorCategories value="ObjectType:Unit,ObjectFamily:Coop"/>
+        <FlagArray index="Cloaked" value="1"/>
+        <Radius value="0.375"/>
+        <LifeStart value="750"/>
+        <LifeMax value="750"/>
+        <ShieldsStart value="100"/>
+        <ShieldsMax value="100"/>
+        <Speed value="2.9492"/>
+        <LateralAcceleration value="46"/>
+        <Sight value="10"/>
+        <CostResource index="Minerals" value="300"/>
+        <CostResource index="Vespene" value="50"/>
+        <AbilArray Link="VoidTemplar_Blink"/>
+        <CardLayouts index="0">
+            <LayoutButtons Face="VoidTemplar_Blink" Type="AbilCmd" AbilCmd="VoidTemplar_Blink,Execute" Row="2" Column="0"/>
+            <LayoutButtons Face="ZeratulCommanderVoidFury" Type="Passive" Row="1" Column="1"/>
+        </CardLayouts>
+        <GlossaryPriority value="45"/>
+    </CUnit>
+    
+    <CActorUnit id="VoidTemplar" parent="AdvancedStandard_Ground" unitName="VoidTemplar">
+        <WalkAnimMoveSpeed value="3"/>
+        <UnitIcon value="Assets\Textures\btn-unit-protoss-zeratuldarktemplar.dds"/>
+        <DeathArray index="Freeze" SoundLink="VoidTemplar@DeathVoice"/>
+    </CActorUnit>
+    
+    <CModel id="VoidTemplar" parent="Unit">
+        <Model value="Assets\COOP\Zeratul\Units\DarkTemplar_Zeratul_COOP\DarkTemplar_Zeratul_COOP.m3"/>
+        <EditorCategories value="Race:Zeratul"/>
+        <Radius value="0.8"/>
+        <ScaleMax value="0.8,0.8,0.8"/>
+        <ScaleMin value="0.8,0.8,0.8"/>
+        <Radius value="0.4"/>
+        <SelectionRadius value="0.375"/>
+        <ShadowRadius value="0.375"/>
+        <Tipability value="1"/>
+        <TipabilityLength value="0.3"/>
+        <TipabilityWidth value="0.4"/>
+    </CModel>
+    <CModel id="VoidTemplar@Death" parent="UnitDeath">
+        <Model value="Assets\COOP\Zeratul\Units\DarkTemplar_Zeratul_COOP_Death\DarkTemplar_Zeratul_COOP_Death.m3"/>
+        <EditorCategories value="Race:Zeratul"/>
+    </CModel>
+    <CModel id="VoidTemplar@Portrait" parent="Portrait">
+        <Model value="Assets\COOP\Zeratul\Portraits\DarkTemplar_Zeratul_COOP_Portrait\DarkTemplar_Zeratul_COOP_Portrait.m3"/>
+        <EditorCategories value="Race:Zeratul"/>
+    </CModel>
+    
+    <CSound id="VoidTemplar@Death" parent="DarkTemplar_DeathFX"/>
+    <CSound id="VoidTemplar@DeathVoice" parent="DeathVoice">
+        <EditorCategories value="Race:Zeratul"/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Death00.wav" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Death01.wav" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Death02.wav" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Death03.wav" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Death04.wav" FacialGroup=""/>
+    </CSound>
+    <CSound id="VoidTemplar@Help" parent="Alert">
+        <EditorCategories value="Race:Zeratul"/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Help00.ogg" FacialGroup=""/>
+    </CSound>
+    <CSound id="VoidTemplar@Pissed" parent="Pissed">
+        <EditorCategories value="Race:Zeratul"/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Pissed00.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Pissed01.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Pissed02.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Pissed03.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Pissed04.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Pissed05.ogg" FacialGroup=""/>
+    </CSound>
+    <CSound id="VoidTemplar@Ready" parent="Ready">
+        <EditorCategories value="Race:Zeratul"/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Ready00.ogg" FacialGroup=""/>
+    </CSound>
+    <CSound id="VoidTemplar@What" parent="Voice">
+        <EditorCategories value="Race:Zeratul"/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_What00.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_What01.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_What02.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_What03.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_What04.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_What05.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_What06.ogg" FacialGroup=""/>
+    </CSound>
+    <CSound id="VoidTemplar@Yes" parent="Voice">
+        <EditorCategories value="Race:Zeratul"/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Yes00.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Yes01.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Yes02.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Yes03.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Yes04.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Yes05.ogg" FacialGroup=""/>
+        <AssetArray File="LocalizedData\Sounds\ProtossUnitVO\DarkTemplar\DarkTemplar_Yes06.ogg" FacialGroup=""/>
+    </CSound>
+
+    <CLight id="VoidTemplar@Portrait" parent="default">
+        <ToDInfoArray index="0" Id="VoidTemplar@Portrait" AmbientColor="0.062745,0.223529,0.270588">
+            <Param index="HDRExposure" value="1.575000"/>
+            <Param index="HDRBloomThreshold" value="0.500000"/>
+            <Param index="HDRSpecMultiplier" value="0.350000"/>
+            <Param index="HDREmisMultiplier" value="1.650000"/>
+            <Param index="ShadowPenumbraSize" value="0.496000"/>
+            <DirectionalLight index="Key">
+                <Color value="0.000000,0.215686,0.396078"/>
+                <ColorMultiplier value="0.610000"/>
+                <SpecularColor value="0.000000,0.513726,0.666667"/>
+                <Direction value="0.043042,0.623350,-0.780757"/>
+            </DirectionalLight>
+            <DirectionalLight index="Fill" Color="0.419608,0.462745,0.666667" ColorMultiplier="0.933000"/>
+        </ToDInfoArray>
+        <EditorCategories value="LightGroup:PortraitsUnitsProtoss"/>
+    </CLight>
+
+    <CRequirement id="VoidTemplar"/>
+
+    <CValidatorUnitType id="VoidTemplar@Is" parent="IsUnit_Default" unit="VoidTemplar"/>
+    <CValidatorUnitType id="VoidTemplar@Target" parent="TargetIsUnit_Default" unit="VoidTemplar"/>
+    <CValidatorUnitType id="VoidTemplar@Not" parent="NotUnit_Default" unit="VoidTemplar"/>
+    <CValidatorUnitType id="VoidTemplar@NotTarget" parent="TargetNotUnit_Default" unit="VoidTemplar"/>
+    
+    <CDataCollectionUnit id="VoidTemplar" parent="UnitGround">
+        <EditorCategories value="DataGroup:Unit,Race:Zeratul,ObjectType:Unit"/>
+        <DataRecord Entry="Button,VoidTemplar"/>
+        <DataRecord Entry="Unit,VoidTemplar"/>
+        <DataRecord Entry="Actor,VoidTemplar"/>
+        <DataRecord Entry="Model,VoidTemplar"/>
+        <DataRecord Entry="Model,VoidTemplar@Portrait"/>
+        <DataRecord Entry="Model,VoidTemplar@Death"/>
+        <DataRecord Entry="Sound,VoidTemplar@Ready"/>
+        <DataRecord Entry="Sound,VoidTemplar@Help"/>
+        <DataRecord Entry="Sound,VoidTemplar@What"/>
+        <DataRecord Entry="Sound,VoidTemplar@Yes"/>
+        <DataRecord Entry="Sound,VoidTemplar@Pissed"/>
+        <DataRecord Entry="Sound,VoidTemplar@DeathVoice"/>
+        <DataRecord Entry="Requirement,VoidTemplar"/>
+        <DataRecord Entry="Validator,VoidTemplar@Is"/>
+        <DataRecord Entry="Validator,VoidTemplar@Target"/>
+        <DataRecord Entry="Validator,VoidTemplar@Not"/>
+        <DataRecord Entry="Validator,VoidTemplar@NotTarget"/>
+    </CDataCollectionUnit>
+
+    <!-- ========================= -->
+    <!--         Abilities         -->
+    <!-- ========================= -->
+
+    <!-- Blink -->
+    <CButton id="VoidTemplar_Blink">
+        <Icon value="Assets\Textures\btn-ability-zeratul-darktemplar-blink.dds"/>
+        <EditorCategories value="Race:Zeratul"/>
+    </CButton>
+
+    <CAbilEffectTarget id="VoidTemplar_Blink">
+        <EditorCategories value="Race:Zeratul,AbilityorEffectType:Units"/>
+        <CmdButtonArray index="Execute" DefaultButtonFace="VoidTemplar_Blink"/>
+        <Effect index="0" value="VoidTemplar_Blink@Set"/>
+        <Flags index="BestUnit" value="0"/>
+        <Range value="500"/>
+        <Arc value="360"/>
+        <Cost>
+            <Cooldown>
+                <TimeUse value="8"/>
+            </Cooldown>
+        </Cost>
+    </CAbilEffectTarget>
+    
+    <CEffectSet id="VoidTemplar_Blink@Effects">
+        <EditorCategories value="Race:Zeratul"/>
+        <EffectArray value="VoidTemplar_Blink@LM"/>
+        <TargetLocationType value="UnitOrPoint"/>
+    </CEffectSet>
+    <CEffectSet id="VoidTemplar_Blink@Set">
+        <EditorCategories value="Race:Zeratul"/>
+        <EffectArray value="VoidTemplar_Blink@Facing"/>
+        <EffectArray value="VoidTemplar_Blink@Teleport"/>
+        <TargetLocationType value="Point"/>
+        <ValidatorArray value="VoidTemplar_Blink@MinRange"/>
+    </CEffectSet>
+    <CEffectModifyUnit id="VoidTemplar_Blink@Facing">
+        <EditorCategories value="Race:Zeratul"/>
+        <ImpactUnit Value="Caster"/>
+        <FacingLocation Effect="VoidTemplar_Blink@Set" Value="TargetPoint"/>
+        <FacingType value="LookAt"/>
+    </CEffectModifyUnit>
+    <CEffectTeleport id="VoidTemplar_Blink@Teleport">
+        <ValidatorArray value="CasterNotFungalGrowthed"/>
+        <EditorCategories value="Race:Zeratul"/>
+        <WhichUnit Value="Caster"/>
+        <ClearQueuedOrders value="0"/>
+        <PlacementAround Value="CasterUnit"/>
+        <PlacementRange value="11"/>
+        <Range value="11"/>
+        <TargetLocation Value="TargetPoint"/>
+        <TeleportFlags index="TestCliff" value="1"/>
+        <TeleportFlags index="TestFog" value="1"/>
+        <TeleportEffect value="VoidTemplar_Blink@Effects"/>
+    </CEffectTeleport>
+    <CEffectEnumArea id="VoidTemplar_Blink@Search">
+        <EditorCategories value="Race:Zeratul"/>
+        <SearchFilters value="Ground,Visible;Self,Player,Ally,Neutral,Structure,Item,Stasis,Dead,Hidden,Invulnerable"/>
+        <AreaArray RectangleWidth="1.5" Effect="VoidTemplar_Blink@Damage"/>
+    </CEffectEnumArea>
+    <CEffectLaunchMissile id="VoidTemplar_Blink@LM">
+        <EditorCategories value="Race:Zeratul"/>
+        <LaunchLocation Value="CasterPoint"/>
+        <ImpactLocation Effect="ZeratulCommanderBlinkVoidTemplar@Set" Value="CasterUnit"/>
+        <SearchEffect value="VoidTemplar_Blink@Search"/>
+        <Flags index="PlacementIgnoreCliffTest" value="1"/>
+        <SearchFlags index="DynamicSearchArea" value="1"/>
+        <AmmoUnit value="COOPZeratul_Invisible"/>
+    </CEffectLaunchMissile>
+    <CEffectDamage id="VoidTemplar_Blink@Damage">
+        <Amount value="50"/>
+    </CEffectDamage>
+
+    <CActorAction id="VoidTemplar_Blink@Attack" parent="GenericAttack" effectImpact="VoidTemplar_Blink@Damage" effectLaunch="VoidTemplar_Blink@Search">
+        <ImpactPhysics Name="PhysicsImpactMedium" MatchKeys="Basic" Physics="CC_AttackDeathForceMedium"/>
+        <ImpactMap index="None" Model="VoidTemplar_Blink@Impact"/>
+    </CActorAction>
+    <CActorModel id="VoidTemplar_Blink@ImpactModel" parent="ModelAnimationStyleOneShot">
+        <HostSiteOps Ops="SOpAttachOrigin SOpForwardSourcePoint"/>
+        <On Terms="Effect.VoidTemplar_Blink@Teleport.Stop; At Source" Send="Create"/>
+    </CActorModel>
+    <CActorSound id="VoidTemplar_Blink@ImpactSound" parent="SoundOneShot">
+        <On Terms="Effect.VoidTemplar_Blink@Teleport.Start; At Caster" Send="Create"/>
+        <Layers Sound=""/>
+    </CActorSound>
+    <CActorModel id="VoidTemplar_Blink@LaunchModel" parent="ModelAnimationStyleOneShot">
+        <Host Subject="_Selectable"/>
+        <HostSiteOps Ops="SOpAttachOriginStationary SOpForwardCasterCenter"/>
+        <On Terms="Effect.VoidTemplar_Blink@Teleport.Start; At Source" Send="Create"/>
+    </CActorModel>
+    <CActorRange id="VoidTemplar_Blink@Range" parent="RangeAbil" abil="VoidTemplar_Blink">
+        <Abil Link=""/>
+        <Range value="11.000000"/>
+    </CActorRange>
+    <CActorMissile id="VoidTemplar_Blink@AttackMissile" parent="GenericAttackMissile" unitName="VoidTemplar_Blink@AttackMissile">
+        <Model value="Invisible"/>
+    </CActorMissile>
+
+    <CModel id="VoidTemplar_Blink@Impact">
+        <Model value="Assets\COOP\Zeratul\Effects\DarkTemplar_Zeratul_COOP_BlinkStrike\DarkTemplar_Zeratul_COOP_BlinkStrike.m3"/>
+        <EditorCategories value="Race:Zeratul"/>
+    </CModel>
+    <CModel id="VoidTemplar_Blink@ImpactModel" parent="ImpactFX">
+        <Model value="Assets\Effects\Protoss\ZeratulBlinkIn\ZeratulBlinkIn.m3"/>
+        <EditorCategories value="Race:Zeratul"/>
+    </CModel>
+    <CModel id="VoidTemplar_Blink@LaunchModel" parent="LaunchFX">
+        <Model value="Assets\Effects\Protoss\ZeratulBlinkOut\ZeratulBlinkOut.m3"/>
+        <EditorCategories value="Race:Zeratul"/>
+    </CModel>
+    
+    <CUnit id="VoidTemplar_Blink@AttackMissile" parent="MISSILE">
+        <Race value="Zera"/>
+        <EditorCategories value="ObjectType:Shape,ObjectFamily:Coop"/>
+    </CUnit>
+    <CMoverMissile id="VoidTemplar_Blink@AttackMissile">
+        <PathMode value="Scaler"/>
+        <MotionPhases>
+            <Driver value="Guidance"/>
+            <Acceleration value="1000"/>
+            <MaxSpeed value="100"/>
+            <IgnoresTerrain value="1"/>
+            <ThrowBandYaw value="-360,-360,-360,-360"/>
+            <ThrowBandPitch value="-360,-360,-360,-360"/>
+            <Overlays/>
+            <Overlays/>
+        </MotionPhases>
+    </CMoverMissile>
+    
+    <CSound id="VoidTemplar_Blink@ImpactSound" parent="Spell">
+        <EditorCategories value="Race:Zeratul"/>
+        <AssetArray File="Assets\Sounds\Protoss\Stalker\Stalker_Blink0.wav" FacialGroup=""/>
+    </CSound>
+
+    <CValidatorLocationCompareRange id="VoidTemplar_Blink@MinRange">
+        <Range value="2"/>
+        <Compare value="GE"/>
+    </CValidatorLocationCompareRange>
+    
+    <CDataCollectionUnit id="VoidTemplar_Blink" parent="AbilityBase">
+        <EditorCategories value="DataGroup:Ability,Race:Zeratul,ObjectType:Target"/>
+        <DataRecord Entry="Button,VoidTemplar_Blink"/>
+        <DataRecord Entry="Abil,VoidTemplar_Blink"/>
+        <DataRecord Entry="Effect,VoidTemplar_Blink@Teleport"/>
+        <DataRecord Entry="Effect,VoidTemplar_Blink@Effects"/>
+        <DataRecord Entry="Effect,VoidTemplar_Blink@Facing"/>
+        <DataRecord Entry="Effect,VoidTemplar_Blink@Set"/>
+        <DataRecord Entry="Actor,VoidTemplar_Blink@ImpactModel"/>
+        <DataRecord Entry="Actor,VoidTemplar_Blink@ImpactSound"/>
+        <DataRecord Entry="Actor,VoidTemplar_Blink@LaunchModel"/>
+        <DataRecord Entry="Actor,VoidTemplar_Blink@Range"/>
+        <DataRecord Entry="Actor,VoidTemplar_Blink@Attack"/>
+        <DataRecord Entry="Model,VoidTemplar_Blink@ImpactModel"/>
+        <DataRecord Entry="Model,VoidTemplar_Blink@LaunchModel"/>
+        <DataRecord Entry="Sound,VoidTemplar_Blink@ImpactSound"/>
+        <DataRecord Entry="Light,VoidTemplar_Blink@Portrait"/>
+    </CDataCollectionUnit>
+
+    <!-- ========================= -->
+    <!--          Weapons          -->
+    <!-- ========================= -->
+
+    <!-- Warp Blade -->
+    <CWeaponLegacy id="VoidTemplar_Weapon">
+        <EditorCategories value="Race:Zeratul"/>
+        <DisplayEffect value="VoidTemplar_Weapon@Damage"/>
+        <Effect value="VoidTemplar_Weapon@Damage"/>
+        <Icon value="Assets\Textures\btn-upgrade-protoss-groundweaponslevel0.dds"/>
+        <TargetFilters value="Ground,Visible;Missile,Stasis,Dead,Hidden,Invulnerable"/>
+        <Period value="1.21"/>
+        <Range value="0.1"/>
+        <Options index="Melee" value="1"/>
+    </CWeaponLegacy>
+
+    <CEffectDamage id="VoidTemplar_Weapon@Damage" parent="DU_WEAP">
+        <EditorCategories value="Race:Zeratul"/>
+        <Amount value="60"/>
+    </CEffectDamage>
+    
+    <CActorAction id="VoidTemplar_Weapon@Attack" parent="GenericAttack" effectAttack="VoidTemplar_Weapon@Damage">
+    </CActorAction>
+
+    <CSound id="VoidTemplar_Weapon@AttackLaunch" parent="Combat">
+        <EditorCategories value="Race:Zeratul"/>
+        <AssetArray File="Assets\Sounds\Protoss\DarkTemplar\DarkTemplar_AttackLaunch0.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Protoss\DarkTemplar\DarkTemplar_AttackLaunch1.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Protoss\DarkTemplar\DarkTemplar_AttackLaunch2.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Protoss\DarkTemplar\DarkTemplar_AttackLaunch3.wav" FacialGroup=""/>
+        <AssetArray File="Assets\Sounds\Protoss\DarkTemplar\DarkTemplar_AttackLaunch4.wav" FacialGroup=""/>
+    </CSound>
+
+    <CDataCollectionUnit id="VoidTemplar_Weapon" parent="Weapon_Instant">
+        <EditorCategories value="DataGroup:Weapon,Race:Zeratul,DataFamily:Coop,ObjectType:Instant"/>
+        <DataRecord Entry="Actor,VoidTemplar_Weapon@Attack"/>
+        <DataRecord Entry="Effect,VoidTemplar_Weapon@Damage"/>
+        <DataRecord Entry="Sound,VoidTemplar_Weapon@AttackLaunch"/>
+        <DataRecord Entry="Weapon,VoidTemplar_Weapon"/>
+    </CDataCollectionUnit>
+</Catalog>
