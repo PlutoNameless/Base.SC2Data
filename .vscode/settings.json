@@ -16,5 +16,7 @@
             "pattern": "**/Base.SC2Data/GameData/**/*.xml",
             "systemId": "${workspaceFolder}/.vscode/schemas/catalogsData.xsd"
         }
-    ]
+    ],
+    "modkit.launch.mapPath": "D:/Games/StarCraft II/Mods/Test/testvanguard1.SC2Map",
+    "modkit.launch.warnIfRunning": false
 }
