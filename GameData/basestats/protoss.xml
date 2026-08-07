@@ -27,11 +27,47 @@
         <Mover value="Fly"/>
         <Collide index="Flying" value="1"/>
     </CUnit>
+    <CUnit default="1" id="Generic_Protoss_Structure">
+        <?token id="race" type="CRaceLink" value="Bogus"?>
+        <Race value="##race##"/>
+        <Facing value="315"/>
+        <ShieldRegenDelay value="10"/>
+        <ShieldRegenRate value="2"/>
+        <ShieldArmorName value="Unit/ShieldArmorName/ProtossPlasmaShields"/>
+        <LifeArmorName value="Unit/LifeArmorName/ProtossBuildingPlating"/>
+        <AbilArray Link="BuildInProgress"/>
+        <Attributes index="Armored" value="1"/>
+        <Attributes index="Structure" value="1"/>
+        <PlaneArray index="Ground" value="1"/>
+        <FlagArray index="Turnable" value="0"/>
+        <FlagArray index="PreventDefeat" value="1"/>
+        <FlagArray index="PreventDestroy" value="1"/>
+        <FlagArray index="PenaltyRevealed" value="1"/>
+        <FlagArray index="UseLineOfSight" value="1"/>
+        <FlagArray index="TownAlert" value="1"/>
+        <FlagArray index="NoPortraitTalk" value="1"/>
+        <FlagArray index="ArmorDisabledWhileConstructing" value="1"/>
+        <Collide index="Burrow" value="1"/>
+        <Collide index="Ground" value="1"/>
+        <Collide index="Structure" value="1"/>
+        <Collide index="RoachBurrow" value="1"/>
+        <Collide index="ForceField" value="1"/>
+        <Collide index="Small" value="1"/>
+        <StationaryTurningRate value="719.4726"/>
+        <TurningRate value="719.4726"/>
+        <FogVisibility value="Snapshot"/>
+        <LifeArmor value="1"/>
+        <Sight value="9"/>
+        <BehaviorArray Link="PowerUserQueue"/>
+        <CostCategory value="Technology"/>
+        <AttackTargetPriority value="11"/>
+        <CardLayouts>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+        </CardLayouts>
+        <HotkeyCategory value="Unit/Category/##race##"/>
+    </CUnit>
 
     <!-- Actors -->
-    <CActorProgress id="ProtossConstruction">
-        <On Terms="Abil.TaldarimProbe_Build.BuildStart" Send="Create"/>
-    </CActorProgress>
 
     <CActorUnit default="1" id="ProtossCollection@Building" parent="AdvancedUnitStandard">
         <Macros value="BuildingFlattenTerrainMacro"/>
@@ -44,7 +80,7 @@
         <CreepRateShrink value="Shrink"/>
         <On Terms="UnitDeathCustomize; CreepEngulfs" Send="CreepEngulfmentStopTransition"/>
         <On Terms="ActorCreation; CreepIntersects" Send="CreepEngulfmentStartTransition"/>
-        <On Terms="UnitConstruction.##unitName##.Start" Send="Create ##unitName##@Build"/>
+        <!-- <On Terms="UnitConstruction.##unitName##.Start" Send="Create ##unitName##@Build"/> -->
         <EventDataSound Name="BuildingWarpIn" Actor="UnitSound" Sound="Protoss_BuildingWarpIn"/>
         <PlacementSound value="Protoss_BuildingPlacement"/>
         <SoundArray index="Construction" value="Protoss_ConstructionWhat"/>
