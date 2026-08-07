@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog>
+    <CButton id="AbathurCommanderRoach"></CButton>
+    
+    <CUnit id="AbathurCommanderRoach"></CUnit>
+    
+    <CActorUnit id="AbathurCommanderRoach" parent="AdvancedStandard_Ground" unitName="AbathurCommanderRoach"/>
+    
+    <CModel id="AbathurCommanderRoach" parent="Unit">
+        <Model value=""/>
+    </CModel>
+    <CModel id="AbathurCommanderRoach@Death" parent="UnitDeath">
+        <Model value=""/>
+    </CModel>
+    <CModel id="AbathurCommanderRoach@Portrait" parent="Portrait">
+        <Model value=""/>
+    </CModel>
+    
+</Catalog>
