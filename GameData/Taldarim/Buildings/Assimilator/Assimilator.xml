@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog>
+
+    <CButton id="TaldarimAssimilator">
+        <Icon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-assimilator.dds"/>
+    </CButton>
+    
+    <CUnit id="TaldarimAssimilator" parent="Generic_Protoss_Structure" race="Tald">
+        <Facing value="315"/>
+        <Mob value="Campaign"/>
+        <ResourceState value="Harvestable"/>
+        <ResourceType value="Vespene"/>
+        <LifeStart value="450"/>
+        <LifeMax value="450"/>
+        <ShieldsStart value="450"/>
+        <ShieldsMax value="450"/>
+        <Radius value="1.5"/>
+        <BuildTime value="30"/>
+        <SeparationRadius value="1.5"/>
+        <Footprint value="FootprintGeyserRoundedBuilt"/>
+        <PlacementFootprint value="Footprint3x3CappedGeyser"/>
+        <ScoreMake value="75"/>
+        <ScoreKill value="75"/>
+        <SubgroupPriority value="1"/>
+        <MinimapRadius value="1.5"/>
+        <EditorCategories value="ObjectType:Structure,ObjectFamily:Melee"/>
+        <BehaviorArray Link="HarvestableVespeneGeyserGasProtoss"/>
+        <CardLayouts>
+            <LayoutButtons Face="CancelBuilding" Type="AbilCmd" AbilCmd="BuildInProgress,Cancel" Row="2" Column="4"/>
+        </CardLayouts>
+        <BuiltOn value="VespeneGeyser"/>
+        <BuiltOn value="SpacePlatformGeyser"/>
+        <BuiltOn value="RichVespeneGeyser"/>
+        <GlossaryPriority value="10"/>
+        <CostCategory value="Economy"/>
+        <CostResource index="Minerals" value="75"/>
+        <BuildOnAs value="AssimilatorRich"/>
+    </CUnit>
+
+    <CActorUnit id="TaldarimAssimilator" parent="ProtossCollection@Building" unitName="TaldarimAssimilator">
+        <Aliases value="_UnitHuge"/>
+        <Macros value="ExtractAnim"/>
+        <On Terms="UnitConstruction.*.Start" Send="Create TaldarimProbe_Build@BuildMedium"/>
+        <On Terms="Behavior.HarvestableVespeneGeyserGasProtoss.Deplete" Send="SetTintColor 255,170,170"/>
+        <On Terms="Behavior.HarvestableVespeneGeyserGasProtoss.Deplete" Send="AnimGroupRemove D"/>
+        <On Terms="Behavior.HarvestableVespeneGeyserGasProtoss.Deplete" Send="AnimGroupApply B"/>
+        <On Terms="Behavior.HarvestableVespeneGeyserGasProtoss.Restore" Send="SetTintColor 255,255,255"/>
+        <On Terms="Behavior.HarvestableVespeneGeyserGasProtoss.Restore" Send="AnimGroupRemove B"/>
+        <On Terms="Behavior.HarvestableVespeneGeyserGasProtoss.Restore" Send="AnimGroupApply D"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit NoVespene" Send="DeathCustomize Empty"/>
+        <On Terms="UnitBirth.Assimilator" Send="TimerSet 0.100000 HideGeyser"/>
+        <On Terms="TimerExpired; TimerName HideGeyser" Send="Create GeyserBuildFinishCovered"/>
+        <On Terms="ActorDestruction" Send="Create GeyserUncovered"/>
+        <!--On Terms="ActorCreation" Send="Create GeyserBuildStartRichCovered"/>
+        <On Terms="Signal.*.RichGeyser" Send="StatusSet RichGeyser 1"/>
+        <On Terms="UnitBirth.Assimilator; HasStatus RichGeyser" Send="ModelSwap AssimilatorRich"/>
+        <On Terms="Signal.*.RichGeyser" Send="ModelSwap AssimilatorRichBirth"/-->
+        <CreepHeightClass value="Small"/>
+        <DeathCustoms ModelLink="AssimilatorEmptyDeath" Name="Empty"/>
+        <BarOffset value="110"/>
+        <BarWidth value="120"/>
+        <UnitIcon value="Assets\Textures\btn-unit-protoss-alarak-taldarim-assimilator.dds"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Protoss-Assimilator.dds"/>
+        </GroupIcon>
+        <NameOffset value="130"/>
+        <StatusHarvesterData Text="UI/HarvesterCountVespene"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Protoss-Assimilator.dds"/>
+        </Wireframe>
+        <WireframeShield>
+            <Image value="Assets\Textures\Wireframe-Protoss-Assimilator-Shield01.dds"/>
+            <Image value="Assets\Textures\Wireframe-Protoss-Assimilator-Shield02.dds"/>
+            <Image value="Assets\Textures\Wireframe-Protoss-Assimilator-Shield03.dds"/>
+        </WireframeShield>
+    </CActorUnit>
+    <CActorSplat id="TaldarimAssimilator@Splat" parent="GenericUnitSplat" unitName="TaldarimAssimilator"/>
+
+
+    <CModel id="TaldarimAssimilator" parent="AssimilatorBase">
+        <Model value="Assets\Buildings\Protoss\Assimilator_Taldarim\Assimilator_Taldarim.m3"/>
+    </CModel>
+    <CModel id="TaldarimAssimilator@Placement" parent="AssimilatorPlacementBase">
+        <Model value="Assets\Buildings\Protoss\Assimilator_Forged_Placement\Assimilator_Forged_Placement.m3"/>
+    </CModel>
+    <CModel id="TaldarimAssimilator@Death" parent="AssimilatorDeathBase">
+        <Model value="Assets\Buildings\Protoss\Assimilator_Taldarim_Death\Assimilator_Taldarim_Death.m3"/>
+    </CModel>
+    <CModel id="TaldarimAssimilator@EmptyDeath" parent="AssimilatorEmptyDeathBase">
+        <Model value="Assets\Buildings\Protoss\AssimilatorEmptyDeathEx1\AssimilatorEmptyDeathEx1.m3"/>
+    </CModel>
+    <CModel id="TaldarimAssimilator@Splat" parent="Splat">
+        <Model value="Assets\Splats\Splat_Assimilator\Splat_Assimilator.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+        <ScaleMax value="0.800000,0.800000,0.800000"/>
+        <ScaleMin value="0.800000,0.800000,0.800000"/>
+    </CModel>
+    <CModel id="TaldarimAssimilator@Portrait" parent="ExecutorPortrait"/>
+    <CModel id="TaldarimAssimilator@DeathUnderConstruction" parent="ProtossBuildingBuildDeath"/>
+
+    <CModel id="TaldarimAssimilator@Birth" parent="TaldarimAssimilator">
+        <Model value="Assets\Buildings\Protoss\Assimilator_Taldarim_WarpIn\Assimilator_Taldarim_WarpIn.m3"/>
+        <Events>
+            <Anim value="Stand,Build,End"/>
+            <Name value="BuildingWarpIn"/>
+            <Type value="Sound"/>
+            <Time value="0.700000"/>
+        </Events>
+    </CModel>
+
+</Catalog>
