@@ -22,10 +22,16 @@
         <BuildTime value="65"/>
         <EditorCategories value="ObjectType:Structure,ObjectFamily:Melee"/>
         <AbilArray Link="que5"/>
-        <AbilArray Link="GatewayTrain"/>
+        <AbilArray Link="TaldarimGateway_Train"/>
         <AbilArray Link="Rally"/>
         <AbilArray Link="UpgradeToWarpGate"/>
         <CardLayouts index="0">
+            <LayoutButtons Face="Supplicant" Type="AbilCmd" AbilCmd="TaldarimGateway_Train,Train1"/>
+            <LayoutButtons Face="Slayer" Type="AbilCmd" AbilCmd="TaldarimGateway_Train,Train2" Column="1"/>
+            <LayoutButtons Face="Havoc" Type="AbilCmd" AbilCmd="TaldarimGateway_Train,Train3" Column="2"/>
+            <LayoutButtons Face="Ascendant" Type="AbilCmd" AbilCmd="TaldarimGateway_Train,Train4" Column="3"/>
+            <LayoutButtons Face="BloodHunter" Type="AbilCmd" AbilCmd="TaldarimGateway_Train,Train5" Column="4"/>
+
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="UpgradeToWarpGate,Cancel" Row="2" Column="4"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4"/>
@@ -44,6 +50,8 @@
     <CActorUnit id="TaldarimGateway" parent="ProtossCollection@Building" unitName="TaldarimGateway">
         <On Terms="UnitConstruction.*.Start" Send="Create TaldarimProbe_Build@BuildMedium"/>
         <Aliases value="_UnitHuge"/>
+        <Macros value="ProtossBuildingPowerUp"/>
+        <Macros value="VoidMPUnpoweredAnim"/>
         <Macros value="QueueAnim"/>
         <Macros value="GlobalLoopMacro"/>
         <Macros value="GlobalLoopMacroMore"/>
@@ -136,5 +144,34 @@
         <AssetArray File="Assets\Sounds\Protoss\WarpGate\WarpGate_MorphToGateway2.wav"/>
         <Volume value="-3.000000,-3.000000"/>
     </CSound>
+    
+    <!-- ========= Abilities ========== -->
+    
+    <!-- Train -->
+    <CAbilTrain id="TaldarimGateway_Train">
+        <EditorCategories value="Race:Protoss,AbilityorEffectType:Structures"/>
+        <Flags index="IgnoreUnitBuildTime" value="0"/>
+        <InfoArray index="Train1">
+            <Button DefaultButtonFace="Supplicant"/>
+            <Unit value="Supplicant"/>
+        </InfoArray>
+        <InfoArray index="Train2">
+            <Button DefaultButtonFace="Slayer" Requirements="HaveCyberneticsCore"/>
+            <Unit value="Slayer"/>
+        </InfoArray>
+        <InfoArray index="Train3">
+            <Button DefaultButtonFace="Ascendant" Requirements="HaveTemplarArchives"/>
+            <Unit value="Ascendant"/>
+        </InfoArray>
+        <InfoArray index="Train4">
+            <Button DefaultButtonFace="BloodHunter" Requirements="HaveDarkShrine"/>
+            <Unit value="BloodHunter"/>
+        </InfoArray>
+        <InfoArray index="Train5">
+            <Button DefaultButtonFace="Havoc" Requirements="HaveCyberneticsCore"/>
+            <Unit value="Havoc"/>
+        </InfoArray>
+        <Activity value="UI/Warping"/>
+    </CAbilTrain>
 
 </Catalog>
