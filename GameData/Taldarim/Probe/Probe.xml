@@ -49,7 +49,7 @@
             <LayoutButtons Face="TaldarimGateway" Type="AbilCmd" AbilCmd="TaldarimProbe_Build,Build4" Row="1"/>
             <LayoutButtons Face="TaldarimForge" Type="AbilCmd" AbilCmd="TaldarimProbe_Build,Build5" Row="1" Column="1"/>
 
-            <LayoutButtons Face="TaldarimCyberneticCore" Type="AbilCmd" AbilCmd="TaldarimProbe_Build,Build6" Row="2"/>
+            <LayoutButtons Face="TaldarimCyberneticsCore" Type="AbilCmd" AbilCmd="TaldarimProbe_Build,Build6" Row="2"/>
             <LayoutButtons Face="TaldarimPhotonCannon" Type="AbilCmd" AbilCmd="TaldarimProbe_Build,Build7" Row="2" Column="1"/>
 
             <LayoutButtons Face="Cancel" Type="CancelSubmenu" Row="2" Column="4"/>
@@ -290,8 +290,8 @@
         <InfoArray index="Build5" Unit="TaldarimForge">
             <Button DefaultButtonFace="TaldarimForge"/>
         </InfoArray>
-        <InfoArray index="Build6" Unit="TaldarimCyberneticCore">
-            <Button DefaultButtonFace="TaldarimCyberneticCore"/>
+        <InfoArray index="Build6" Unit="TaldarimCyberneticsCore">
+            <Button DefaultButtonFace="TaldarimCyberneticsCore"/>
         </InfoArray>
         <InfoArray index="Build7" Unit="TaldarimPhotonCannon">
             <Button DefaultButtonFace="TaldarimPhotonCannon"/>
