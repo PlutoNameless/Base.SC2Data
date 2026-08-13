@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Catalog>
+
+    <CButton id="TaldarimRoboticsFacility">
+        <Icon value="Assets/Textures/btn-unit-protoss-alarak-taldarim-roboticsfacility.dds"/>
+    </CButton>
+    
+    <CUnit id="TaldarimRoboticsFacility" parent="Generic_Protoss_Structure" race="Tald">
+        <DeathRevealRadius value="3"/>
+        <Facing value="315"/>
+        <Mob value="Campaign"/>
+        <FogVisibility value="Snapshot"/>
+        <LifeStart value="450"/>
+        <LifeMax value="450"/>
+        <ShieldsStart value="450"/>
+        <ShieldsMax value="450"/>
+        <Radius value="1.5"/>
+        <SeparationRadius value="1.5"/>
+        <Footprint value="Footprint3x3Contour"/>
+        <PlacementFootprint value="Footprint3x3"/>
+        <SubgroupPriority value="2"/>
+        <MinimapRadius value="1.5"/>
+        <BuildTime value="65"/>
+        <AbilArray Link="que5"/>
+        <AbilArray Link="RoboticsFacilityTrain"/>
+        <AbilArray Link="Rally"/>
+        <CardLayouts>
+            <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
+            <LayoutButtons Face="Colossus" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train3" Row="0" Column="3"/>
+            <LayoutButtons Face="Observer" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train2" Row="0" Column="0"/>
+            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="Rally,Rally1" Row="1" Column="4"/>
+            <LayoutButtons Face="WarpPrism" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train1" Row="0" Column="1"/>
+            <LayoutButtons Face="Immortal" Type="AbilCmd" AbilCmd="RoboticsFacilityTrain,Train4" Row="0" Column="2"/>
+        </CardLayouts>
+        <GlossaryPriority value="10"/>
+        <CostResource index="Minerals" value="200"/>
+        <CostResource index="Vespene" value="100"/>
+        <TechTreeProducedUnitArray value="Vanguard"/>
+        <TechTreeProducedUnitArray value="Wrathwalker"/>
+        <ScoreMake value="300"/>
+        <ScoreKill value="300"/>
+    </CUnit>
+
+    <CActorUnit id="TaldarimRoboticsFacility" parent="ProtossCollection@Building" unitName="TaldarimRoboticsFacility">
+        <On Terms="UnitConstruction.*.Start" Send="Create TaldarimProbe_Build@BuildMedium"/>
+        <Aliases value="_UnitHuge"/>
+        <Macros value="ProtossBuildingPowerUp"/>
+        <Macros value="VoidMPUnpoweredAnim"/>
+        <Macros value="QueueAnim"/>
+        <On Terms="UnitDeathCustomize; ValidateUnit CasterIsUnpoweredAndNotUnderConstruction" Send="DeathCustomize Variation2"/>
+        <On Terms="UnitDeathCustomize; !IsStatus Queuing 0" Send="DeathCustomize Variation9"/>
+        <AnimBlendTime value="0.000000"/>
+        <CreepHeightClass value="Small"/>
+        <DeathCustoms ModelLink="RoboticsFacilityDeathUnpowered" SoundLink="RoboticsFacilty_Explode" Name="Variation2"/>
+        <DeathCustoms ModelLink="RoboticsFacilityConstructionDeath" SoundLink="RoboticsFacilty_Explode" Name="Variation9"/>
+        <BarOffset value="110"/>
+        <BarWidth value="160"/>
+        <GroupIcon>
+            <Image value="Assets\Textures\Wireframe-Protoss-RoboticsFacility.dds"/>
+        </GroupIcon>
+        <NameOffset value="110"/>
+        <Wireframe>
+            <Image value="Assets\Textures\Wireframe-Protoss-RoboticsFacility.dds"/>
+        </Wireframe>
+        <WireframeShield>
+            <Image value="Assets\Textures\Wireframe-Protoss-RoboticsFacility-Shield01.dds"/>
+            <Image value="Assets\Textures\Wireframe-Protoss-RoboticsFacility-Shield02.dds"/>
+            <Image value="Assets\Textures\Wireframe-Protoss-RoboticsFacility-Shield03.dds"/>
+        </WireframeShield>
+    </CActorUnit>
+    <CActorSplat id="TaldarimRoboticsFacility@Splat" parent="GenericUnitSplat" unitName="TaldarimRoboticsFacility"/>
+
+    <CModel id="TaldarimRoboticsFacility" parent="RoboticsFacility">
+        <Model value="Assets\Buildings\Protoss\RoboticsFacility_Taldarim_Collection\RoboticsFacility_Taldarim_Collection.m3"/>
+    </CModel>
+    <CModel id="TaldarimRoboticsFacility@Death" parent="RoboticsFacilityDeath">
+        <Model value="Assets\Buildings\Protoss\RoboticsFacility_Taldarim_Collection_Death\RoboticsFacility_Taldarim_Collection_Death.m3"/>
+    </CModel>
+    <CModel id="TaldarimRoboticsFacility@DeathUnpowered" parent="RoboticsFacilityDeathUnpowered">
+        <Model value="Assets\Buildings\Protoss\RoboticsFacility_Taldarim_Collection_Death_Unpowered\RoboticsFacility_Taldarim_Collection_Death_Unpowered.m3"/>
+    </CModel>
+    <CModel id="TaldarimRoboticsFacility@DeathConstruction" parent="BuildingDeath" Race="Protoss">
+        <Model value="Assets\Buildings\Protoss\RoboticsFacility_Construction_Death\RoboticsFacility_Construction_Death.m3"/>
+    </CModel>
+    <CModel id="TaldarimRoboticsFacility@Portrait" parent="ExecutorPortrait"/>
+    <CModel id="TaldarimRoboticsFacility@Placement" parent="RoboticsFacilityPlacementBase">
+        <Model value="Assets/Buildings/Protoss/RoboticsFacility_Taldarim_Placement/RoboticsFacility_Taldarim_Placement.m3"/>
+    </CModel>
+    <CModel id="TaldarimRoboticsFacility@Splat" parent="Splat">
+        <Model value="Assets\Splats\Splat_RoboticsFacility\Splat_RoboticsFacility.m3"/>
+        <EditorCategories value="Race:Protoss"/>
+        <ScaleMax value="0.900000,0.900000,0.900000"/>
+        <ScaleMin value="0.900000,0.900000,0.900000"/>
+    </CModel>
+    <CModel id="TaldarimRoboticsFacility@Birth" parent="TaldarimRoboticsFacility">
+        <Model value="Assets/Buildings/Protoss/RoboticsFacility_Taldarim_WarpIn/RoboticsFacility_Taldarim_WarpIn.m3"/>
+        <Events>
+            <Anim value="Stand,Build,End"/>
+            <Name value="BuildingWarpIn"/>
+            <Type value="Sound"/>
+            <Time value="1.000000"/>
+        </Events>
+    </CModel>
+
+    <CDataCollectionUnit id="TaldarimRoboticsFacility" parent="UnitGround">
+        <EditorCategories value="DataGroup:Unit,DataFamily:Campaign,Race:Taldarim,ObjectType:Structure"/>
+        <DataRecord Entry="Button,TaldarimRoboticsFacility"/>
+        <DataRecord Entry="Unit,TaldarimRoboticsFacility"/>
+        <DataRecord Entry="Actor,TaldarimRoboticsFacility"/>
+        <DataRecord Entry="Actor,TaldarimRoboticsFacility@Splat"/>
+        <DataRecord Entry="Model,TaldarimRoboticsFacility"/>
+        <DataRecord Entry="Model,TaldarimRoboticsFacility@Death"/>
+        <DataRecord Entry="Model,TaldarimRoboticsFacility@DeathUnpowered"/>
+        <DataRecord Entry="Model,TaldarimRoboticsFacility@DeathConstruction"/>
+        <DataRecord Entry="Model,TaldarimRoboticsFacility@Portrait"/>
+        <DataRecord Entry="Model,TaldarimRoboticsFacility@Placement"/>
+        <DataRecord Entry="Model,TaldarimRoboticsFacility@Splat"/>
+        <DataRecord Entry="Model,TaldarimRoboticsFacility@Birth"/>
+    </CDataCollectionUnit>
+
+</Catalog>
