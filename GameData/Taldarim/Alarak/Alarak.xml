@@ -260,12 +260,12 @@
         </Events>
     </CModel>
     <CModel id="Alarak_SoulAbsorbtion@Glaze">
-        <EditorCategories value="Race:Taldrim"/>
+        <EditorCategories value="Race:Taldarim"/>
         <Model value="Assets\Effects\Glaze\Glaze_SoulAbsorption\Glaze_SoulAbsorption.m3"/>
     </CModel>
 
     <CSound id="Alarak_SoulAbsorbtion@AttackLaunch" parent="Spell">
-        <EditorCategories value="Race:Taldrim"/>
+        <EditorCategories value="Race:Taldarim"/>
         <AssetArray File="Assets\Sounds\Alarak_SoulTake_01.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\Alarak_SoulTake_02.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\Alarak_SoulTake_03.wav" FacialGroup=""/>
@@ -278,7 +278,7 @@
         <Volume value="-4.000000,-2.000000"/>
     </CSound>
     <CSound id="Alarak_SoulAbsorbtion@AttackImpact" parent="Spell">
-        <EditorCategories value="Race:Taldrim"/>
+        <EditorCategories value="Race:Taldarim"/>
         <AssetArray File="Assets\Sounds\Alarak_SoulTake_Rv1_01a.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\Alarak_SoulTake_Rv1_05.wav" FacialGroup=""/>
         <AssetArray File="Assets\Sounds\Alarak_SoulTake_Rv1_01.wav" FacialGroup=""/>
