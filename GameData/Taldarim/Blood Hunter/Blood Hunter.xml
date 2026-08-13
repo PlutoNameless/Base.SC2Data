@@ -8,11 +8,10 @@
         <Icon value="Assets\Textures\btn-unit-protoss-darktemplar-taldarim.dds"/>
     </CButton>
 
-    <CUnit id="BloodHunter" parent="Generic_Unit_Ground" race="Tald">
+    <CUnit id="BloodHunter" parent="Generic_Protoss_Unit_Ground" race="Tald">
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         
         <AbilArray Link="BloodHunter_VoidStasis"/>
-        <WeaponArray Link="BloodHunter_Weapon"/>
         
         <!-- BloodHunter Properties -->
         <Attributes index="Light" value="1"/>

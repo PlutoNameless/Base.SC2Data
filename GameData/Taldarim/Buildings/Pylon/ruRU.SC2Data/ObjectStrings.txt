@@ -1,7 +1,11 @@
+Actor/Name/TaldarimPylon=Taldarim Pylon
+
 Model/Name/TaldarimPylon=Taldarim Pylon
 Model/Name/TaldarimPylon@Death=Death
-Model/Name/TaldarimPylon@Placement=Placement
 Model/Name/TaldarimPylon@Portrait=Portrait
+Model/Name/TaldarimPylon@Placement=Placement
+Model/Name/TaldarimPylon@DeathUnderConstruction=DeathUnderConstruction
+Model/Name/TaldarimPylon@Birth=Birth
 
 Sound/Name/TaldarimPylon@Death=Death
 Sound/Name/TaldarimPylon@Ready=Ready
@@ -9,7 +13,13 @@ Sound/Name/TaldarimPylon@What=What
 
 Validator/Name/TaldarimPylon@Is=Caster Is Unit
 Validator/Name/TaldarimPylon@Target=Target Is Unit
-Validator/Name/TaldarimPylon@Not=Caster Is Not Unit
-Validator/Name/TaldarimPylon@NotTarget=Target Is Not Unit
+Validator/Name/TaldarimPylon@Not=Caster Not Unit
+Validator/Name/TaldarimPylon@NotTarget=Target Not Unit
 
-Unit/EditorPrefix/TaldarimPylon=Тал'Даримы -
+Unit/EditorPrefix/TaldarimPylon=Тал'даримы -
+Button/EditorPrefix/TaldarimPylon=Тал'даримы -
+Model/EditorSuffix/TaldarimPylon@Death=(Taldarim Pylon)
+Model/EditorSuffix/TaldarimPylon@Portrait=(Taldarim Pylon)
+Model/EditorSuffix/TaldarimPylon@Placement=(Taldarim Pylon)
+Model/EditorSuffix/TaldarimPylon@DeathUnderConstruction=(Taldarim Pylon)
+Model/EditorSuffix/TaldarimPylon@Birth=(Taldarim Pylon)

@@ -4,7 +4,7 @@
         <Icon value="Assets\Textures\btn-unit-protoss-colossus-taldarimex3.dds"/>
     </CButton>
 
-    <CUnit id="Wrathwalker" parent="Generic_Unit_Ground" race="Tald">
+    <CUnit id="Wrathwalker" parent="Generic_Protoss_Unit_Ground" race="Tald">
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         <FlagArray index="Turnable" value="0"/>
 

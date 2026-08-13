@@ -4,7 +4,7 @@
         <Icon value="Assets\Textures\btn-unit-protoss-sentry-taldarim.dds"/>
     </CButton>
 
-    <CUnit id="Havoc" parent="Generic_Unit_Ground" race="Tald">
+    <CUnit id="Havoc" parent="Generic_Protoss_Unit_Ground" race="Tald">
         <EditorCategories value="ObjectType:Unit,ObjectFamily:Campaign"/>
         <Collide index="Locust" value="1"/>
         <Attributes index="Light" value="1"/>
@@ -25,10 +25,8 @@
         <CostResource index="Vespene" value="100"/>
         <RepairTime value="40"/>
         <KillXP value="20"/>
-        <AbilArray Link="Warpable"/>
         <AbilArray Link="Havoc_TargetLock"/>
         <AbilArray Link="Havoc_ForceField"/>
-        <AbilArray Link="ProgressRally"/>
         <BehaviorArray Link="Havoc_SquadSight@Aura"/>
         <BehaviorArray Link="Detector11"/>
         <!-- <WeaponArray Link="Havoc_Weapon" Turret="FreeRotate"/> -->
@@ -38,7 +36,6 @@
             <LayoutButtons Face="Havoc_TargetLock" Type="AbilCmd" AbilCmd="Havoc_TargetLock,Execute" Row="2" Column="0"/>
             <LayoutButtons Face="Havoc_ForceField" Type="AbilCmd" AbilCmd="Havoc_ForceField,Execute" Row="2" Column="1"/>
             <LayoutButtons Face="Havoc_SquadSight" Type="Passive" Behavior="Havoc_SquadSight@Aura" Row="2" Column="2"/>
-            <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="ProgressRally,Rally1" Row="2" Column="4"/>
         </CardLayouts>
         <ScoreMake value="100"/>
         <ScoreKill value="100"/>

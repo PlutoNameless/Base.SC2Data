@@ -38,9 +38,9 @@
         <AbilArray Link="TaldarimNexus_Train"/>
         <AbilArray Link="RallyNexus"/>
         <BehaviorArray index="0" Link=""/>
-        <CardLayouts>
+        <CardLayouts index="0">
             <LayoutButtons Face="Cancel" Type="AbilCmd" AbilCmd="que5,CancelLast" Row="2" Column="4"/>
-            <LayoutButtons Face="TaldarimProbe" Type="AbilCmd" AbilCmd="TaldarimProbe,Train1" Row="0" Column="0"/>
+            <LayoutButtons Face="TaldarimProbe" Type="AbilCmd" AbilCmd="TaldarimNexus_Train,Train1" Row="0" Column="0"/>
             <LayoutButtons Face="Rally" Type="AbilCmd" AbilCmd="RallyNexus,Rally1" Row="1" Column="4"/>
         </CardLayouts>
         <GlossaryPriority value="10"/>
@@ -145,7 +145,7 @@
     
     <!-- Train -->
     
-    <CAbilTrain id="TaldarimMexus_Train">
+    <CAbilTrain id="TaldarimNexus_Train">
         <EditorCategories value="Race:Protoss,AbilityorEffectType:Structures"/>
         <Alert value="TrainWorkerComplete"/>
         <InfoArray index="Train1">

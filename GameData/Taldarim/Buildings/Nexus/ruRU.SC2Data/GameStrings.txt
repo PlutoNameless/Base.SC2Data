@@ -1,0 +1,3 @@
+Button/Name/TaldarimNexus=Вызвать Нексус Тал'Даримов
+Button/Tooltip/TaldarimNexus=Основное здание Тал'Даримов. Может производить зондов тал'даримов и хранить собранные ресурсы.
+Unit/Name/TaldarimNexus=Нексус

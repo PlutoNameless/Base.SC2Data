@@ -1,2 +1,3 @@
-Unit/Name/TaldarimPylon=Пилон
 Button/Name/TaldarimPylon=Вызвать Пилон
+Button/Tooltip/TaldarimPylon=Снабжает энергией соседние строения.<n/>Количество пилонов определяет максимальный размер армии Тал'Даримов.
+Unit/Name/TaldarimPylon=Пилон

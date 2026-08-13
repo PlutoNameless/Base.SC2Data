@@ -1,0 +1,26 @@
+Actor/Name/TaldarimNexus=Nexus Taldarim
+Model/Name/TaldarimNexus=Nexus Taldarim
+Model/Name/TaldarimNexus@Birth=Birth
+Model/Name/TaldarimNexus@Death=Death
+Model/Name/TaldarimNexus@Placement=Placement
+Model/Name/TaldarimNexus@Portrait=Portrait
+Model/Name/TaldarimNexus@Splat=Splat
+Sound/Name/TaldarimNexus@Death=Death
+Sound/Name/TaldarimNexus@What=What
+Sound/Name/TaldarimNexus@Ready=Ready
+Validator/Name/TaldarimNexus@Is=Caster Is Unit
+Validator/Name/TaldarimNexus@Target=Target Is Unit
+Validator/Name/TaldarimNexus@Not=Caster Not Unit
+Validator/Name/TaldarimNexus@NotTarget=Target Not Unit
+Requirement/Name/TaldarimNexus=Requirement
+Abil/Name/TaldarimMexus_Train=Train
+
+Abil/EditorSuffix/TaldarimMexus_Train=(Nexus Taldarim)
+Model/EditorSuffix/TaldarimNexus@Birth=(Nexus Taldarim)
+Model/EditorSuffix/TaldarimNexus@Death=(Nexus Taldarim)
+Model/EditorSuffix/TaldarimNexus@Placement=(Nexus Taldarim)
+Model/EditorSuffix/TaldarimNexus@Portrait=(Nexus Taldarim)
+Model/EditorSuffix/TaldarimNexus@Splat=(Nexus Taldarim)
+Sound/EditorSuffix/TaldarimNexus@Death=(Nexus Taldarim)
+Sound/EditorSuffix/TaldarimNexus@What=(Nexus Taldarim)
+Sound/EditorSuffix/TaldarimNexus@Ready=(Nexus Taldarim)

@@ -206,7 +206,7 @@
         <TechInfoUpgradeUsed value="ProtossGroundArmors@3"/>
     </CDataCollectionUnit>
 
-    <!-- ============ Weapon ============ -->
+    <!-- ========== Weapon ========== -->
      
     <CWeaponLegacy id="TaldarimProbe_Weapon">
         <EditorCategories value="Race:Protoss"/>
@@ -266,7 +266,7 @@
         <DataRecord Entry="Sound,TaldarimProbe_Weapon@AttackImpact"/>
     </CDataCollectionUnit>
 
-    <!-- ============= Abilities =============-->
+    <!-- ========== Abilities ==========-->
     <!-- Build -->
 
     <CAbilBuild id="TaldarimProbe_Build">
