@@ -1,4 +1,4 @@
-# Tal'darim Forces — Data Library
+# StarFraft II - Data Library
 
 Guide on how to add custom units to your StarCraft II map.
 
